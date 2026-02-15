@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZSIGNAL Gallery — Pitch Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════
+       ZIGNAL.ENGINE — Pitch Deck
+       Theme: DENSE_MOSAIC | Mode: light
+       ═══════════════════════════════════════════ */
+    :root {
+      --z-cream: #F2E8D5;
+      --z-cream-dark: #E8DCC8;
+      --z-charcoal: #1C1C1C;
+      --z-brick: #C04B3C;
+      --z-blue: #3A6EA5;
+      --z-gold: #D4A84B;
+      --z-olive: #6B7B3C;
+      --z-font-mono: 'IBM Plex Mono', monospace;
+      --z-font-sans: 'IBM Plex Sans', sans-serif;
+      --z-border: 2px solid #1C1C1C;
+      --z-shadow: 6px 6px 0 rgba(28, 28, 28, 0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; scroll-snap-type: y mandatory; }
+
+    body {
+      font-family: var(--z-font-sans);
+      color: var(--z-charcoal);
+      background: var(--z-charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── SLIDE SYSTEM ── */
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      scroll-snap-align: start;
+      background: var(--z-cream);
+    }
+
+    .slide-inner {
+      width: 100%;
+      max-width: 1200px;
+      padding: 64px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Slide number */
+    .slide-num {
+      position: absolute;
+      bottom: 32px;
+      right: 48px;
+      font-family: var(--z-font-mono);
+      font-size: 12px;
+      color: rgba(28, 28, 28, 0.30);
+      letter-spacing: 0.1em;
+      z-index: 3;
+    }
+
+    /* Logo badge — every slide */
+    .slide-logo {
+      position: absolute;
+      top: 32px;
+      left: 48px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--z-font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--z-charcoal);
+      z-index: 3;
+    }
+    .slide-logo-sq {
+      width: 10px;
+      height: 10px;
+      background: var(--z-gold);
+    }
+
+    /* ── ART ZONES ── */
+    .slide-art {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .slide-art svg { width: 100%; height: 100%; display: block; }
+
+    /* ── TYPOGRAPHY ── */
+    .deck-h1 {
+      font-family: var(--z-font-mono);
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .deck-h2 {
+      font-family: var(--z-font-mono);
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .deck-h3 {
+      font-family: var(--z-font-mono);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .deck-body {
+      font-family: var(--z-font-sans);
+      font-size: 22px;
+      line-height: 1.6;
+      color: rgba(28, 28, 28, 0.75);
+      max-width: 640px;
+    }
+    .deck-caption {
+      font-family: var(--z-font-mono);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(28, 28, 28, 0.40);
+    }
+    .deck-label {
+      font-family: var(--z-font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--z-gold);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .gold { color: var(--z-gold); }
+
+    /* ── STAT CARDS ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .stat-card {
+      border: var(--z-border);
+      padding: 28px 24px;
+      background: var(--z-cream);
+      box-shadow: var(--z-shadow);
+    }
+    .stat-num {
+      font-family: var(--z-font-mono);
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-family: var(--z-font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(28, 28, 28, 0.50);
+    }
+
+    /* ── FEATURE GRID ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .feature-card {
+      border: var(--z-border);
+      padding: 28px;
+      background: var(--z-cream);
+      box-shadow: var(--z-shadow);
+    }
+    .feature-pip {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 16px;
+    }
+    .feature-card h3 {
+      font-family: var(--z-font-mono);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(28, 28, 28, 0.65);
+    }
+
+    /* ── SPLIT LAYOUT ── */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .split-art {
+      aspect-ratio: 1;
+      border: var(--z-border);
+      box-shadow: var(--z-shadow);
+      background: var(--z-cream-dark);
+      overflow: hidden;
+    }
+    .split-art svg { width: 100%; height: 100%; display: block; }
+
+    /* ── BULLET LIST ── */
+    .deck-bullets {
+      list-style: none;
+      margin-top: 24px;
+    }
+    .deck-bullets li {
+      font-family: var(--z-font-sans);
+      font-size: 20px;
+      line-height: 1.5;
+      padding: 10px 0;
+      padding-left: 24px;
+      position: relative;
+      color: rgba(28, 28, 28, 0.75);
+    }
+    .deck-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 18px;
+      width: 10px;
+      height: 10px;
+      background: var(--z-gold);
+    }
+
+    /* ── ERA STRIP ── */
+    .era-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .era-cell {
+      text-align: center;
+    }
+    .era-art {
+      aspect-ratio: 1;
+      border: var(--z-border);
+      background: var(--z-cream-dark);
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .era-art svg { width: 100%; height: 100%; display: block; }
+    .era-name {
+      font-family: var(--z-font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .era-year {
+      font-family: var(--z-font-mono);
+      font-size: 10px;
+      color: rgba(28, 28, 28, 0.40);
+    }
+
+    /* ── PRICING TABLE ── */
+    .pricing-strip {
+      display: grid;
+      grid-template-columns: 2fr repeat(4, 1fr);
+      gap: 0;
+      margin-top: 32px;
+      border: var(--z-border);
+      font-family: var(--z-font-mono);
+      font-size: 14px;
+    }
+    .pricing-strip > div {
+      padding: 14px 16px;
+      border-bottom: 2px solid rgba(28, 28, 28, 0.10);
+    }
+    .pricing-strip > div:nth-child(5n+1) {
+      font-weight: 600;
+    }
+    .pricing-header {
+      background: var(--z-charcoal) !important;
+      color: var(--z-cream) !important;
+      font-weight: 700 !important;
+      border-bottom: none !important;
+      font-size: 11px !important;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .pricing-gold {
+      background: rgba(212, 168, 75, 0.08);
+    }
+
+    /* ── DIVIDER SLIDE ── */
+    .slide-divider {
+      background: var(--z-charcoal);
+      color: var(--z-cream);
+    }
+    .slide-divider .deck-h2 { color: var(--z-cream); }
+    .slide-divider .deck-body { color: rgba(232, 220, 200, 0.60); }
+    .slide-divider .slide-logo { color: var(--z-cream); }
+    .slide-divider .slide-num { color: rgba(232, 220, 200, 0.25); }
+    .slide-divider .deck-label { color: var(--z-gold); }
+
+    /* ── CLOSING SLIDE ── */
+    .slide-closing {
+      text-align: center;
+    }
+    .closing-art {
+      width: 240px;
+      height: 240px;
+      margin: 0 auto 40px;
+      border: var(--z-border);
+      box-shadow: var(--z-shadow);
+      background: var(--z-cream-dark);
+    }
+    .closing-art svg { width: 100%; height: 100%; display: block; }
+    .closing-contact {
+      margin-top: 32px;
+      font-family: var(--z-font-mono);
+      font-size: 14px;
+      color: rgba(28, 28, 28, 0.50);
+    }
+
+    /* ── NAVIGATION ── */
+    .deck-nav {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .deck-nav a {
+      width: 10px;
+      height: 10px;
+      border: 2px solid var(--z-charcoal);
+      background: transparent;
+      display: block;
+      transition: background 150ms;
+    }
+    .deck-nav a.active,
+    .deck-nav a:hover {
+      background: var(--z-gold);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1023px) {
+      .slide-inner { padding: 48px 40px; }
+      .deck-h1 { font-size: 40px; }
+      .deck-h2 { font-size: 32px; }
+      .stat-row { grid-template-columns: repeat(2, 1fr); }
+      .feature-grid { grid-template-columns: 1fr 1fr; }
+      .split { grid-template-columns: 1fr; gap: 32px; }
+      .era-strip { grid-template-columns: repeat(3, 1fr); }
+      .pricing-strip { font-size: 12px; }
+    }
+    @media (max-width: 767px) {
+      .slide-inner { padding: 32px 24px; }
+      .deck-h1 { font-size: 32px; }
+      .deck-h2 { font-size: 26px; }
+      .deck-body { font-size: 17px; }
+      .stat-row { grid-template-columns: 1fr; }
+      .stat-num { font-size: 36px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .era-strip { grid-template-columns: repeat(2, 1fr); }
+      .deck-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV DOTS -->
+  <nav class="deck-nav" id="deckNav">
+    <a href="#slide-1" title="Title"></a>
+    <a href="#slide-2" title="Problem"></a>
+    <a href="#slide-3" title="Solution"></a>
+    <a href="#slide-4" title="The Art"></a>
+    <a href="#slide-5" title="Product"></a>
+    <a href="#slide-6" title="Traction"></a>
+    <a href="#slide-7" title="Revenue"></a>
+    <a href="#slide-8" title="Close"></a>
+  </nav>
+
+  <!-- ════════════════════════════════════════
+       SLIDE 1 — TITLE
+       ════════════════════════════════════════ -->
+  <section class="slide" id="slide-1">
+    <div class="slide-art" style="right:0;top:0;width:45%;height:100%;" id="title-art"></div>
+    <div class="slide-inner">
+      <div style="max-width:50%;">
+        <div class="deck-label">Generative Art &times; E-Commerce</div>
+        <h1 class="deck-h1">ZSIGNAL<br>Gallery</h1>
+        <p class="deck-body">A platform where algorithmically generated Bauhaus art meets museum-quality framed prints. Browse. Customize. Own.</p>
+        <p class="deck-caption" style="margin-top:32px;">February 2026 &middot; Seed Round</p>
+      </div>
+    </div>
+    <div class="slide-num">01 / 08</div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SLIDE 2 — PROBLEM
+       ════════════════════════════════════════ -->
+  <section class="slide slide-divider" id="slide-2">
+    <div class="slide-logo"><div class="slide-logo-sq"></div>ZSIGNAL</div>
+    <div class="slide-inner">
+      <div class="deck-label">The Problem</div>
+      <h2 class="deck-h2">Wall art is either mass-produced or inaccessible</h2>
+      <ul class="deck-bullets" style="max-width:700px;">
+        <li style="color:rgba(232,220,200,0.70);">Big-box retailers sell identical prints to millions. No uniqueness, no story, no craft.</li>
+        <li style="color:rgba(232,220,200,0.70);">Original fine art is gatekept by galleries, priced for collectors, and intimidating to new buyers.</li>
+        <li style="color:rgba(232,220,200,0.70);">Generative art lives on screens. There's no easy path from algorithm to wall.</li>
+        <li style="color:rgba(232,220,200,0.70);">Customization (size, frame, material) is fragmented across multiple vendors.</li>
+      </ul>
+    </div>
+    <div class="slide-num">02 / 08</div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SLIDE 3 — SOLUTION
+       ════════════════════════════════════════ -->
+  <section class="slide" id="slide-3">
+    <div class="slide-logo"><div class="slide-logo-sq"></div>ZSIGNAL</div>
+    <div class="slide-inner">
+      <div class="deck-label">The Solution</div>
+      <h2 class="deck-h2">Art generated by code.<br>Printed by craftsmen.<br>Delivered to your door.</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-pip" style="background:var(--z-gold);"></div>
+          <h3>Generative Engine</h3>
+          <p>6 composition archetypes, 6 palettes, deterministic seeds. Every piece is unique and reproducible.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-pip" style="background:var(--z-charcoal);"></div>
+          <h3>Print Customization</h3>
+          <p>4 sizes, 5 frame styles, 3 materials. Live price calculator and frame preview before you order.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-pip" style="background:var(--z-olive);"></div>
+          <h3>Museum Quality</h3>
+          <p>310gsm Hahnem&uuml;hle paper, gallery canvas, or acrylic face mount. Free worldwide shipping.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">03 / 08</div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SLIDE 4 — THE ART (6 Eras)
+       ════════════════════════════════════════ -->
+  <section class="slide" id="slide-4">
+    <div class="slide-logo"><div class="slide-logo-sq"></div>ZSIGNAL</div>
+    <div class="slide-inner">
+      <div class="deck-label">The Art</div>
+      <h2 class="deck-h2">Six eras of computational Bauhaus</h2>
+      <p class="deck-body" style="margin-bottom:8px;">Each era is a distinct archetype&mdash;a compositional algorithm rooted in a Bauhaus master's philosophy. Every artwork is generated live in the browser from a deterministic seed.</p>
+      <div class="era-strip" id="era-strip"></div>
+    </div>
+    <div class="slide-num">04 / 08</div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SLIDE 5 — PRODUCT (Split: art + features)
+       ════════════════════════════════════════ -->
+  <section class="slide" id="slide-5">
+    <div class="slide-logo"><div class="slide-logo-sq"></div>ZSIGNAL</div>
+    <div class="slide-inner">
+      <div class="split">
+        <div class="split-art" id="product-art"></div>
+        <div>
+          <div class="deck-label">The Product</div>
+          <h2 class="deck-h2">Browse &rarr; Customize &rarr; Own</h2>
+          <ul class="deck-bullets">
+            <li><strong>Gallery</strong> &mdash; 26 works, filterable by era and palette</li>
+            <li><strong>Detail page</strong> &mdash; Full artwork with live frame preview</li>
+            <li><strong>Size selector</strong> &mdash; 8&times;10&Prime; to 30&times;40&Prime;</li>
+            <li><strong>Frame options</strong> &mdash; Black, White, Oak, Gold, or unframed</li>
+            <li><strong>Material</strong> &mdash; Fine art paper, canvas, acrylic</li>
+            <li><strong>Instant pricing</strong> &mdash; $89&ndash;$619 per piece</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">05 / 08</div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SLIDE 6 — TRACTION / METRICS
+       ════════════════════════════════════════ -->
+  <section class="slide" id="slide-6">
+    <div class="slide-logo"><div class="slide-logo-sq"></div>ZSIGNAL</div>
+    <div class="slide-inner">
+      <div class="deck-label">Traction</div>
+      <h2 class="deck-h2">Early signals</h2>
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-num gold">26</div>
+          <div class="stat-label">Artworks Live</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Composition Eras</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num gold">5</div>
+          <div class="stat-label">Pages Shipped</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">&infin;</div>
+          <div class="stat-label">Possible Seeds</div>
+        </div>
+      </div>
+      <p class="deck-body" style="margin-top:40px;">Full platform built: generative engine, gallery with filtering, artwork detail with print ordering, artist biography, and interactive composition demo. Zero dependencies, pure HTML/CSS/JS.</p>
+    </div>
+    <div class="slide-num">06 / 08</div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SLIDE 7 — REVENUE MODEL
+       ════════════════════════════════════════ -->
+  <section class="slide" id="slide-7">
+    <div class="slide-logo"><div class="slide-logo-sq"></div>ZSIGNAL</div>
+    <div class="slide-inner">
+      <div class="deck-label">Revenue Model</div>
+      <h2 class="deck-h2">Print-on-demand margins at art-gallery prices</h2>
+
+      <div class="pricing-strip">
+        <div class="pricing-header"></div>
+        <div class="pricing-header">Small</div>
+        <div class="pricing-header">Medium</div>
+        <div class="pricing-header">Large</div>
+        <div class="pricing-header">XL</div>
+
+        <div>Fine Art Paper</div>
+        <div>$89</div><div>$159</div><div>$249</div><div>$349</div>
+
+        <div>Canvas</div>
+        <div>$119</div><div>$199</div><div>$299</div><div>$419</div>
+
+        <div>Acrylic</div>
+        <div>$149</div><div>$249</div><div>$379</div><div>$499</div>
+
+        <div style="font-weight:700;">Frame Add-on</div>
+        <div class="pricing-gold">+$25&ndash;45</div>
+        <div class="pricing-gold">+$45&ndash;69</div>
+        <div class="pricing-gold">+$65&ndash;95</div>
+        <div class="pricing-gold">+$85&ndash;119</div>
+      </div>
+
+      <ul class="deck-bullets" style="margin-top:32px;">
+        <li><strong>60&ndash;70% gross margin</strong> on prints (print-on-demand fulfillment)</li>
+        <li><strong>Frame upsell</strong> adds $25&ndash;$119 per order at 80%+ margin</li>
+        <li><strong>Expansion path:</strong> unlimited seeds &rarr; custom compositions &rarr; subscription tiers</li>
+      </ul>
+    </div>
+    <div class="slide-num">07 / 08</div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       SLIDE 8 — CLOSING
+       ════════════════════════════════════════ -->
+  <section class="slide slide-closing" id="slide-8">
+    <div class="slide-logo"><div class="slide-logo-sq"></div>ZSIGNAL</div>
+    <div class="slide-inner" style="display:flex;flex-direction:column;align-items:center;">
+      <div class="closing-art" id="closing-art"></div>
+      <div class="deck-label">Thank You</div>
+      <h2 class="deck-h2">The algorithm is the brush.<br>The print is the canvas.<br>The wall is the gallery.</h2>
+      <div class="closing-contact">
+        zsignal.gallery &middot; hello@zsignal.art<br>
+        <span style="color:var(--z-gold);">&#9632;</span> Built with ZIGNAL.ENGINE
+      </div>
+    </div>
+    <div class="slide-num">08 / 08</div>
+  </section>
+
+  <!-- ── SCRIPTS ── -->
+  <script src="js/z-engine.js"></script>
+  <script src="js/z-catalog.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // ── SLIDE 1: Title art (FREE_FORM, right panel) ──
+      const titleArt = document.getElementById('title-art');
+      if (titleArt) {
+        ZEngine.render(titleArt, {
+          archetype: 'FREE_FORM', palette: 'ZSIGNAL', seed: 42718, density: 0.5
+        });
+      }
+
+      // ── SLIDE 4: Era strip — 6 thumbnails ──
+      const eraStrip = document.getElementById('era-strip');
+      if (eraStrip) {
+        const eras = [
+          { key: 'I',   name: 'Free Form',      year: '2018' },
+          { key: 'II',  name: 'Grid',            year: '2019' },
+          { key: 'III', name: 'Repetition',      year: '2020' },
+          { key: 'IV',  name: 'Constructivist',  year: '2021' },
+          { key: 'V',   name: 'Color Study',     year: '2022' },
+          { key: 'VI',  name: 'Dot Field',       year: '2023+' }
+        ];
+        eras.forEach(era => {
+          const works = ZCatalog.getByEra(era.key);
+          if (!works.length) return;
+          const w = works[0];
+          const cell = document.createElement('div');
+          cell.className = 'era-cell';
+          const artDiv = document.createElement('div');
+          artDiv.className = 'era-art';
+          ZEngine.render(artDiv, {
+            archetype: w.archetype, palette: w.palette, seed: w.seed, density: w.density
+          });
+          cell.appendChild(artDiv);
+          cell.innerHTML += `<div class="era-name">${era.name}</div><div class="era-year">${era.year}</div>`;
+          eraStrip.appendChild(cell);
+        });
+      }
+
+      // ── SLIDE 5: Product art ──
+      const productArt = document.getElementById('product-art');
+      if (productArt) {
+        ZEngine.render(productArt, {
+          archetype: 'COLOR_STUDY', palette: 'CLASSIC_BAUHAUS', seed: 34521, density: 0.5
+        });
+      }
+
+      // ── SLIDE 8: Closing art ──
+      const closingArt = document.getElementById('closing-art');
+      if (closingArt) {
+        ZEngine.render(closingArt, {
+          archetype: 'GRID', palette: 'ZSIGNAL', seed: 58432, density: 0.5
+        });
+      }
+
+      // ── NAV DOT TRACKING ──
+      const dots = document.querySelectorAll('.deck-nav a');
+      const slides = document.querySelectorAll('.slide');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            dots.forEach(d => d.classList.remove('active'));
+            const idx = [...slides].indexOf(entry.target);
+            if (dots[idx]) dots[idx].classList.add('active');
+          }
+        });
+      }, { threshold: 0.5 });
+      slides.forEach(s => observer.observe(s));
+      if (dots[0]) dots[0].classList.add('active');
+
+      // ── KEYBOARD NAV ──
+      let currentSlide = 0;
+      document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+          e.preventDefault();
+          currentSlide = Math.min(currentSlide + 1, slides.length - 1);
+          slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+        }
+        if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          currentSlide = Math.max(currentSlide - 1, 0);
+          slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
