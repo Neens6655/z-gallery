@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio &mdash; ZSIGNAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/z-gallery.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+      <nav class="nav" id="nav">
+        <a href="gallery.html">Gallery</a>
+        <a href="studio.html" class="active">Studio</a>
+        <a href="artist.html">Artist</a>
+        <a href="theory.html">Theory</a>
+      </nav>
+      <div class="header-actions">
+        <a href="gallery.html" class="btn btn-primary btn-sm">VIEW GALLERY</a>
+        <button class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- STUDIO -->
+  <section class="section" style="padding-top:48px;">
+    <div class="container">
+      <div style="margin-bottom:40px;">
+        <div class="hero-label">Live Composition Studio</div>
+        <h1 style="font-family:var(--z-font-mono);font-size:40px;font-weight:700;line-height:1.1;">Create Your Own</h1>
+        <p style="font-size:16px;color:rgba(28,28,28,0.65);margin-top:12px;max-width:560px;">Mix archetype, palette, density, and seed to compose original Bauhaus artwork. Mint your favorites to your personal collection or order as a print.</p>
+      </div>
+
+      <div class="studio-layout">
+        <!-- LEFT: Canvas -->
+        <div class="studio-canvas-wrapper">
+          <div class="studio-canvas" id="studio-canvas"></div>
+          <div class="studio-canvas-info">
+            <span id="studio-info-archetype">FREE_FORM</span>
+            <span id="studio-info-palette">ZSIGNAL</span>
+            <span>Seed: <strong id="studio-info-seed">---</strong></span>
+            <span>Density: <strong id="studio-info-density">0.5</strong></span>
+          </div>
+        </div>
+
+        <!-- RIGHT: Controls -->
+        <div class="studio-sidebar">
+          <div>
+            <div class="studio-section-title">Composition Parameters</div>
+
+            <!-- Archetype -->
+            <div class="studio-param-group">
+              <div class="studio-param-label">Archetype</div>
+              <div class="studio-param-options" id="studio-archetypes">
+                <button class="studio-pill active" data-val="FREE_FORM">Free Form</button>
+                <button class="studio-pill" data-val="GRID">Grid</button>
+                <button class="studio-pill" data-val="REPETITION">Repetition</button>
+                <button class="studio-pill" data-val="CONSTRUCTIVIST">Constructivist</button>
+                <button class="studio-pill" data-val="COLOR_STUDY">Color Study</button>
+                <button class="studio-pill" data-val="DOT_FIELD">Dot Field</button>
+                <button class="studio-pill" data-val="ARABIAN_GEOMETRIC">Arabian Geometric</button>
+              </div>
+            </div>
+
+            <!-- Palette -->
+            <div class="studio-param-group">
+              <div class="studio-param-label">Palette</div>
+              <div class="studio-param-options" id="studio-palettes">
+                <button class="studio-pill active" data-val="ZSIGNAL">
+                  <span style="display:inline-block;width:8px;height:8px;background:#C04B3C;margin-right:4px;vertical-align:middle;"></span>ZSIGNAL
+                </button>
+                <button class="studio-pill" data-val="CLASSIC_BAUHAUS">
+                  <span style="display:inline-block;width:8px;height:8px;background:#E63946;margin-right:4px;vertical-align:middle;"></span>Classic
+                </button>
+                <button class="studio-pill" data-val="CONSTRUCTIVIST">
+                  <span style="display:inline-block;width:8px;height:8px;background:#CC0000;margin-right:4px;vertical-align:middle;"></span>Constructivist
+                </button>
+                <button class="studio-pill" data-val="WARM_EARTH">
+                  <span style="display:inline-block;width:8px;height:8px;background:#C67B5C;margin-right:4px;vertical-align:middle;"></span>Warm Earth
+                </button>
+                <button class="studio-pill" data-val="COOL_STEEL">
+                  <span style="display:inline-block;width:8px;height:8px;background:#3A6EA5;margin-right:4px;vertical-align:middle;"></span>Cool Steel
+                </button>
+                <button class="studio-pill" data-val="MONOCHROME">
+                  <span style="display:inline-block;width:8px;height:8px;background:#707070;margin-right:4px;vertical-align:middle;"></span>Mono
+                </button>
+              </div>
+            </div>
+
+            <!-- Density -->
+            <div class="studio-param-group">
+              <div class="studio-param-label">Density</div>
+              <div class="studio-slider-row">
+                <span style="font-family:var(--z-font-mono);font-size:11px;color:rgba(28,28,28,0.40);">Sparse</span>
+                <input type="range" class="studio-slider" id="studio-density" min="0.1" max="0.9" step="0.05" value="0.5">
+                <span style="font-family:var(--z-font-mono);font-size:11px;color:rgba(28,28,28,0.40);">Dense</span>
+                <span class="studio-slider-value" id="studio-density-val">0.50</span>
+              </div>
+            </div>
+
+            <!-- Seed -->
+            <div class="studio-param-group">
+              <div class="studio-param-label">Seed</div>
+              <div class="studio-seed-row">
+                <input type="number" class="studio-seed-input" id="studio-seed" min="0" max="99999" value="42718">
+                <button class="btn btn-secondary btn-sm" id="studio-randomize" style="height:38px;">
+                  <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:4px;"><path d="M17,3 L14,6 L17,9 M3,10 C3,6.13 6.13,3 10,3 L14,3 M3,17 L6,14 L3,11 M17,10 C17,13.87 13.87,17 10,17 L6,17"/></svg>
+                  RANDOMIZE
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="studio-actions">
+            <button class="btn btn-primary btn-full" id="studio-mint">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;"><path d="M10,2 L12.5,7 L18,7.5 L14,11.5 L15,17 L10,14.5 L5,17 L6,11.5 L2,7.5 L7.5,7 Z"/></svg>
+              MINT TO COLLECTION
+            </button>
+            <button class="btn btn-secondary btn-full" id="studio-genesis">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;"><polygon points="4,2 18,10 4,18"/></svg>
+              WATCH IT BUILD
+            </button>
+            <button class="btn btn-secondary btn-full" id="studio-download">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;"><path d="M10,2 L10,13 M6,9 L10,13 L14,9 M3,16 L17,16"/></svg>
+              DOWNLOAD SVG
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTION -->
+  <section class="section section-alt" id="collection-section">
+    <div class="container">
+      <div class="section-header" style="text-align:left;margin-bottom:32px;">
+        <div class="studio-collection-label">Your Collection</div>
+        <h2 style="font-size:28px;">Minted Compositions</h2>
+        <p style="margin-left:0;">Your saved compositions live in this browser. Each one can be loaded back into the studio or ordered as a print.</p>
+      </div>
+      <div class="collection-grid" id="collection-grid"></div>
+      <div class="collection-empty" id="collection-empty">
+        <p>No compositions minted yet.<br>Create one above and hit Mint to Collection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+          <p>Generative Bauhaus art. Algorithmic compositions available as museum-quality framed prints.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Gallery</h4>
+          <a href="gallery.html">All Works</a>
+          <a href="gallery.html?era=I">Era I</a>
+          <a href="gallery.html?era=III">Era III</a>
+          <a href="gallery.html?era=VI">Era VI</a>
+        </div>
+        <div class="footer-col">
+          <h4>Create</h4>
+          <a href="studio.html">Composition Studio</a>
+          <a href="theory.html">About the Engine</a>
+          <a href="theory.html#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Shipping</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 ZSIGNAL Gallery. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/z-engine.js"></script>
+  <script src="js/z-catalog.js"></script>
+  <script src="js/z-gallery.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ── STATE ──
+      let state = {
+        archetype: 'FREE_FORM',
+        palette: 'ZSIGNAL',
+        density: 0.5,
+        seed: Math.floor(Math.random() * 99999)
+      };
+      let genesisController = null;
+
+      const canvas = document.getElementById('studio-canvas');
+      const seedInput = document.getElementById('studio-seed');
+      const densitySlider = document.getElementById('studio-density');
+      const densityVal = document.getElementById('studio-density-val');
+
+      // Set initial seed
+      seedInput.value = state.seed;
+
+      // ── RENDER ──
+      function renderStudio() {
+        ZEngine.render(canvas, {
+          archetype: state.archetype,
+          palette: state.palette,
+          seed: state.seed,
+          density: state.density
+        });
+        // Update info bar
+        document.getElementById('studio-info-archetype').textContent = state.archetype;
+        document.getElementById('studio-info-palette').textContent = state.palette;
+        document.getElementById('studio-info-seed').textContent = state.seed;
+        document.getElementById('studio-info-density').textContent = state.density.toFixed(2);
+
+        // Update URL for sharing (without page reload)
+        const url = new URL(window.location);
+        url.searchParams.set('a', state.archetype);
+        url.searchParams.set('p', state.palette);
+        url.searchParams.set('s', state.seed);
+        url.searchParams.set('d', state.density);
+        history.replaceState(null, '', url);
+      }
+
+      // ── PILL CONTROLS ──
+      function bindPills(containerId, key) {
+        document.querySelectorAll(`#${containerId} .studio-pill`).forEach(pill => {
+          pill.addEventListener('click', () => {
+            document.querySelectorAll(`#${containerId} .studio-pill`).forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            state[key] = pill.dataset.val;
+            renderStudio();
+          });
+        });
+      }
+      bindPills('studio-archetypes', 'archetype');
+      bindPills('studio-palettes', 'palette');
+
+      // ── DENSITY SLIDER ──
+      densitySlider.addEventListener('input', () => {
+        state.density = parseFloat(densitySlider.value);
+        densityVal.textContent = state.density.toFixed(2);
+        renderStudio();
+      });
+
+      // ── SEED INPUT ──
+      seedInput.addEventListener('change', () => {
+        state.seed = parseInt(seedInput.value, 10) || 0;
+        renderStudio();
+      });
+
+      // ── RANDOMIZE ──
+      document.getElementById('studio-randomize').addEventListener('click', () => {
+        state.seed = Math.floor(Math.random() * 99999);
+        seedInput.value = state.seed;
+        renderStudio();
+      });
+
+      // ── GENESIS ANIMATION ──
+      document.getElementById('studio-genesis').addEventListener('click', () => {
+        if (genesisController && genesisController.isPlaying()) {
+          genesisController.reveal();
+          return;
+        }
+        genesisController = ZEngine.renderAnimated(canvas, {
+          archetype: state.archetype,
+          palette: state.palette,
+          seed: state.seed,
+          density: state.density
+        }, { delayPerElement: 140, initialDelay: 300 });
+        genesisController.play();
+      });
+
+      // ── DOWNLOAD SVG ──
+      document.getElementById('studio-download').addEventListener('click', () => {
+        const svgEl = canvas.querySelector('svg');
+        if (!svgEl) return;
+        const serializer = new XMLSerializer();
+        const svgString = serializer.serializeToString(svgEl);
+        const blob = new Blob([svgString], { type: 'image/svg+xml' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `zsignal-${state.archetype.toLowerCase()}-${state.seed}.svg`;
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      // ── COLLECTION (localStorage) ──
+      const STORAGE_KEY = 'zsignal_collection';
+
+      function loadCollection() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        } catch { return []; }
+      }
+
+      function saveCollection(collection) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(collection));
+      }
+
+      function renderCollection() {
+        const collection = loadCollection();
+        const grid = document.getElementById('collection-grid');
+        const empty = document.getElementById('collection-empty');
+
+        if (collection.length === 0) {
+          grid.style.display = 'none';
+          empty.style.display = '';
+          return;
+        }
+
+        grid.style.display = '';
+        empty.style.display = 'none';
+        grid.innerHTML = '';
+
+        collection.forEach((item, idx) => {
+          const card = document.createElement('div');
+          card.className = 'collection-card';
+
+          const artDiv = document.createElement('div');
+          artDiv.className = 'collection-card-art';
+          artDiv.addEventListener('click', () => {
+            // Load into studio
+            state.archetype = item.archetype;
+            state.palette = item.palette;
+            state.seed = item.seed;
+            state.density = item.density;
+            seedInput.value = state.seed;
+            densitySlider.value = state.density;
+            densityVal.textContent = state.density.toFixed(2);
+            // Update pills
+            document.querySelectorAll('#studio-archetypes .studio-pill').forEach(p => {
+              p.classList.toggle('active', p.dataset.val === state.archetype);
+            });
+            document.querySelectorAll('#studio-palettes .studio-pill').forEach(p => {
+              p.classList.toggle('active', p.dataset.val === state.palette);
+            });
+            renderStudio();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+
+          ZEngine.render(artDiv, {
+            archetype: item.archetype,
+            palette: item.palette,
+            seed: item.seed,
+            density: item.density
+          });
+
+          const meta = document.createElement('div');
+          meta.className = 'collection-card-meta';
+          meta.innerHTML = `
+            <div class="collection-card-params">
+              ${item.archetype} &middot; ${item.palette}<br>
+              Seed: ${item.seed} &middot; Density: ${item.density}
+            </div>
+            <div class="collection-card-actions">
+              <button class="collection-card-btn load-btn" data-idx="${idx}">Load</button>
+              <button class="collection-card-btn delete" data-idx="${idx}">Remove</button>
+            </div>
+          `;
+
+          card.appendChild(artDiv);
+          card.appendChild(meta);
+          grid.appendChild(card);
+        });
+
+        // Bind buttons
+        grid.querySelectorAll('.load-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const item = collection[parseInt(btn.dataset.idx, 10)];
+            if (!item) return;
+            state.archetype = item.archetype;
+            state.palette = item.palette;
+            state.seed = item.seed;
+            state.density = item.density;
+            seedInput.value = state.seed;
+            densitySlider.value = state.density;
+            densityVal.textContent = state.density.toFixed(2);
+            document.querySelectorAll('#studio-archetypes .studio-pill').forEach(p => {
+              p.classList.toggle('active', p.dataset.val === state.archetype);
+            });
+            document.querySelectorAll('#studio-palettes .studio-pill').forEach(p => {
+              p.classList.toggle('active', p.dataset.val === state.palette);
+            });
+            renderStudio();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        });
+        grid.querySelectorAll('.delete').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const col = loadCollection();
+            col.splice(parseInt(btn.dataset.idx, 10), 1);
+            saveCollection(col);
+            renderCollection();
+          });
+        });
+      }
+
+      // ── MINT ──
+      document.getElementById('studio-mint').addEventListener('click', () => {
+        const collection = loadCollection();
+        // Check for duplicate
+        const exists = collection.some(item =>
+          item.archetype === state.archetype &&
+          item.palette === state.palette &&
+          item.seed === state.seed &&
+          item.density === state.density
+        );
+        if (exists) {
+          // Flash the canvas border gold briefly
+          canvas.style.boxShadow = '0 0 0 4px var(--z-gold)';
+          setTimeout(() => { canvas.style.boxShadow = ''; }, 800);
+          return;
+        }
+
+        collection.unshift({
+          archetype: state.archetype,
+          palette: state.palette,
+          seed: state.seed,
+          density: state.density,
+          mintedAt: Date.now()
+        });
+        saveCollection(collection);
+        renderCollection();
+
+        // Flash success
+        canvas.classList.add('mint-flash');
+        setTimeout(() => canvas.classList.remove('mint-flash'), 700);
+
+        // Scroll to collection
+        document.getElementById('collection-section').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // ── LOAD FROM URL PARAMS ──
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('a')) state.archetype = params.get('a');
+      if (params.has('p')) state.palette = params.get('p');
+      if (params.has('s')) state.seed = parseInt(params.get('s'), 10);
+      if (params.has('d')) state.density = parseFloat(params.get('d'));
+
+      // Sync UI to loaded state
+      seedInput.value = state.seed;
+      densitySlider.value = state.density;
+      densityVal.textContent = state.density.toFixed(2);
+      document.querySelectorAll('#studio-archetypes .studio-pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.val === state.archetype);
+      });
+      document.querySelectorAll('#studio-palettes .studio-pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.val === state.palette);
+      });
+
+      // ── INIT ──
+      renderStudio();
+      renderCollection();
+    });
+  </script>
+</body>
+</html>

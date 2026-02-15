@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Artist &mdash; ZSIGNAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/z-gallery.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+      <nav class="nav" id="nav">
+        <a href="gallery.html">Gallery</a>
+        <a href="studio.html">Studio</a>
+        <a href="artist.html" class="active">Artist</a>
+        <a href="theory.html">Theory</a>
+      </nav>
+      <div class="header-actions">
+        <a href="gallery.html" class="btn btn-primary btn-sm">VIEW GALLERY</a>
+        <button class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ARTIST HERO -->
+  <section class="section">
+    <div class="container">
+      <div class="artist-intro">
+        <div class="artist-intro-art" id="portrait-art"></div>
+        <div class="artist-intro-text">
+          <div style="font-family:var(--z-font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,28,28,0.50);margin-bottom:8px;">Computational Artist</div>
+          <h1 style="font-family:var(--z-font-mono);font-size:48px;font-weight:700;line-height:1.1;margin-bottom:16px;">ZSIGNAL</h1>
+          <p style="font-family:var(--z-font-mono);font-size:14px;color:rgba(28,28,28,0.60);margin-bottom:24px;">
+            b. 1991, Berlin &middot; Works in algorithmic composition<br>
+            Active 2018&ndash;present &middot; 31 works across 7 eras
+          </p>
+          <p>ZSIGNAL is the creative alias of a computational artist whose practice exists at the intersection of Bauhaus design theory and generative algorithms. Working exclusively within a self-imposed set of geometric constraints&mdash;12 shape primitives, 6 color palettes, and strict compositional rules&mdash;the artist produces work that is both rigorously systematic and visually resonant.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIST STATEMENT -->
+  <section class="section section-alt">
+    <div class="container" style="max-width:720px;">
+      <div class="section-header">
+        <h2>Artist Statement</h2>
+      </div>
+      <div style="font-size:18px;line-height:1.8;color:rgba(28,28,28,0.80);">
+        <p style="margin-bottom:24px;">I create compositions the way Moholy-Nagy once ordered his by telephone&mdash;through precise instructions executed by a system. In 1922, he called a sign factory and dictated a painting using nothing but verbal coordinates and color names. The result was art without the artist's hand. This idea has haunted me since I first encountered it.</p>
+        <p style="margin-bottom:24px;">My practice extends this principle into code. Each work is defined by three parameters: an archetype (the compositional grammar), a palette (the chromatic vocabulary), and a seed (the specific instance). The same inputs always produce the same output. There is no improvisation, no gestural expression, no accident. The art lies not in the mark, but in the system of rules that generates it.</p>
+        <p style="margin-bottom:24px;">I work within constraints because constraints are generative. Twelve shapes. Six palettes. Zero border-radius. Two-pixel borders only. These limitations are not restrictions&mdash;they are the instrument. Like a musician who masters a single instrument, I have spent six years learning what this particular system can express.</p>
+        <p>The gold circle appears in every Free Form composition. It is the signal. It is the reason the work exists. Everything else&mdash;the overlapping planes, the counter-weights, the stripe blocks&mdash;is context. The gold circle is the message.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <div class="section-header" style="text-align:left;">
+        <h2>Eras</h2>
+      </div>
+
+      <div class="timeline">
+        <!-- ERA I -->
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2018</div>
+          <div class="timeline-title">Era I: Organic Abstraction</div>
+          <div class="timeline-reference">After L&aacute;szl&oacute; Moholy-Nagy &middot; FREE_FORM</div>
+          <div class="timeline-desc">The first era explores bold overlapping planes anchored to canvas edges, creating dynamic tension through strategic overlap and transparency. Inspired by Moholy-Nagy's &ldquo;A 19&rdquo; (1927) and his telephone paintings, each composition is built from 3 compositional strategies: overlapping transparent planes, edge-anchored masses, or diagonal circle-and-bar arrangements. Every piece includes a gold focal circle&mdash;the signal in the noise.</div>
+          <div class="timeline-art" data-era="I"></div>
+          <a href="gallery.html?era=I" class="timeline-link">View 5 works &rarr;</a>
+        </div>
+
+        <!-- ERA II -->
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2019</div>
+          <div class="timeline-title">Era II: Systematic Order</div>
+          <div class="timeline-reference">After Piet Mondrian &amp; Kandinsky &middot; GRID</div>
+          <div class="timeline-desc">Shifting from organic overlap to modular structure, the GRID era channels Mondrian's asymmetric grid divisions with thick black lines and primary color fields, alongside Kandinsky's floating rectangle compositions. Three strategies emerge: the classic Mondrian asymmetric rectangle grid, Kandinsky-style floating colored rectangles at varied angles, and systematic cell grids with mixed geometry.</div>
+          <div class="timeline-art" data-era="II"></div>
+          <a href="gallery.html?era=II" class="timeline-link">View 4 works &rarr;</a>
+        </div>
+
+        <!-- ERA III -->
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2020</div>
+          <div class="timeline-title">Era III: Visual Music</div>
+          <div class="timeline-reference">After Paul Klee &amp; Bridget Riley &middot; REPETITION</div>
+          <div class="timeline-desc">The REPETITION era treats shape sequences as musical phrases. Inspired by Klee's &ldquo;Rhythmisches&rdquo; (1930) and Riley's &ldquo;Movement in Squares&rdquo; (1961), these compositions explore four pattern strategies: rhythmic colored grids, optical size progressions, wave processions with crescendo, and radial arrangements. Progressions in size, color, and spacing create visual tempo.</div>
+          <div class="timeline-art" data-era="III"></div>
+          <a href="gallery.html?era=III" class="timeline-link">View 5 works &rarr;</a>
+        </div>
+
+        <!-- ERA IV -->
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2021</div>
+          <div class="timeline-title">Era IV: Dynamic Tension</div>
+          <div class="timeline-reference">After El Lissitzky &amp; Malevich &middot; CONSTRUCTIVIST</div>
+          <div class="timeline-desc">The most austere era. Following Lissitzky's iconic red wedge and Malevich's Suprematist compositions, these works use only red, black, and the background. Three strategies drive the compositions: the dramatic red wedge piercing a circular mass, Suprematist floating forms at dynamic angles, and bold poster-style geometric arrangements with force lines radiating from collision points.</div>
+          <div class="timeline-art" data-era="IV"></div>
+          <a href="gallery.html?era=IV" class="timeline-link">View 4 works &rarr;</a>
+        </div>
+
+        <!-- ERA V -->
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2022</div>
+          <div class="timeline-title">Era V: Color Dialogues</div>
+          <div class="timeline-reference">After Josef Albers &middot; COLOR_STUDY</div>
+          <div class="timeline-desc">An homage to Albers' &ldquo;Homage to the Square&rdquo; series (1950&ndash;1976). These compositions faithfully recreate Albers' bottom-weighted nested squares with proportional spacing, his concentric circle variations, and his color interaction exercises where identical colors appear different on contrasting backgrounds. The engine uses his signature proportional system and golden ratio offsets.</div>
+          <div class="timeline-art" data-era="V"></div>
+          <a href="gallery.html?era=V" class="timeline-link">View 4 works &rarr;</a>
+        </div>
+
+        <!-- ERA VI -->
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2023&ndash;2025</div>
+          <div class="timeline-title">Era VI: Data Landscapes</div>
+          <div class="timeline-reference">After Herbert Bayer &amp; Victor Vasarely &middot; DOT_FIELD</div>
+          <div class="timeline-desc">Inspired by Bayer's typographic experiments and Vasarely's planetary folklore, DOT_FIELD compositions begin with mathematical point grids. Three strategies create distinct effects: Vasarely-style sphere illusions through dot size modulation, Bayer-style clean grids with bold geometric overlays and masking, and gradient fields where dot size and color create tonal landscapes.</div>
+          <div class="timeline-art" data-era="VI"></div>
+          <a href="gallery.html?era=VI" class="timeline-link">View 4 works &rarr;</a>
+        </div>
+
+        <!-- ERA VII -->
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2025&ndash;present</div>
+          <div class="timeline-title">Era VII: Sacred Geometry</div>
+          <div class="timeline-reference">After Alhambra zellige &amp; Isfahan girih tiles &middot; ARABIAN_GEOMETRIC</div>
+          <div class="timeline-desc">The current era. ZSIGNAL turns east, drawing on centuries of Islamic geometric art&mdash;the star-and-polygon tessellations of the Alhambra, the girih tilings of Isfahan's Darb-e Imam shrine, and the muqarnas vaulting of Mamluk architecture. Three strategies emerge: radial star tessellations with layered complexity, interlocking girih tile fields that suggest infinite extension, and concentric muqarnas dome patterns with rotational symmetry. The collision of Bauhaus and Arabian geometric traditions reveals their shared commitment to pure mathematical abstraction.</div>
+          <div class="timeline-art" data-era="VII"></div>
+          <a href="gallery.html?era=VII" class="timeline-link">View 5 works &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="artist-intro">
+        <div class="artist-intro-text">
+          <h3>The Algorithm as Brush</h3>
+          <p>Every ZSIGNAL work is deterministic. Given the same archetype, palette, and seed number, the system will always produce the identical composition. There is no randomness in the output&mdash;only in the selection of parameters.</p>
+          <p>This raises the fundamental question the artist has pursued for six years: if the system generates the composition, who is the artist? ZSIGNAL's answer: the artist is the one who designs the system. The algorithm is the brush. The constraints are the canvas. The seed is the gesture.</p>
+          <p style="margin-bottom:24px;">The Z-Signal genome&mdash;IBM Plex Mono, 2px borders, zero border-radius, cream and charcoal, the gold accent&mdash;is not a style choice. It is the instrument. And like any instrument mastered over years of practice, it has revealed expressive capabilities that no specification could have predicted.</p>
+          <a href="gallery.html" class="btn btn-secondary btn-sm">VIEW ALL WORKS</a>
+        </div>
+        <div class="artist-intro-art" id="philosophy-art"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXHIBITIONS -->
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <div class="section-header" style="text-align:left;">
+        <h2>Selected Exhibitions</h2>
+      </div>
+      <div>
+        <div class="exhibition-item">
+          <div>
+            <div class="exhibition-name">Signal / Noise: Generative Art Now</div>
+            <div class="exhibition-venue">Museum of Computational Art, Berlin</div>
+          </div>
+          <div class="exhibition-year">2025</div>
+        </div>
+        <div class="exhibition-item">
+          <div>
+            <div class="exhibition-name">Bauhaus Futures</div>
+            <div class="exhibition-venue">Bauhaus Dessau Foundation</div>
+          </div>
+          <div class="exhibition-year">2024</div>
+        </div>
+        <div class="exhibition-item">
+          <div>
+            <div class="exhibition-name">The Algorithm Paints</div>
+            <div class="exhibition-venue">Ars Electronica, Linz</div>
+          </div>
+          <div class="exhibition-year">2023</div>
+        </div>
+        <div class="exhibition-item">
+          <div>
+            <div class="exhibition-name">Color as Code</div>
+            <div class="exhibition-venue">ZKM Center for Art and Media, Karlsruhe</div>
+          </div>
+          <div class="exhibition-year">2022</div>
+        </div>
+        <div class="exhibition-item">
+          <div>
+            <div class="exhibition-name">Geometric Protocols</div>
+            <div class="exhibition-venue">MoMA PS1, New York</div>
+          </div>
+          <div class="exhibition-year">2021</div>
+        </div>
+        <div class="exhibition-item">
+          <div>
+            <div class="exhibition-name">Shapes and Systems (Solo)</div>
+            <div class="exhibition-venue">Hamburger Bahnhof, Berlin</div>
+          </div>
+          <div class="exhibition-year">2020</div>
+        </div>
+        <div class="exhibition-item">
+          <div>
+            <div class="exhibition-name">First Principles</div>
+            <div class="exhibition-venue">Digital Art Museum, Tokyo</div>
+          </div>
+          <div class="exhibition-year">2019</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+          <p>Generative Bauhaus art. Algorithmic compositions available as museum-quality framed prints.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Gallery</h4>
+          <a href="gallery.html">All Works</a>
+          <a href="gallery.html?era=I">Era I</a>
+          <a href="gallery.html?era=III">Era III</a>
+          <a href="gallery.html?era=VI">Era VI</a>
+        </div>
+        <div class="footer-col">
+          <h4>Theory</h4>
+          <a href="artist.html">The Artist</a>
+          <a href="theory.html">The Platform</a>
+          <a href="theory.html#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Shipping</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 ZSIGNAL Gallery. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/z-engine.js"></script>
+  <script src="js/z-catalog.js"></script>
+  <script src="js/z-gallery.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Portrait art (DOT_FIELD)
+      ZEngine.render('#portrait-art', {
+        archetype: 'DOT_FIELD', palette: 'ZSIGNAL', seed: 19910, density: 0.6
+      });
+
+      // Philosophy art (GRID)
+      ZEngine.render('#philosophy-art', {
+        archetype: 'GRID', palette: 'CLASSIC_BAUHAUS', seed: 31415, density: 0.5
+      });
+
+      // Timeline artworks
+      ZGallery.renderTimelineArt();
+    });
+  </script>
+</body>
+</html>

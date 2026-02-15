@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZSIGNAL — Computational Bauhaus Art Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/z-gallery.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+      <nav class="nav" id="nav">
+        <a href="gallery.html">Gallery</a>
+        <a href="studio.html">Studio</a>
+        <a href="artist.html">Artist</a>
+        <a href="theory.html">Theory</a>
+      </nav>
+      <div class="header-actions">
+        <a href="gallery.html" class="btn btn-primary btn-sm">VIEW GALLERY</a>
+        <button class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="section hero-section">
+    <div class="container hero">
+      <div class="hero-content">
+        <div class="hero-label">Generative Art &middot; Est. 2018</div>
+        <h1>The Art of<br>ZSIGNAL</h1>
+        <p class="hero-sub">Generative compositions rooted in the Bauhaus tradition and Islamic geometric art. Seven eras of computational art exploring geometry, color, and rhythm through algorithmic precision.</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><span class="hero-stat-num">31</span><span class="hero-stat-label">Works</span></div>
+          <div class="hero-stat"><span class="hero-stat-num">7</span><span class="hero-stat-label">Eras</span></div>
+          <div class="hero-stat"><span class="hero-stat-num">6</span><span class="hero-stat-label">Palettes</span></div>
+        </div>
+        <div class="hero-ctas">
+          <a href="gallery.html" class="btn btn-primary">EXPLORE THE GALLERY</a>
+          <a href="artist.html" class="btn btn-secondary">MEET THE ARTIST</a>
+        </div>
+      </div>
+      <div class="hero-art-wrapper">
+        <div class="hero-art" id="hero-art"></div>
+        <div class="hero-art-caption">
+          <span class="hero-art-title"></span>
+          <span class="hero-art-era"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED WORKS -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Selected Works</h2>
+        <p>Compositions spanning the breadth of ZSIGNAL's practice, from organic form to systematic data.</p>
+      </div>
+      <div class="grid-3 featured-grid"></div>
+    </div>
+  </section>
+
+  <!-- IN CONTEXT — Artworks displayed in room settings -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>In Context</h2>
+        <p>See how ZSIGNAL compositions live on walls, in galleries, and on desks.</p>
+      </div>
+      <div class="context-showcase" id="context-showcase">
+        <div class="context-scene context-wall">
+          <div class="context-art" id="ctx-wall-art"></div>
+          <span class="context-scene-label">Living Room</span>
+        </div>
+        <div class="context-scene context-dark-wall">
+          <div class="context-art" id="ctx-dark-art"></div>
+          <span class="context-scene-label">Studio</span>
+        </div>
+        <div class="context-scene context-gallery-wall">
+          <div class="context-art" id="ctx-gal-art-1"></div>
+          <div class="context-art" id="ctx-gal-art-2"></div>
+          <span class="context-scene-label">Gallery</span>
+        </div>
+        <div class="context-scene context-desk">
+          <div class="context-art" id="ctx-desk-art"></div>
+          <span class="context-scene-label">Desktop</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIST INTRO -->
+  <section class="section">
+    <div class="container">
+      <div class="artist-intro">
+        <div class="artist-intro-art" id="artist-art"></div>
+        <div class="artist-intro-text">
+          <h3>The Algorithm as Brush</h3>
+          <p>ZSIGNAL creates compositions the way Moholy-Nagy once ordered them by telephone&mdash;through precise instructions executed by a system. Each work is defined by an archetype, a palette, and a seed number. The same inputs always produce the same output. The artist's hand lies not in the mark, but in the rules that generate it.</p>
+          <p>Across six distinct eras, ZSIGNAL has explored the full vocabulary of Bauhaus geometry: from the bold overlapping planes of the Free Form period to the systematic point grids of the Data Landscape era.</p>
+          <a href="artist.html" class="btn btn-secondary btn-sm">READ FULL BIOGRAPHY</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ERA OVERVIEW -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Seven Eras</h2>
+        <p>Each era represents a distinct compositional philosophy, from organic abstraction to sacred geometry.</p>
+      </div>
+      <div class="grid-6 grid-3-tablet era-overview-grid" style="grid-template-columns:repeat(7,1fr);">
+        <a href="gallery.html?era=I" class="era-card">
+          <div class="era-card-art" data-era="I"></div>
+          <div class="era-card-meta">
+            <div class="era-card-number">I</div>
+            <div class="era-card-name">Organic Abstraction</div>
+            <div class="era-card-year">2018</div>
+            <div class="era-card-archetype">FREE_FORM</div>
+          </div>
+        </a>
+        <a href="gallery.html?era=II" class="era-card">
+          <div class="era-card-art" data-era="II"></div>
+          <div class="era-card-meta">
+            <div class="era-card-number">II</div>
+            <div class="era-card-name">Systematic Order</div>
+            <div class="era-card-year">2019</div>
+            <div class="era-card-archetype">GRID</div>
+          </div>
+        </a>
+        <a href="gallery.html?era=III" class="era-card">
+          <div class="era-card-art" data-era="III"></div>
+          <div class="era-card-meta">
+            <div class="era-card-number">III</div>
+            <div class="era-card-name">Visual Music</div>
+            <div class="era-card-year">2020</div>
+            <div class="era-card-archetype">REPETITION</div>
+          </div>
+        </a>
+        <a href="gallery.html?era=IV" class="era-card">
+          <div class="era-card-art" data-era="IV"></div>
+          <div class="era-card-meta">
+            <div class="era-card-number">IV</div>
+            <div class="era-card-name">Dynamic Tension</div>
+            <div class="era-card-year">2021</div>
+            <div class="era-card-archetype">CONSTRUCTIVIST</div>
+          </div>
+        </a>
+        <a href="gallery.html?era=V" class="era-card">
+          <div class="era-card-art" data-era="V"></div>
+          <div class="era-card-meta">
+            <div class="era-card-number">V</div>
+            <div class="era-card-name">Color Dialogues</div>
+            <div class="era-card-year">2022</div>
+            <div class="era-card-archetype">COLOR_STUDY</div>
+          </div>
+        </a>
+        <a href="gallery.html?era=VI" class="era-card">
+          <div class="era-card-art" data-era="VI"></div>
+          <div class="era-card-meta">
+            <div class="era-card-number">VI</div>
+            <div class="era-card-name">Data Landscapes</div>
+            <div class="era-card-year">2023&ndash;2025</div>
+            <div class="era-card-archetype">DOT_FIELD</div>
+          </div>
+        </a>
+        <a href="gallery.html?era=VII" class="era-card">
+          <div class="era-card-art" data-era="VII"></div>
+          <div class="era-card-meta">
+            <div class="era-card-number">VII</div>
+            <div class="era-card-name">Sacred Geometry</div>
+            <div class="era-card-year">2025&ndash;present</div>
+            <div class="era-card-archetype">ARABIAN_GEOMETRIC</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING — Old Canvas -->
+  <section class="pricing-canvas">
+    <div class="pricing-canvas-texture"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="section-header" style="margin-bottom:48px;">
+        <div class="pricing-canvas-label">Museum-Quality Prints</div>
+        <h2 class="pricing-canvas-title">Collect the Signal</h2>
+        <p class="pricing-canvas-sub">Every composition printed on archival-grade materials, hand-framed, and delivered worldwide. Choose your size.</p>
+      </div>
+
+      <!-- 4 framed price cards -->
+      <div class="pricing-frames">
+
+        <div class="pricing-frame-card">
+          <div class="pricing-frame frame-style-black">
+            <div class="pricing-frame-mat">
+              <div class="pricing-frame-art" data-pricing-art="0"></div>
+            </div>
+          </div>
+          <div class="pricing-frame-info">
+            <div class="pricing-frame-size">8&times;10&Prime;</div>
+            <div class="pricing-frame-label">Small</div>
+            <div class="pricing-frame-price">From $89</div>
+            <div class="pricing-frame-detail">Fine Art Paper</div>
+          </div>
+        </div>
+
+        <div class="pricing-frame-card pricing-frame-card-featured">
+          <div class="pricing-frame frame-style-gold">
+            <div class="pricing-frame-mat">
+              <div class="pricing-frame-art" data-pricing-art="1"></div>
+            </div>
+          </div>
+          <div class="pricing-frame-info">
+            <div class="pricing-frame-size">16&times;20&Prime;</div>
+            <div class="pricing-frame-label">Medium &middot; Most Popular</div>
+            <div class="pricing-frame-price">From $159</div>
+            <div class="pricing-frame-detail">Fine Art Paper</div>
+          </div>
+        </div>
+
+        <div class="pricing-frame-card">
+          <div class="pricing-frame frame-style-oak">
+            <div class="pricing-frame-mat">
+              <div class="pricing-frame-art" data-pricing-art="2"></div>
+            </div>
+          </div>
+          <div class="pricing-frame-info">
+            <div class="pricing-frame-size">24&times;36&Prime;</div>
+            <div class="pricing-frame-label">Large</div>
+            <div class="pricing-frame-price">From $249</div>
+            <div class="pricing-frame-detail">Fine Art Paper</div>
+          </div>
+        </div>
+
+        <div class="pricing-frame-card">
+          <div class="pricing-frame frame-style-white">
+            <div class="pricing-frame-mat">
+              <div class="pricing-frame-art" data-pricing-art="3"></div>
+            </div>
+          </div>
+          <div class="pricing-frame-info">
+            <div class="pricing-frame-size">30&times;40&Prime;</div>
+            <div class="pricing-frame-label">Extra Large</div>
+            <div class="pricing-frame-price">From $349</div>
+            <div class="pricing-frame-detail">Fine Art Paper</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Materials + Frames quick reference -->
+      <div class="pricing-materials">
+        <div class="pricing-material-item">
+          <div class="pricing-material-swatch" style="background:#F2E8D5;border:2px solid var(--z-charcoal);"></div>
+          <div>
+            <div class="pricing-material-name">Fine Art Paper</div>
+            <div class="pricing-material-desc">310gsm Hahnem&uuml;hle cotton rag</div>
+          </div>
+        </div>
+        <div class="pricing-material-item">
+          <div class="pricing-material-swatch" style="background:#1C1C1C;"></div>
+          <div>
+            <div class="pricing-material-name">Gallery Canvas</div>
+            <div class="pricing-material-desc">Poly-cotton on solid wood bars</div>
+          </div>
+        </div>
+        <div class="pricing-material-item">
+          <div class="pricing-material-swatch" style="background:var(--z-blue);"></div>
+          <div>
+            <div class="pricing-material-name">Acrylic Face Mount</div>
+            <div class="pricing-material-desc">3mm crystal-clear + aluminum</div>
+          </div>
+        </div>
+        <div class="pricing-material-item">
+          <div class="pricing-material-swatch" style="background:var(--z-gold);"></div>
+          <div>
+            <div class="pricing-material-name">Free Worldwide Shipping</div>
+            <div class="pricing-material-desc">5&ndash;7 business days, tracked</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:48px;">
+        <a href="gallery.html" class="btn btn-primary btn-lg">BROWSE &amp; ORDER</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI CHATBOT — Art History Discussion -->
+  <section class="chatbot-section" id="chatbot-section">
+    <div class="container">
+      <div class="chatbot-layout">
+        <div class="chatbot-intro">
+          <div class="hero-label" style="color:var(--z-gold);">AI Art Historian</div>
+          <h2>Ask About the Art</h2>
+          <p>Our AI art historian knows every composition, era, and artistic reference in the ZSIGNAL collection. Ask about Bauhaus influences, color theory, Islamic geometry, or any specific work.</p>
+          <p style="color:rgba(242,232,213,0.45);font-size:13px;">Powered by a curated knowledge base of the ZSIGNAL catalog, Bauhaus history, and generative art theory.</p>
+        </div>
+        <div class="chatbot-window">
+          <div class="chatbot-header">ZSIGNAL ART HISTORIAN</div>
+          <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chatbot-msg bot">Welcome to the ZSIGNAL gallery. I can discuss any artwork, era, artistic influence, or technique. What would you like to know?</div>
+          </div>
+          <div class="chatbot-suggestions" id="chatbot-suggestions">
+            <button class="chatbot-suggestion" data-q="What is the Bauhaus influence?">Bauhaus influence</button>
+            <button class="chatbot-suggestion" data-q="Tell me about Era VII Sacred Geometry">Sacred Geometry</button>
+            <button class="chatbot-suggestion" data-q="How does the engine generate art?">How it works</button>
+            <button class="chatbot-suggestion" data-q="Who is El Lissitzky?">El Lissitzky</button>
+            <button class="chatbot-suggestion" data-q="What makes Albers' color studies special?">Albers &amp; Color</button>
+          </div>
+          <div class="chatbot-input-row">
+            <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Ask about any artwork or era..." autocomplete="off">
+            <button class="chatbot-send" id="chatbot-send">SEND</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINT SHOP CTA -->
+  <section class="cta-banner">
+    <div class="cta-banner-art" id="cta-art"></div>
+    <div class="cta-banner-content">
+      <h2>Own a piece of computational Bauhaus</h2>
+      <p>Every artwork available as a museum-quality framed print. 31 compositions across 7 eras. Fine art paper, canvas, or acrylic. Delivered worldwide.</p>
+      <a href="gallery.html" class="btn btn-primary btn-lg">SHOP PRINTS</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+          <p>Generative Bauhaus art. Algorithmic compositions available as museum-quality framed prints.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Gallery</h4>
+          <a href="gallery.html">All Works</a>
+          <a href="gallery.html?era=I">Era I</a>
+          <a href="gallery.html?era=III">Era III</a>
+          <a href="gallery.html?era=VI">Era VI</a>
+        </div>
+        <div class="footer-col">
+          <h4>Theory</h4>
+          <a href="artist.html">The Artist</a>
+          <a href="theory.html">The Platform</a>
+          <a href="theory.html#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Shipping</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 ZSIGNAL Gallery. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/z-engine.js"></script>
+  <script src="js/z-catalog.js"></script>
+  <script src="js/z-gallery.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Cursor-responsive hero (replaces timer rotation)
+      ZGallery.initCursorHero();
+
+      // Featured works (pick 3 diverse pieces)
+      const featured = [ZCatalog.WORKS[0], ZCatalog.WORKS[10], ZCatalog.WORKS[28]].filter(Boolean);
+      ZGallery.renderArtCards('.featured-grid', featured);
+
+      // Artist intro art
+      const csWork = ZCatalog.WORKS[18]; // COLOR_STUDY piece
+      if (csWork) {
+        ZEngine.render('#artist-art', {
+          archetype: csWork.archetype,
+          palette: csWork.palette,
+          seed: csWork.seed,
+          density: csWork.density
+        });
+      }
+
+      // Era cards
+      ZGallery.renderEraCards();
+
+      // Pricing framed artworks (4 different archetypes)
+      const pricingSeeds = [
+        { archetype: 'FREE_FORM', palette: 'ZSIGNAL', seed: 42718, density: 0.5 },
+        { archetype: 'GRID', palette: 'CLASSIC_BAUHAUS', seed: 84123, density: 0.7 },
+        { archetype: 'REPETITION', palette: 'WARM_EARTH', seed: 12456, density: 0.6 },
+        { archetype: 'COLOR_STUDY', palette: 'COOL_STEEL', seed: 90123, density: 0.4 }
+      ];
+      document.querySelectorAll('[data-pricing-art]').forEach(el => {
+        const idx = parseInt(el.dataset.pricingArt, 10);
+        if (pricingSeeds[idx]) ZEngine.render(el, pricingSeeds[idx]);
+      });
+
+      // CTA background art (REPETITION)
+      ZEngine.render('#cta-art', {
+        archetype: 'REPETITION',
+        palette: 'ZSIGNAL',
+        seed: 77777,
+        density: 0.6
+      });
+
+      // ── IN-CONTEXT SHOWCASE ──
+      // Different works in different room settings
+      const ctxWorks = [
+        ZCatalog.WORKS[0],   // FREE_FORM
+        ZCatalog.WORKS[14],  // CONSTRUCTIVIST
+        ZCatalog.WORKS[9],   // REPETITION
+        ZCatalog.WORKS[18],  // COLOR_STUDY
+        ZCatalog.WORKS[26],  // ARABIAN_GEOMETRIC
+      ].filter(Boolean);
+
+      function renderCtx(sel, work) {
+        if (work) ZEngine.render(sel, { archetype: work.archetype, palette: work.palette, seed: work.seed, density: work.density });
+      }
+      renderCtx('#ctx-wall-art', ctxWorks[0]);
+      renderCtx('#ctx-dark-art', ctxWorks[4]);
+      renderCtx('#ctx-gal-art-1', ctxWorks[1]);
+      renderCtx('#ctx-gal-art-2', ctxWorks[2]);
+      renderCtx('#ctx-desk-art', ctxWorks[3]);
+
+      // ── AI CHATBOT ──
+      const chatMessages = document.getElementById('chatbot-messages');
+      const chatInput = document.getElementById('chatbot-input');
+      const chatSend = document.getElementById('chatbot-send');
+
+      // Knowledge base — curated responses
+      const KB = {
+        bauhaus: 'The Bauhaus school (1919\u20131933) unified art, craft, and technology. ZSIGNAL draws directly from its masters: Moholy-Nagy\'s spatial planes (FREE_FORM), Mondrian\'s grids (GRID), Klee\'s rhythmic compositions (REPETITION), Lissitzky\'s constructivist energy (CONSTRUCTIVIST), and Albers\' color interaction studies (COLOR_STUDY). Each archetype is a computational tribute to these pioneers.',
+        'era i': 'Era I: Organic Abstraction (2018) explores overlapping transparent planes inspired by L\u00e1szl\u00f3 Moholy-Nagy\'s photograms and telephone paintings. Shapes extend boldly beyond canvas edges, creating spatial depth through overlap and transparency. The gold circle acts as a focal "signal" point.',
+        'era ii': 'Era II: Systematic Order (2019) is rooted in Mondrian\'s asymmetric grids and Kandinsky\'s floating rectangles. Thick black dividing lines create cells of varying proportion, with color applied sparingly\u2014most cells remain neutral, letting a few bold primaries command attention.',
+        'era iii': 'Era III: Visual Music (2020) translates musical concepts into visual rhythm. Inspired by Paul Klee\'s "Rhythmisches" and Bridget Riley\'s optical art, elements follow sinusoidal waves, size progressions, and radial arrangements that create a sense of tempo and movement.',
+        'era iv': 'Era IV: Dynamic Tension (2021) channels El Lissitzky\'s revolutionary constructivism. The red wedge\u2014an iconic symbol of political graphic design\u2014drives into geometric arrangements. Everything is diagonal energy: force lines, shattered fragments, and dramatic negative space.',
+        'era v': 'Era V: Color Dialogues (2022) is a computational homage to Josef Albers\' "Homage to the Square" series. Nested squares are bottom-weighted (Albers\' signature offset), with each ring\'s color chosen for maximum interaction with its neighbors\u2014simultaneous contrast made systematic.',
+        'era vi': 'Era VI: Data Landscapes (2023\u20132025) merges Herbert Bayer\'s typographic experiments with Victor Vasarely\'s optical sphere effects. Mathematical dot grids modulate in size to create form and depth, while bold geometric overlays create figure-ground tension.',
+        'era vii': 'Era VII: Sacred Geometry (2025\u2013present) introduces Islamic geometric art into the ZSIGNAL vocabulary. Inspired by the Alhambra\'s zellige tilework and Isfahan\'s girih tiles, it features radial symmetry (6/8/12-fold), star-and-polygon tessellations, and muqarnas dome patterns\u2014proving that Bauhaus and Islamic geometry share a devotion to pure geometric abstraction.',
+        engine: 'The ZSIGNAL engine generates SVG compositions using a seeded pseudo-random number generator (mulberry32). Each artwork is defined by four parameters: archetype (composition style), palette (color scheme), seed (unique number), and density (complexity). The same inputs always produce the same output\u2014deterministic art, like Moholy-Nagy ordering paintings by telephone.',
+        lissitzky: 'El Lissitzky (1890\u20131941) was a Russian artist and architect who pioneered constructivist graphic design. His "Beat the Whites with the Red Wedge" (1920) is one of the most iconic political posters ever made. In ZSIGNAL, the CONSTRUCTIVIST archetype directly references his dramatic diagonal compositions and signature red wedge motif.',
+        albers: 'Josef Albers (1888\u20131976) spent 25 years creating his "Homage to the Square" series\u2014hundreds of paintings exploring how colors interact when placed next to each other. His discovery that the same color appears different depending on its neighbors (simultaneous contrast) is the core principle behind ZSIGNAL\'s COLOR_STUDY archetype.',
+        'moholy-nagy': 'L\u00e1szl\u00f3 Moholy-Nagy (1895\u20131946) created compositions by telephone\u2014giving precise instructions to a sign painter, removing the artist\'s hand from the mark-making. ZSIGNAL operates on the same principle: the artist designs the rules, and the algorithm executes them. His "A 19" (1927) directly inspires the FREE_FORM archetype.',
+        klee: 'Paul Klee (1879\u20131940) treated visual composition like music, with rhythm, tempo, and counterpoint. His "Rhythmisches" (1930) uses colored rectangles in wave-like patterns. ZSIGNAL\'s REPETITION archetype captures this musical approach with sinusoidal progressions and crescendo effects.',
+        mondrian: 'Piet Mondrian (1872\u20131944) reduced painting to its essentials: horizontal and vertical lines, primary colors, and white. His asymmetric grids are never uniform\u2014each cell has unique proportions. The GRID archetype honors this by generating non-uniform cell layouts with thick black dividers and sparse color accent.',
+        palette: 'ZSIGNAL offers 6 palettes: ZSIGNAL (brick, blue, gold, olive), CLASSIC_BAUHAUS (primary colors), CONSTRUCTIVIST (red and black only), WARM_EARTH (terracotta, ochre), COOL_STEEL (blue-grey spectrum), and MONOCHROME (pure value). Each palette references a different tradition within Bauhaus and modernist design.',
+        islamic: 'Islamic geometric art, spanning 1400+ years, is based on compass-and-straightedge construction. It uses radial symmetry (6, 8, 10, or 12-fold), star-and-polygon tessellations, and infinite tiling logic. The Alhambra in Spain, the Darb-e Imam shrine in Isfahan, and muqarnas vaulting are key references for ZSIGNAL\'s ARABIAN_GEOMETRIC archetype.',
+        print: 'Every ZSIGNAL composition is available as a museum-quality print. Options include 310gsm Hahnem\u00fchle cotton rag paper, poly-cotton gallery canvas, or crystal-clear acrylic face mount. Sizes range from 8\u00d710" ($89) to 30\u00d740" ($349). All prints include free worldwide tracked shipping.',
+      };
+
+      function findResponse(q) {
+        const lower = q.toLowerCase();
+        // Check each knowledge base key
+        for (const [key, val] of Object.entries(KB)) {
+          if (lower.includes(key)) return val;
+        }
+        // Check for artwork title matches
+        const matchedWork = ZCatalog.WORKS.find(w => lower.includes(w.title.toLowerCase()) || lower.includes(w.id));
+        if (matchedWork) {
+          return `"${matchedWork.title}" (${matchedWork.year}, Era ${matchedWork.era}: ${matchedWork.eraName}) \u2014 ${matchedWork.description} This work uses the ${matchedWork.palette} palette with seed ${matchedWork.seed}.`;
+        }
+        // Check for era numbers
+        const eraMatch = lower.match(/era\s*(i{1,3}v?|vi{0,2}|[1-7])/i);
+        if (eraMatch) {
+          const eraMap = {'1':'I','2':'II','3':'III','4':'IV','5':'V','6':'VI','7':'VII'};
+          const eraKey = eraMap[eraMatch[1]] || eraMatch[1].toUpperCase();
+          const eraInfo = ZCatalog.ERAS[eraKey];
+          if (eraInfo) return KB['era ' + eraKey.toLowerCase()] || `Era ${eraKey}: ${eraInfo.name} (${eraInfo.year}) uses the ${eraInfo.archetype} archetype.`;
+        }
+        // Generic fallbacks
+        if (lower.includes('how') && lower.includes('work')) return KB.engine;
+        if (lower.includes('color') || lower.includes('colour')) return KB.palette;
+        if (lower.includes('print') || lower.includes('buy') || lower.includes('order')) return KB.print;
+        if (lower.includes('geometric') || lower.includes('arabian') || lower.includes('islamic')) return KB.islamic;
+        if (lower.includes('sacred')) return KB['era vii'];
+        return 'I can tell you about any of the 7 eras, the 31 artworks, the artists who inspired them (Moholy-Nagy, Mondrian, Klee, Lissitzky, Albers), or how the engine works. Try asking about a specific era or artist!';
+      }
+
+      function addMessage(text, isUser) {
+        const msg = document.createElement('div');
+        msg.className = 'chatbot-msg ' + (isUser ? 'user' : 'bot');
+        msg.textContent = text;
+        chatMessages.appendChild(msg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function handleChat() {
+        const q = chatInput.value.trim();
+        if (!q) return;
+        addMessage(q, true);
+        chatInput.value = '';
+
+        // Typing indicator
+        const typing = document.createElement('div');
+        typing.className = 'chatbot-msg typing';
+        typing.textContent = 'Thinking...';
+        chatMessages.appendChild(typing);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        setTimeout(() => {
+          typing.remove();
+          addMessage(findResponse(q), false);
+        }, 600 + Math.random() * 800);
+      }
+
+      chatSend.addEventListener('click', handleChat);
+      chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleChat(); });
+
+      // Suggestion buttons
+      document.querySelectorAll('.chatbot-suggestion').forEach(btn => {
+        btn.addEventListener('click', () => {
+          chatInput.value = btn.dataset.q;
+          handleChat();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

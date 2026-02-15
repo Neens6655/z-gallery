@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theory &mdash; ZSIGNAL Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/z-gallery.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+      <nav class="nav" id="nav">
+        <a href="gallery.html">Gallery</a>
+        <a href="studio.html">Studio</a>
+        <a href="artist.html">Artist</a>
+        <a href="theory.html" class="active">Theory</a>
+      </nav>
+      <div class="header-actions">
+        <a href="gallery.html" class="btn btn-primary btn-sm">VIEW GALLERY</a>
+        <button class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="section">
+    <div class="container" style="max-width:800px;text-align:center;">
+      <h1 style="font-family:var(--z-font-mono);font-size:48px;font-weight:700;line-height:1.1;margin-bottom:24px;">Theory</h1>
+      <p style="font-size:18px;line-height:1.7;color:rgba(28,28,28,0.70);">Every ZSIGNAL composition is built on principles inherited from seven master artists and one immutable set of design constraints. This page catalogs the artists, the rules, and the engine that binds them.</p>
+    </div>
+  </section>
+
+  <!-- MASTER ARTISTS CATALOG -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Master Artists</h2>
+        <p>Seven artists whose compositional principles are encoded into the ZIGNAL.ENGINE. Each archetype is a direct translation of their visual language into algorithmic rules.</p>
+      </div>
+
+      <div class="grid-3" style="gap:32px;">
+        <!-- Moholy-Nagy -->
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="0"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era I &middot; FREE_FORM</div>
+          <h3>L&aacute;szl&oacute; Moholy-Nagy</h3>
+          <p>Hungarian-American, 1895&ndash;1946. Bauhaus master of light, transparency, and industrial precision. His &ldquo;telephone paintings&rdquo; (1922) and compositions like &ldquo;A 19&rdquo; (1927) pioneered art-by-instruction&mdash;the ancestor of generative art.</p>
+        </div>
+
+        <!-- Mondrian & Kandinsky -->
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="1"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era II &middot; GRID</div>
+          <h3>Piet Mondrian &amp; Kandinsky</h3>
+          <p>Mondrian (Dutch, 1872&ndash;1944) reduced painting to asymmetric grids of primary colors and black lines. Kandinsky (Russian, 1866&ndash;1944) composed floating geometric forms. Together they define the GRID archetype&rsquo;s two strategies.</p>
+        </div>
+
+        <!-- Klee & Riley -->
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="2"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era III &middot; REPETITION</div>
+          <h3>Paul Klee &amp; Bridget Riley</h3>
+          <p>Klee (Swiss-German, 1879&ndash;1940) treated visual composition as musical notation. Riley (British, b. 1931) created optical vibration through systematic size progressions. Their shared rhythm defines the REPETITION archetype.</p>
+        </div>
+
+        <!-- Lissitzky & Malevich -->
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="3"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era IV &middot; CONSTRUCTIVIST</div>
+          <h3>El Lissitzky &amp; Malevich</h3>
+          <p>Lissitzky (Russian, 1890&ndash;1941) weaponized geometry in &ldquo;Beat the Whites with the Red Wedge&rdquo; (1920). Malevich (Ukrainian-Russian, 1879&ndash;1935) reduced art to pure geometric sensation. The CONSTRUCTIVIST archetype channels their dynamic tension.</p>
+        </div>
+
+        <!-- Albers -->
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="4"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era V &middot; COLOR_STUDY</div>
+          <h3>Josef Albers</h3>
+          <p>German-American, 1888&ndash;1976. His &ldquo;Homage to the Square&rdquo; series (1950&ndash;1976) is art history&rsquo;s most rigorous investigation of color interaction. Nested, bottom-weighted squares. The COLOR_STUDY archetype faithfully encodes his proportional system.</p>
+        </div>
+
+        <!-- Bayer & Vasarely -->
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="5"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era VI &middot; DOT_FIELD</div>
+          <h3>Herbert Bayer &amp; Victor Vasarely</h3>
+          <p>Bayer (Austrian-American, 1900&ndash;1985) pioneered typographic experiments with mathematical grids. Vasarely (Hungarian-French, 1906&ndash;1997) created sphere illusions through dot modulation. Their legacy drives the DOT_FIELD archetype.</p>
+        </div>
+
+        <!-- Arabian Geometric -->
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="6"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era VII &middot; ARABIAN_GEOMETRIC</div>
+          <h3>Alhambra, Isfahan &amp; Mamluk Masters</h3>
+          <p>The unnamed artisans of Islamic geometric art (8th&ndash;16th century) created the world&rsquo;s most sophisticated tessellation systems. Star-and-polygon patterns, girih tilings, and muqarnas vaulting&mdash;mathematical abstraction centuries before Mondrian.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPOSITIONAL RULES -->
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <div class="section-header">
+        <h2>The Rules</h2>
+        <p>The Z-Signal genome: immutable constraints that define every ZSIGNAL composition.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div class="feature-card">
+          <h3>Typography</h3>
+          <p>IBM Plex Mono only. No serifs, no sans-serif. Monospace is the voice of the machine that generates the art.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Borders</h3>
+          <p>2px solid, always. No gradients, no shadows (except the terminal shadow: 6px offset, 12% opacity).</p>
+        </div>
+        <div class="feature-card">
+          <h3>Corners</h3>
+          <p>Zero border-radius. Sharp corners only. Roundness is reserved for compositional shapes, never for UI elements.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Color Ground</h3>
+          <p>Cream (#F2E8D5) background, charcoal (#1C1C1C) text. The warmth of aged paper meets the precision of typeset ink.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Gold Accent</h3>
+          <p>Gold (#D4A84B) is the universal signal. It appears in every composition as a focal point&mdash;the message in the noise.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Determinism</h3>
+          <p>Same archetype + palette + seed = same output, always. No randomness in execution. The art lies in the rules, not the rendering.</p>
+        </div>
+        <div class="feature-card">
+          <h3>12 Primitives</h3>
+          <p>Rect, circle, triangle, semicircle, quarter-circle, wedge, bar, trapezoid, dot, cross, arc segment, concentric ring. No curves beyond arcs.</p>
+        </div>
+        <div class="feature-card">
+          <h3>6 Palettes</h3>
+          <p>ZSIGNAL, Classic Bauhaus, Constructivist, Warm Earth, Cool Steel, Monochrome. Each derived from the master artist tradition it serves.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>How It Works</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-icon">
+            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="4" width="20" height="20" stroke="#1C1C1C" stroke-width="2"/>
+              <rect x="8" y="8" width="5" height="5" fill="#D4A84B"/>
+              <rect x="15" y="15" width="5" height="5" fill="#D4A84B"/>
+            </svg>
+          </div>
+          <div class="step-number">01</div>
+          <h3>Browse</h3>
+          <p>Explore 31 generative compositions across seven artistic eras. Filter by era, palette, or archetype.</p>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="14" cy="14" r="10" stroke="#1C1C1C" stroke-width="2"/>
+              <circle cx="14" cy="14" r="4" fill="#D4A84B"/>
+              <line x1="14" y1="4" x2="14" y2="8" stroke="#1C1C1C" stroke-width="2"/>
+              <line x1="14" y1="20" x2="14" y2="24" stroke="#1C1C1C" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="step-number">02</div>
+          <h3>Customize</h3>
+          <p>Choose your size, material, and frame. See a live preview of your framed print before ordering.</p>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="14,4 24,24 4,24" stroke="#1C1C1C" stroke-width="2" fill="none"/>
+              <circle cx="14" cy="17" r="3" fill="#D4A84B"/>
+            </svg>
+          </div>
+          <div class="step-number">03</div>
+          <h3>Delivered</h3>
+          <p>Museum-quality prints on fine art paper, canvas, or acrylic. Free worldwide shipping in 5&ndash;7 days.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALITY -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Museum Quality</h2>
+        <p>Every print is produced to the highest archival standards.</p>
+      </div>
+      <div class="grid-3">
+        <div class="feature-card">
+          <div class="feature-card-icon"></div>
+          <h3>Fine Art Paper</h3>
+          <p>310gsm Hahnem&uuml;hle cotton rag. Acid-free, archival grade. Rich color reproduction with a subtle matte texture that brings generative compositions to life.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon" style="background:var(--z-charcoal);"></div>
+          <h3>Gallery Canvas</h3>
+          <p>Premium poly-cotton blend stretched over solid wood bars. UV-resistant inks ensure the composition remains vivid for decades. Ready to hang.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon" style="background:var(--z-blue);"></div>
+          <h3>Acrylic Face Mount</h3>
+          <p>Printed behind 3mm crystal-clear acrylic with an aluminum backing. Creates a luminous floating effect that makes Bauhaus geometries glow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRAMING -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frame Options</h2>
+        <p>Five frame styles designed to complement the Z-Signal aesthetic.</p>
+      </div>
+      <div class="grid-3" style="max-width:900px;margin:0 auto;">
+        <div class="feature-card">
+          <div style="width:100%;height:8px;background:#1C1C1C;margin-bottom:16px;"></div>
+          <h3>Black</h3>
+          <p>Matte black solid wood. 25mm profile. The classic gallery choice&mdash;disappears into the composition.</p>
+        </div>
+        <div class="feature-card">
+          <div style="width:100%;height:8px;background:#FFFFFF;border:2px solid #E0E0E0;margin-bottom:16px;"></div>
+          <h3>White</h3>
+          <p>Clean white solid wood. 25mm profile. Opens up the composition against any wall color.</p>
+        </div>
+        <div class="feature-card">
+          <div style="width:100%;height:8px;background:#C4A06A;margin-bottom:16px;"></div>
+          <h3>Natural Oak</h3>
+          <p>Light oak with visible grain. 30mm profile. Adds warmth to geometric compositions.</p>
+        </div>
+      </div>
+      <div style="max-width:400px;margin:24px auto 0;">
+        <div class="feature-card">
+          <div style="width:100%;height:8px;background:#D4A84B;margin-bottom:16px;"></div>
+          <h3>Gold</h3>
+          <p>Brushed gold aluminum. 20mm slim profile. Echoes the signature gold accent in every ZSIGNAL composition. The artist's choice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-canvas">
+    <div class="pricing-canvas-texture"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="section-header" style="margin-bottom:48px;">
+        <div class="pricing-canvas-label">Print Pricing</div>
+        <h2 class="pricing-canvas-title">Size &amp; Pricing Guide</h2>
+        <p class="pricing-canvas-sub">All prints include free worldwide shipping. 30-day satisfaction guarantee on every order.</p>
+      </div>
+
+      <div class="pricing-frames">
+        <div class="pricing-frame-card">
+          <div class="pricing-frame frame-style-black">
+            <div class="pricing-frame-mat">
+              <div class="pricing-frame-art" data-pricing-art="0"></div>
+            </div>
+          </div>
+          <div class="pricing-frame-info">
+            <div class="pricing-frame-size">8&times;10&Prime;</div>
+            <div class="pricing-frame-label">Small</div>
+            <div class="pricing-frame-price">From $89</div>
+            <div class="pricing-frame-detail">Paper $89 &middot; Canvas $119 &middot; Acrylic $149</div>
+          </div>
+        </div>
+
+        <div class="pricing-frame-card pricing-frame-card-featured">
+          <div class="pricing-frame frame-style-gold">
+            <div class="pricing-frame-mat">
+              <div class="pricing-frame-art" data-pricing-art="1"></div>
+            </div>
+          </div>
+          <div class="pricing-frame-info">
+            <div class="pricing-frame-size">16&times;20&Prime;</div>
+            <div class="pricing-frame-label">Medium &middot; Most Popular</div>
+            <div class="pricing-frame-price">From $159</div>
+            <div class="pricing-frame-detail">Paper $159 &middot; Canvas $199 &middot; Acrylic $249</div>
+          </div>
+        </div>
+
+        <div class="pricing-frame-card">
+          <div class="pricing-frame frame-style-oak">
+            <div class="pricing-frame-mat">
+              <div class="pricing-frame-art" data-pricing-art="2"></div>
+            </div>
+          </div>
+          <div class="pricing-frame-info">
+            <div class="pricing-frame-size">24&times;36&Prime;</div>
+            <div class="pricing-frame-label">Large</div>
+            <div class="pricing-frame-price">From $249</div>
+            <div class="pricing-frame-detail">Paper $249 &middot; Canvas $299 &middot; Acrylic $379</div>
+          </div>
+        </div>
+
+        <div class="pricing-frame-card">
+          <div class="pricing-frame frame-style-white">
+            <div class="pricing-frame-mat">
+              <div class="pricing-frame-art" data-pricing-art="3"></div>
+            </div>
+          </div>
+          <div class="pricing-frame-info">
+            <div class="pricing-frame-size">30&times;40&Prime;</div>
+            <div class="pricing-frame-label">Extra Large</div>
+            <div class="pricing-frame-price">From $349</div>
+            <div class="pricing-frame-detail">Paper $349 &middot; Canvas $419 &middot; Acrylic $499</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <a href="gallery.html" class="btn btn-primary">CHOOSE YOUR ARTWORK</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ENGINE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>The Engine</h2>
+        <p>Every artwork is generated by the ZIGNAL.ENGINE&mdash;a compositional system built on Bauhaus and Islamic geometric principles. Try it yourself.</p>
+      </div>
+      <div style="max-width:800px;margin:0 auto;">
+        <!-- Controls -->
+        <div class="demo-controls">
+          <div class="filter-group">
+            <span class="filter-label">Archetype</span>
+            <button class="filter-pill demo-archetype active" data-archetype="FREE_FORM">Free Form</button>
+            <button class="filter-pill demo-archetype" data-archetype="GRID">Grid</button>
+            <button class="filter-pill demo-archetype" data-archetype="REPETITION">Repetition</button>
+            <button class="filter-pill demo-archetype" data-archetype="CONSTRUCTIVIST">Constructivist</button>
+            <button class="filter-pill demo-archetype" data-archetype="COLOR_STUDY">Color Study</button>
+            <button class="filter-pill demo-archetype" data-archetype="DOT_FIELD">Dot Field</button>
+            <button class="filter-pill demo-archetype" data-archetype="ARABIAN_GEOMETRIC">Arabian Geometric</button>
+          </div>
+        </div>
+        <div class="demo-controls">
+          <div class="filter-group">
+            <span class="filter-label">Palette</span>
+            <button class="filter-pill demo-palette active" data-palette="ZSIGNAL">ZSIGNAL</button>
+            <button class="filter-pill demo-palette" data-palette="CLASSIC_BAUHAUS">Classic</button>
+            <button class="filter-pill demo-palette" data-palette="WARM_EARTH">Warm Earth</button>
+            <button class="filter-pill demo-palette" data-palette="COOL_STEEL">Cool Steel</button>
+            <button class="filter-pill demo-palette" data-palette="MONOCHROME">Mono</button>
+          </div>
+        </div>
+        <div class="demo-controls">
+          <div class="filter-group" style="flex:1;">
+            <span class="filter-label">Density</span>
+            <input type="range" class="demo-density-slider" min="0.1" max="0.9" step="0.1" value="0.5">
+            <span class="demo-density-value">0.5</span>
+          </div>
+          <div class="demo-seed-display">
+            Seed: <span class="demo-seed-value">---</span>
+          </div>
+          <button class="btn btn-secondary btn-sm demo-regenerate">REGENERATE</button>
+        </div>
+        <!-- Canvas -->
+        <div class="demo-canvas"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-alt" id="faq">
+    <div class="container" style="max-width:800px;">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            What is generative art?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Generative art is artwork created by a system&mdash;an algorithm, a set of rules, or a process&mdash;rather than by direct hand. The artist designs the system, and the system generates the composition. In ZSIGNAL's case, each artwork is defined by three parameters: an archetype (compositional grammar), a palette (color vocabulary), and a seed (specific instance). The system is deterministic: identical inputs always produce identical outputs.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            Are these unique artworks?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Yes. Each artwork has a unique seed number that produces a one-of-a-kind composition. While the system could theoretically generate billions of variations, only 31 specific seeds have been selected by the artist as finished works. Each print includes the artwork's seed number, archetype, and palette&mdash;its complete genetic identity.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            What is the Arabian Geometric archetype?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">The newest archetype, ARABIAN_GEOMETRIC, draws on centuries of Islamic geometric art. Three strategies produce distinct compositions: star tessellations inspired by the Alhambra's zellige tilework, interlocking girih tile fields from Isfahan's Darb-e Imam shrine, and radial muqarnas dome patterns. These patterns use 6-fold, 8-fold, and 12-fold rotational symmetry&mdash;mathematical systems that predate European modernism by centuries.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            What paper do you print on?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Our fine art paper prints use 310gsm Hahnem&uuml;hle cotton rag&mdash;the same archival-grade paper used by major museums and galleries worldwide. It's acid-free, lignin-free, and rated to last over 200 years without yellowing or degradation. Canvas prints use a premium poly-cotton blend, and acrylic prints feature 3mm crystal-clear acrylic with an aluminum backing.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            How long does shipping take?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">All orders include free worldwide shipping. Standard delivery takes 5&ndash;7 business days. Orders are printed on demand at our production facility, carefully packaged in custom protective packaging, and shipped via tracked courier. You'll receive a tracking number as soon as your order ships.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            Can I return a print?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Yes. We offer a 30-day satisfaction guarantee. If you're not completely satisfied with your print, contact us within 30 days of delivery for a full refund. We'll arrange a free return pickup. Custom-framed orders are also covered&mdash;we want you to love your artwork.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            What is the Z-Signal genome?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">The Z-Signal genome is the set of immutable design constraints that define every ZSIGNAL composition: IBM Plex Mono typeface, 2px solid borders, zero border-radius (sharp corners only), the terminal shadow (6px offset), cream background, charcoal text, and gold as the universal accent color. These constraints derive from Bauhaus principles of geometric purity and functional typography.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="cta-banner-art" id="theory-cta-art"></div>
+    <div class="cta-banner-content">
+      <h2>Start exploring</h2>
+      <p>Browse the complete collection of 31 generative compositions across 7 eras.</p>
+      <a href="gallery.html" class="btn btn-primary btn-lg">VIEW GALLERY</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+          <p>Generative Bauhaus art. Algorithmic compositions available as museum-quality framed prints.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Gallery</h4>
+          <a href="gallery.html">All Works</a>
+          <a href="gallery.html?era=I">Era I</a>
+          <a href="gallery.html?era=III">Era III</a>
+          <a href="gallery.html?era=VII">Era VII</a>
+        </div>
+        <div class="footer-col">
+          <h4>Theory</h4>
+          <a href="artist.html">The Artist</a>
+          <a href="theory.html">The Platform</a>
+          <a href="theory.html#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Shipping</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 ZSIGNAL Gallery. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/z-engine.js"></script>
+  <script src="js/z-catalog.js"></script>
+  <script src="js/z-gallery.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Interactive demo
+      ZGallery.initDemo();
+
+      // Theory card artworks — one per archetype
+      const theorySeeds = [
+        { archetype: 'FREE_FORM', palette: 'ZSIGNAL', seed: 42718, density: 0.5 },
+        { archetype: 'GRID', palette: 'CLASSIC_BAUHAUS', seed: 84123, density: 0.7 },
+        { archetype: 'REPETITION', palette: 'WARM_EARTH', seed: 12456, density: 0.6 },
+        { archetype: 'CONSTRUCTIVIST', palette: 'CONSTRUCTIVIST', seed: 23456, density: 0.5 },
+        { archetype: 'COLOR_STUDY', palette: 'CLASSIC_BAUHAUS', seed: 34521, density: 0.5 },
+        { archetype: 'DOT_FIELD', palette: 'COOL_STEEL', seed: 89034, density: 0.7 },
+        { archetype: 'ARABIAN_GEOMETRIC', palette: 'WARM_EARTH', seed: 72541, density: 0.6 }
+      ];
+      document.querySelectorAll('[data-theory-art]').forEach(el => {
+        const idx = parseInt(el.dataset.theoryArt, 10);
+        if (theorySeeds[idx]) ZEngine.render(el, theorySeeds[idx]);
+      });
+
+      // Pricing framed artworks
+      const pricingSeeds = [
+        { archetype: 'DOT_FIELD', palette: 'COOL_STEEL', seed: 89034, density: 0.7 },
+        { archetype: 'ARABIAN_GEOMETRIC', palette: 'WARM_EARTH', seed: 72541, density: 0.6 },
+        { archetype: 'COLOR_STUDY', palette: 'WARM_EARTH', seed: 67854, density: 0.6 },
+        { archetype: 'FREE_FORM', palette: 'ZSIGNAL', seed: 77891, density: 0.7 }
+      ];
+      document.querySelectorAll('[data-pricing-art]').forEach(el => {
+        const idx = parseInt(el.dataset.pricingArt, 10);
+        if (pricingSeeds[idx]) ZEngine.render(el, pricingSeeds[idx]);
+      });
+
+      // CTA art background
+      ZEngine.render('#theory-cta-art', {
+        archetype: 'ARABIAN_GEOMETRIC', palette: 'ZSIGNAL', seed: 91637, density: 0.5
+      });
+    });
+  </script>
+</body>
+</html>
