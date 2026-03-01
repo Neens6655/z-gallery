@@ -17,6 +17,7 @@
 const ZEngine = (() => {
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const CANVAS = 560;
+  let _renderGen = 0; // increments each render so uid(#id) refs are never reused
 
   // ── SEEDED PRNG (mulberry32) ──
   function createRng(seed) {
@@ -72,7 +73,7 @@ const ZEngine = (() => {
   // These create gallery-quality visual richness using pure SVG
   function addDefs(svg, seed, palette) {
     const defs = el('defs', {});
-    const uid = `z${seed}`; // Unique prefix for this artwork
+    const uid = `z${seed}r${++_renderGen}`; // Unique per render — prevents url(#id) cache bugs
 
     // 1. PAPER TEXTURE — visible fine-art grain
     const turbulence = el('feTurbulence', {
@@ -1922,328 +1923,285 @@ const ZEngine = (() => {
   // ══════════════════════════════════════════════════════════════
   function composeArabianGeometric(svg, palette, rng, density, uid) {
     const C = CANVAS;
-    const colors = palette.colors;
-    const bg = palette.bg;
-    const noise = createNoise2D(rng);
-    const art = createArtShapes(noise, rng, uid);
 
-    svg.appendChild(Shapes.rect(0, 0, C, C, bg));
+    // ── Damascus Palette — bold historical pigments ──
+    // Based on Ayyubid/Mamluk tilework: lapis, terracotta, emerald, gold, teal, amethyst
+    const DAM_POOL = ['#1B4F8E','#B8391A','#2A6E44','#C9963A','#1A6B8A','#7B2D8B'];
+    const INK   = '#1A1A1A';
+    const IVORY = '#F4EFE0';
+    const GOLD  = '#D4A84B';
 
-    // Helper: draw a star polygon with n points
-    function starPolygon(cx, cy, outerR, innerR, n, rotation = 0) {
+    // Seeded color selection — 3 distinct bold colors
+    const pool  = shuffled(rng, DAM_POOL);
+    const col1  = pool[0]; // primary   — star fill
+    const col2  = pool[1]; // secondary — corner / accent
+    const col3  = pool[2]; // tertiary  — background tint / alternating
+
+    svg.appendChild(Shapes.rect(0, 0, C, C, IVORY));
+
+    // ── Helpers ────────────────────────────────────────────────────────────
+    // 8-pointed star: points string for use as SVG polygon attribute
+    function star8pts(cx, cy, Ro, Ri, rotDeg) {
+      const rot = (rotDeg || 0) * Math.PI / 180;
       const pts = [];
-      for (let i = 0; i < n; i++) {
-        const a1 = rotation + (i / n) * Math.PI * 2 - Math.PI / 2;
-        const a2 = rotation + ((i + 0.5) / n) * Math.PI * 2 - Math.PI / 2;
-        pts.push(`${cx + Math.cos(a1) * outerR},${cy + Math.sin(a1) * outerR}`);
-        pts.push(`${cx + Math.cos(a2) * innerR},${cy + Math.sin(a2) * innerR}`);
+      for (let i = 0; i < 8; i++) {
+        const ao = rot + (i / 8) * Math.PI * 2 - Math.PI / 2;
+        const ai = rot + ((i + 0.5) / 8) * Math.PI * 2 - Math.PI / 2;
+        pts.push(`${(cx + Math.cos(ao) * Ro).toFixed(2)},${(cy + Math.sin(ao) * Ro).toFixed(2)}`);
+        pts.push(`${(cx + Math.cos(ai) * Ri).toFixed(2)},${(cy + Math.sin(ai) * Ri).toFixed(2)}`);
       }
       return pts.join(' ');
     }
 
-    // Helper: draw a regular polygon
-    function regularPolygon(cx, cy, r, n, rotation = 0) {
+    // Regular octagon points string
+    function oct8pts(cx, cy, R) {
       const pts = [];
-      for (let i = 0; i < n; i++) {
-        const a = rotation + (i / n) * Math.PI * 2 - Math.PI / 2;
-        pts.push(`${cx + Math.cos(a) * r},${cy + Math.sin(a) * r}`);
+      for (let i = 0; i < 8; i++) {
+        const a = (i / 8) * Math.PI * 2 - Math.PI / 2 + Math.PI / 8;
+        pts.push(`${(cx + Math.cos(a) * R).toFixed(2)},${(cy + Math.sin(a) * R).toFixed(2)}`);
       }
       return pts.join(' ');
+    }
+
+    // Diamond (square rotated 45°) points string
+    function diam4pts(cx, cy, halfDiag) {
+      return `${cx},${cy - halfDiag} ${cx + halfDiag},${cy} ${cx},${cy + halfDiag} ${cx - halfDiag},${cy}`;
+    }
+
+    // Draw an 8-star polygon element
+    function drawStar(parent, cx, cy, Ro, Ri, fill, sw, op, rotDeg) {
+      parent.appendChild(el('polygon', {
+        points: star8pts(cx, cy, Ro, Ri, rotDeg || 0),
+        fill, stroke: INK, 'stroke-width': sw, opacity: op,
+      }));
+    }
+
+    // Draw a regular octagon polygon element
+    function drawOct(parent, cx, cy, R, fill, sw, op) {
+      parent.appendChild(el('polygon', {
+        points: oct8pts(cx, cy, R),
+        fill, stroke: INK, 'stroke-width': sw, opacity: op,
+      }));
+    }
+
+    // Draw a diamond polygon element
+    function drawDiam(parent, cx, cy, hd, fill, sw, op) {
+      parent.appendChild(el('polygon', {
+        points: diam4pts(cx, cy, hd),
+        fill, stroke: INK, 'stroke-width': sw, opacity: op,
+      }));
     }
 
     const strategy = rangeInt(rng, 0, 2);
 
     if (strategy === 0) {
-      // === STAR TESSELLATION (Alhambra style) ===
-      // Dense concentric star geometry with interstitial kite fills
+      // ══════════════════════════════════════════════════════════════
+      // DAMASCUS STAR FIELD — Infinite 8-star tessellation via SVG <pattern>
+      //
+      // Unit cell: octagon background + 8-star + corner diamonds + edge mini-stars.
+      // SVG pattern handles tiling at zero DOM cost — no loops, no lag.
+      // Colorful: 3 bold historical pigments on ivory ground.
+      // ══════════════════════════════════════════════════════════════
+      // Octagon-square tiling math:
+      // Tile T×T. Octagon apothem = T/2 → vertex radius R = T / (2·cos(π/8)) = T·0.5412.
+      // Diamond-gap half-diagonal ≈ T·0.2929 (corner triangle between 4 adjacent octagons).
+      // Stars fill octagons; col2 gap shows at each tile corner as a rotated square.
+      const T    = range(rng, 82, 106);
+      const cx   = T / 2, cy = T / 2;
+      const R    = T * 0.5412;   // octagon vertex radius — apothem = T/2 ✓
+      const Ro   = R * 0.96;     // star tips close to octagon vertices
+      const Ri   = R * 0.24;     // star inner radius — sharp elongated Islamic points
 
-      const foldCount = pick(rng, [8, 10, 12]);
-      const cx = C / 2;
-      const cy = C / 2;
-      const outerR = C * 0.44;
+      const defs  = svg.querySelector('defs');
+      const patId = `${uid}-dam`;
 
-      // Background circle — subtle dome boundary
-      svg.appendChild(Shapes.circle(cx, cy, outerR * 1.08, palette.charcoal, 0.04));
-
-      // Four concentric star layers
-      const layers = [
-        { r: outerR, indent: 0.42, color: colors[0], op: 0.2, sw: 1.5 },
-        { r: outerR * 0.72, indent: 0.38, color: colors[1], op: 0.35, sw: 1.2 },
-        { r: outerR * 0.48, indent: 0.4, color: colors[2] || colors[0], op: 0.5, sw: 1 },
-        { r: outerR * 0.28, indent: 0.45, color: '#D4A84B', op: 0.7, sw: 1.5 },
-      ];
-
-      layers.forEach((layer, li) => {
-        const innerR = layer.r * layer.indent;
-        // Filled star
-        svg.appendChild(el('polygon', {
-          points: starPolygon(cx, cy, layer.r, innerR, foldCount),
-          fill: layer.color,
-          opacity: layer.op,
-          stroke: palette.charcoal,
-          'stroke-width': layer.sw,
-          'stroke-opacity': 0.6
-        }));
-
-        // Connecting ring between layers
-        if (li < layers.length - 1) {
-          svg.appendChild(Shapes.circleOutline(cx, cy, layer.r * 0.85, palette.charcoal, 0.8, 0.2));
-        }
+      const pat = el('pattern', {
+        id: patId, x: 0, y: 0, width: T, height: T,
+        patternUnits: 'userSpaceOnUse',
       });
 
-      // Girih lines — radiating structural lines
-      for (let i = 0; i < foldCount; i++) {
-        const a = (i / foldCount) * Math.PI * 2 - Math.PI / 2;
-        svg.appendChild(Shapes.thinLine(
-          cx + Math.cos(a) * outerR * 0.2, cy + Math.sin(a) * outerR * 0.2,
-          cx + Math.cos(a) * C * 0.62, cy + Math.sin(a) * C * 0.62,
-          palette.charcoal, 0.7
-        ));
+      // 1. Gap background — col2 fills the rotated-square diamond between 4 octagons
+      pat.appendChild(el('rect', { x: 0, y: 0, width: T, height: T, fill: col2 }));
 
-        // Secondary lines between primary lines
-        const a2 = ((i + 0.5) / foldCount) * Math.PI * 2 - Math.PI / 2;
-        svg.appendChild(Shapes.thinLine(
-          cx + Math.cos(a2) * outerR * 0.35, cy + Math.sin(a2) * outerR * 0.35,
-          cx + Math.cos(a2) * outerR, cy + Math.sin(a2) * outerR,
-          palette.charcoal, 0.4
-        ));
+      // 2. Octagon ivory field — edges touch tile-midpoints exactly → perfect tiling
+      drawOct(pat, cx, cy, R, IVORY, 1.5, 0.98);
+
+      // 3. 8-pointed star — col1, elongated tips at octagon vertices (rotDeg=22.5 aligns
+      //    star tips with oct vertices, inner concave points at edge midpoints)
+      drawStar(pat, cx, cy, Ro, Ri, col1, 1.0, 0.95, 22.5);
+
+      // 4. Inner accent ring between star arms — col3 (visible in the star's waist)
+      drawOct(pat, cx, cy, Ri * 0.84, col3, 0.7, 0.82);
+
+      // 5. Center gold jewel
+      pat.appendChild(el('circle', {
+        cx: cx.toFixed(2), cy: cy.toFixed(2), r: (R * 0.082).toFixed(2),
+        fill: GOLD, stroke: INK, 'stroke-width': 0.5, opacity: 0.96,
+      }));
+
+      // 6. Corner junction stars — gold, visible at every 4-tile meeting point
+      const Mc = R * 0.22;
+      [[0,0],[T,0],[0,T],[T,T]].forEach(([px,py]) => {
+        drawStar(pat, px, py, Mc, Mc * 0.40, GOLD, 0.6, 0.90, 22.5);
+      });
+
+      defs.appendChild(pat);
+
+      // Fill entire canvas — true infinite tessellation
+      svg.appendChild(el('rect', { x: 0, y: 0, width: C, height: C, fill: `url(#${patId})` }));
+
+      // Central anchor medallion (optional, density-gated)
+      if (density > 0.38) {
+        const mR = C * 0.17;
+        const mx = C / 2, my = C / 2;
+        drawOct(svg, mx, my, mR * 1.05, IVORY, 2.5, 0.97);
+        drawStar(svg, mx, my, mR * 0.87, mR * 0.36, col1, 1.8, 0.94);
+        drawStar(svg, mx, my, mR * 0.46, mR * 0.20, col2, 1.2, 0.88);
+        svg.appendChild(Shapes.circle(mx, my, mR * 0.10, GOLD, 0.96));
       }
 
-      // Kite fills between star points (interstitial geometry)
-      for (let i = 0; i < foldCount; i++) {
-        const a1 = (i / foldCount) * Math.PI * 2 - Math.PI / 2;
-        const a2 = ((i + 1) / foldCount) * Math.PI * 2 - Math.PI / 2;
+      // Double border frame — classic Damascus panel border
+      const b = C * 0.024;
+      svg.appendChild(Shapes.rectOutline(b,      b,      C-b*2,    C-b*2,    INK, 2.5, 0.70));
+      svg.appendChild(Shapes.rectOutline(b*2.2,  b*2.2,  C-b*4.4,  C-b*4.4,  INK, 1.0, 0.35));
+
+    } else if (strategy === 1) {
+      // ══════════════════════════════════════════════════════════════
+      // DAMASCUS MEDALLION — Bold 8-fold star with colored sector petals
+      //
+      // Classic Ayyubid/Mamluk panel format: one large central star medallion
+      // with alternating colored petals + corner subsidiary stars.
+      // Reference: Damascus National Museum mosaic panels, 13th–14th c.
+      // ══════════════════════════════════════════════════════════════
+      const cx    = C / 2, cy = C / 2;
+      const folds = pick(rng, [8, 8, 16]);
+      const Rm    = C * range(rng, 0.37, 0.44);
+
+      // Octagonal frame
+      drawOct(svg, cx, cy, Rm * 1.06, col3, 2.5, 0.14);
+      drawOct(svg, cx, cy, Rm * 1.06, 'none', 2.5, 0.70);
+
+      // Colored sector petals
+      for (let i = 0; i < folds; i++) {
+        const a1   = (i / folds) * Math.PI * 2 - Math.PI / 2;
+        const a2   = ((i+1) / folds) * Math.PI * 2 - Math.PI / 2;
         const aMid = (a1 + a2) / 2;
+        const fc   = [col1, col2, col3][i % 3];
+        const irr  = Rm * 0.24; // inner petal radius
 
-        // Outer kite between star points
-        const kx1 = cx + Math.cos(a1) * outerR;
-        const ky1 = cy + Math.sin(a1) * outerR;
-        const kx2 = cx + Math.cos(aMid) * outerR * 1.15;
-        const ky2 = cy + Math.sin(aMid) * outerR * 1.15;
-        const kx3 = cx + Math.cos(a2) * outerR;
-        const ky3 = cy + Math.sin(a2) * outerR;
-        const kx4 = cx + Math.cos(aMid) * outerR * 0.7;
-        const ky4 = cy + Math.sin(aMid) * outerR * 0.7;
+        const pts = [
+          `${(cx + Math.cos(aMid) * irr * 0.55).toFixed(1)},${(cy + Math.sin(aMid) * irr * 0.55).toFixed(1)}`,
+          `${(cx + Math.cos(a1)   * Rm).toFixed(1)},${(cy + Math.sin(a1)   * Rm).toFixed(1)}`,
+          `${(cx + Math.cos(aMid) * Rm * 1.0).toFixed(1)},${(cy + Math.sin(aMid) * Rm * 1.0).toFixed(1)}`,
+          `${(cx + Math.cos(a2)   * Rm).toFixed(1)},${(cy + Math.sin(a2)   * Rm).toFixed(1)}`,
+        ].join(' ');
 
-        svg.appendChild(el('polygon', {
-          points: `${kx1},${ky1} ${kx2},${ky2} ${kx3},${ky3} ${kx4},${ky4}`,
-          fill: colors[(i + 2) % colors.length],
-          opacity: 0.18,
-          stroke: palette.charcoal,
-          'stroke-width': 0.6,
-          'stroke-opacity': 0.4
-        }));
+        svg.appendChild(el('polygon', { points: pts, fill: fc, stroke: INK, 'stroke-width': 1.1, opacity: 0.84 }));
       }
 
-      // Rosette dots at star points
-      for (let i = 0; i < foldCount; i++) {
-        const a = (i / foldCount) * Math.PI * 2 - Math.PI / 2;
-        const rx = cx + Math.cos(a) * outerR;
-        const ry = cy + Math.sin(a) * outerR;
-        svg.appendChild(Shapes.circle(rx, ry, C * 0.018, '#D4A84B', 0.75));
-      }
+      // Octagon clip frame re-outlined over petals
+      drawOct(svg, cx, cy, Rm, 'none', 2.5, 0.88);
 
-      // Corner ornaments — quarter-stars
-      if (density > 0.35) {
-        const cR = C * 0.14;
-        [[0, 0], [C, 0], [0, C], [C, C]].forEach(([px, py], idx) => {
-          svg.appendChild(Shapes.quarterCircle(px, py, cR, ['tl', 'tr', 'bl', 'br'][idx], colors[idx % colors.length], 0.2));
-          svg.appendChild(Shapes.circleOutline(px, py, cR, palette.charcoal, 1, 0.3));
+      // Inner 8-star — bold over petals, creates the layered star-within-star feel
+      drawStar(svg, cx, cy, Rm * 0.56, Rm * 0.23, col2,  1.5, 0.92);
+      drawStar(svg, cx, cy, Rm * 0.28, Rm * 0.115, GOLD, 1.0, 0.88);
+
+      // Center gold jewel
+      svg.appendChild(Shapes.circle(cx, cy, Rm * 0.085, `url(#${uid}-glow)`, 0.55));
+      svg.appendChild(Shapes.circle(cx, cy, Rm * 0.055, GOLD, 0.96));
+
+      // Corner subsidiary stars
+      if (density > 0.28) {
+        [[C*0.14,C*0.14],[C*0.86,C*0.14],[C*0.14,C*0.86],[C*0.86,C*0.86]].forEach(([px,py], i) => {
+          const cR  = C * 0.075;
+          const cfc = [col1, col2, col3, col1][i];
+          drawOct(svg, px, py, cR, IVORY, 1.8, 0.94);
+          drawStar(svg, px, py, cR * 0.87, cR * 0.37, cfc, 1.0, 0.87);
+          svg.appendChild(Shapes.circle(px, py, cR * 0.13, GOLD, 0.90));
+          // Thin connecting line to medallion
+          const dx = cx-px, dy = cy-py, d = Math.sqrt(dx*dx+dy*dy);
+          svg.appendChild(Shapes.thinLine(
+            px + dx/d * cR * 1.1, py + dy/d * cR * 1.1,
+            cx - dx/d * Rm,        cy - dy/d * Rm,
+            INK, 0.9
+          ));
         });
       }
 
-      // Center jewel — gold with hatched fill and glow
-      const jewelR = range(rng, C * 0.04, C * 0.06);
-      svg.appendChild(Shapes.circle(cx, cy, jewelR * 2, `url(#${uid}-glow)`, 0.45));
-      svg.appendChild(withDeepShadow(art.circle(cx, cy, jewelR, '#D4A84B', 0.9), uid));
-
-      // Outer border frame
-      const b = C * 0.025;
-      svg.appendChild(Shapes.rectOutline(b, b, C - b * 2, C - b * 2, palette.charcoal, 2, 0.35));
-
-    } else if (strategy === 1) {
-      // === GIRIH TILE FIELD (Isfahan style) ===
-      // Dense tessellation of star-and-hexagon tiles with colored fills
-
-      const tileSize = range(rng, C * 0.1, C * 0.16);
-      const cols = Math.ceil(C / tileSize) + 2;
-      const rows = Math.ceil(C / (tileSize * 0.866)) + 2;
-      const baseAngle = rng() * Math.PI;
-      const innerRatio = range(rng, 0.38, 0.48);
-
-      // Draw star-hexagon tiles across the field
-      for (let r = -1; r < rows; r++) {
-        for (let c = -1; c < cols; c++) {
-          const tcx = c * tileSize + (r % 2 === 0 ? 0 : tileSize / 2);
-          const tcy = r * tileSize * 0.866;
-
-          const starR = tileSize * 0.44;
-          const innerStarR = starR * innerRatio;
-
-          // Colored star fill
-          const colorIdx = ((r + c) % colors.length + colors.length) % colors.length;
-          svg.appendChild(el('polygon', {
-            points: starPolygon(tcx, tcy, starR, innerStarR, 6, baseAngle),
-            fill: colors[colorIdx],
-            opacity: range(rng, 0.15, 0.35),
-            stroke: palette.charcoal,
-            'stroke-width': 0.8,
-            'stroke-opacity': 0.5
-          }));
-
-          // Inner hexagon — creates the tile's center
-          if (density > 0.25) {
-            const hexR = innerStarR * 0.85;
-            svg.appendChild(el('polygon', {
-              points: regularPolygon(tcx, tcy, hexR, 6, baseAngle + Math.PI / 6),
-              fill: colors[(colorIdx + 2) % colors.length],
-              opacity: 0.12,
-              stroke: palette.charcoal,
-              'stroke-width': 0.4,
-              'stroke-opacity': 0.35
-            }));
-          }
-
-          // Tiny center dot
-          if (density > 0.4) {
-            svg.appendChild(Shapes.dot(tcx, tcy, 1.5, palette.charcoal, 0.3));
-          }
-        }
-      }
-
-      // Central medallion — elevated with shadow
-      const medR = C * range(rng, 0.2, 0.26);
-      const mx = C / 2;
-      const my = C / 2;
-
-      // Medallion background
-      svg.appendChild(withShadow(Shapes.circle(mx, my, medR, bg, 0.85), uid));
-      svg.appendChild(Shapes.circleOutline(mx, my, medR, palette.charcoal, 2.5, 0.55));
-      svg.appendChild(Shapes.circleOutline(mx, my, medR * 0.88, palette.charcoal, 1, 0.3));
-
-      // Medallion inner star
-      const medFold = pick(rng, [8, 10, 12]);
-      svg.appendChild(el('polygon', {
-        points: starPolygon(mx, my, medR * 0.75, medR * 0.35, medFold),
-        fill: colors[0],
-        opacity: 0.25,
-        stroke: palette.charcoal,
-        'stroke-width': 1.2,
-        'stroke-opacity': 0.5
-      }));
-      svg.appendChild(el('polygon', {
-        points: starPolygon(mx, my, medR * 0.45, medR * 0.22, medFold),
-        fill: '#D4A84B',
-        opacity: 0.4,
-        stroke: palette.charcoal,
-        'stroke-width': 1,
-        'stroke-opacity': 0.4
-      }));
-
-      // Center jewel — hatched
-      svg.appendChild(Shapes.circle(mx, my, medR * 0.1, `url(#${uid}-glow)`, 0.5));
-      svg.appendChild(withDeepShadow(art.circle(mx, my, medR * 0.06, '#D4A84B', 0.9), uid));
-
-      // Border frame — double-line
-      const b = C * 0.028;
-      svg.appendChild(Shapes.rectOutline(b, b, C - b * 2, C - b * 2, palette.charcoal, 2, 0.4));
-      svg.appendChild(Shapes.rectOutline(b * 2, b * 2, C - b * 4, C - b * 4, palette.charcoal, 1, 0.2));
+      // Double border frame
+      const b = C * 0.024;
+      svg.appendChild(Shapes.rectOutline(b,     b,     C-b*2,   C-b*2,   INK, 2.5, 0.70));
+      svg.appendChild(Shapes.rectOutline(b*2.2, b*2.2, C-b*4.4, C-b*4.4, INK, 1.0, 0.35));
 
     } else {
-      // === MUQARNAS RADIAL (Dome pattern) ===
-      // Concentric rings of geometric elements with rotational symmetry
+      // ══════════════════════════════════════════════════════════════
+      // DAMASCUS PANEL GRID — Grid of octagonal stars, alternating colors
+      //
+      // Classic Syrian decorative panel: rows of 8-stars with rhythmic
+      // color alternation and bold diamond junctions between cells.
+      // Reference: Damascene mashrabiyya woodwork & tile wainscoting.
+      // ══════════════════════════════════════════════════════════════
+      const N      = rangeInt(rng, 4, 6);
+      const margin = C * 0.055;
+      const cellW  = (C - margin * 2) / N;
+      const Ro_g   = cellW * 0.420;
+      const Ri_g   = cellW * 0.173;
+      const RoOct  = cellW * 0.430;
+      const Hd_g   = cellW * 0.118;
 
-      const cx = C / 2;
-      const cy = C / 2;
-      const foldCount = pick(rng, [8, 10, 12]);
-      const ringCount = rangeInt(rng, 4, 6);
-
-      // Dome boundary — subtle tinted background
-      const domeR = C * 0.46;
-      svg.appendChild(Shapes.circle(cx, cy, domeR, palette.charcoal, 0.05));
-      svg.appendChild(Shapes.circleOutline(cx, cy, domeR, palette.charcoal, 2, 0.45));
-
-      // Concentric rings with rotational elements
-      for (let ring = ringCount - 1; ring >= 0; ring--) {
-        const ringR = domeR * (ring + 1) / (ringCount + 0.5);
-        const prevR = ring > 0 ? domeR * ring / (ringCount + 0.5) : 0;
-        const elemCount = foldCount * (ring === 0 ? 1 : ring + 1);
-        const bandWidth = ringR - prevR;
-        const elemSize = bandWidth * range(rng, 0.32, 0.5);
-        const ringColor = colors[ring % colors.length];
-        const rotOffset = ring * (Math.PI / foldCount);
-
-        // Ring outline
-        svg.appendChild(Shapes.circleOutline(cx, cy, ringR, palette.charcoal, 1, 0.22));
-
-        // Elements around the ring
-        for (let i = 0; i < elemCount; i++) {
-          const angle = rotOffset + (i / elemCount) * Math.PI * 2;
-          const elemR = (ringR + prevR) / 2;
-          const ex = cx + Math.cos(angle) * elemR;
-          const ey = cy + Math.sin(angle) * elemR;
-
-          const shapeChoice = (ring + i) % 4;
-          const elemOp = range(rng, 0.3, 0.65);
-
-          if (shapeChoice === 0) {
-            // Kite/diamond pointing outward
-            svg.appendChild(Shapes.rotatedRect(ex, ey, elemSize * 0.7, elemSize * 1.5, angle * 180 / Math.PI, ringColor, elemOp));
-          } else if (shapeChoice === 1) {
-            // Small triangle pointing outward
-            svg.appendChild(Shapes.triangle(ex, ey, elemSize * 0.9, angle * 180 / Math.PI + 90, ringColor, elemOp));
-          } else if (shapeChoice === 2) {
-            // Circle
-            svg.appendChild(Shapes.circle(ex, ey, elemSize * 0.35, ringColor, elemOp));
-          } else {
-            // Tiny star
-            svg.appendChild(el('polygon', {
-              points: starPolygon(ex, ey, elemSize * 0.5, elemSize * 0.2, 6, angle),
-              fill: ringColor,
-              opacity: elemOp,
-              stroke: palette.charcoal,
-              'stroke-width': 0.4,
-              'stroke-opacity': 0.3
-            }));
-          }
+      // Subtle alternating row bands
+      for (let r = 0; r < N; r++) {
+        if (r % 2 === 0) {
+          svg.appendChild(el('rect', {
+            x: margin, y: margin + r * cellW,
+            width: C - margin * 2, height: cellW,
+            fill: col3, opacity: 0.06,
+          }));
         }
       }
 
-      // Girih lines — radiating spokes
-      for (let i = 0; i < foldCount; i++) {
-        const a = (i / foldCount) * Math.PI * 2;
-        svg.appendChild(Shapes.thinLine(
-          cx + Math.cos(a) * domeR * 0.12, cy + Math.sin(a) * domeR * 0.12,
-          cx + Math.cos(a) * domeR, cy + Math.sin(a) * domeR,
-          palette.charcoal, 0.7
-        ));
+      // Stars
+      for (let r = 0; r < N; r++) {
+        for (let c = 0; c < N; c++) {
+          const cx = margin + c * cellW + cellW / 2;
+          const cy = margin + r * cellW + cellW / 2;
+          const ci = (r + c) % 3;
+
+          // Octagon backing
+          drawOct(svg, cx, cy, RoOct, IVORY, 0.9, 0.95);
+
+          // 8-star — rotating 3-color palette
+          drawStar(svg, cx, cy, Ro_g, Ri_g, [col1,col2,col3][ci], 1.0, 0.91);
+
+          // Inner star accent at higher density
+          if (density > 0.42) {
+            drawStar(svg, cx, cy, Ro_g * 0.44, Ri_g * 0.50, [col2,col3,col1][ci], 0.6, 0.72);
+          }
+
+          // Gold center dot
+          svg.appendChild(Shapes.dot(cx, cy, cellW * 0.042, GOLD, 0.92));
+        }
       }
 
-      // Central rosette — gold star with glow and hatching
-      const roseR = domeR * 0.13;
-      svg.appendChild(Shapes.circle(cx, cy, roseR * 2.2, `url(#${uid}-glow)`, 0.4));
-      svg.appendChild(withDeepShadow(art.circle(cx, cy, roseR, '#D4A84B', 0.85), uid));
-
-      // Inner star at center
-      const innerStarR = roseR * 1.8;
-      svg.appendChild(el('polygon', {
-        points: starPolygon(cx, cy, innerStarR, innerStarR * 0.42, foldCount),
-        fill: 'none',
-        stroke: palette.charcoal,
-        'stroke-width': 1.5,
-        opacity: 0.55
-      }));
-
-      // Spandrel corners (triangular fills)
-      if (density > 0.3) {
-        const sp = C * 0.16;
-        const spColor = colors[colors.length - 1] || palette.charcoal;
-        svg.appendChild(el('polygon', { points: `0,0 ${sp},0 0,${sp}`, fill: spColor, opacity: 0.12 }));
-        svg.appendChild(el('polygon', { points: `${C},0 ${C - sp},0 ${C},${sp}`, fill: spColor, opacity: 0.12 }));
-        svg.appendChild(el('polygon', { points: `0,${C} ${sp},${C} 0,${C - sp}`, fill: spColor, opacity: 0.12 }));
-        svg.appendChild(el('polygon', { points: `${C},${C} ${C - sp},${C} ${C},${C - sp}`, fill: spColor, opacity: 0.12 }));
+      // Diamond junctions at every grid intersection (the "knotwork" crossings)
+      for (let r = 0; r <= N; r++) {
+        for (let c = 0; c <= N; c++) {
+          const gx = margin + c * cellW;
+          const gy = margin + r * cellW;
+          drawDiam(svg, gx, gy, Hd_g, [GOLD,col2,col1][(r+c)%3], 0.9, 0.88);
+        }
       }
+
+      // Decorative header/footer band strips
+      const b = C * 0.024;
+      svg.appendChild(el('rect', { x: b*3, y: b*3,       width: C-b*6, height: b*1.4, fill: col1, opacity: 0.22 }));
+      svg.appendChild(el('rect', { x: b*3, y: C-b*4.4,   width: C-b*6, height: b*1.4, fill: col1, opacity: 0.22 }));
+
+      // Double border frame
+      svg.appendChild(Shapes.rectOutline(b,     b,     C-b*2,   C-b*2,   INK, 2.5, 0.70));
+      svg.appendChild(Shapes.rectOutline(b*2.2, b*2.2, C-b*4.4, C-b*4.4, INK, 1.0, 0.35));
     }
+
   }
 
   // ── COMPOSER DISPATCH ──

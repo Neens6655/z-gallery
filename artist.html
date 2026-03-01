@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Artist &mdash; ZSIGNAL</title>
+  <title>ZSIGNAL — Artist</title>
+  <meta name="description" content="ZSIGNAL is a computational artist working at the intersection of Bauhaus design theory and generative algorithms. Explore 7 eras of deterministic compositions built from 12 shape primitives, 6 palettes, and strict geometric constraints.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/z-gallery.css">
 </head>
 <body>
+
+  <!-- Skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- HEADER -->
   <header class="header">
@@ -22,14 +26,15 @@
         <a href="theory.html">Theory</a>
       </nav>
       <div class="header-actions">
-        <a href="gallery.html" class="btn btn-primary btn-sm">VIEW GALLERY</a>
-        <button class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">
+        <a href="studio.html" class="btn btn-primary btn-sm">CREATE</a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
 
+  <main id="main-content">
   <!-- ARTIST HERO -->
   <section class="section">
     <div class="container">
@@ -226,6 +231,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -233,37 +239,31 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
-          <p>Generative Bauhaus art. Algorithmic compositions available as museum-quality framed prints.</p>
+          <p>A deterministic generative art system. Every seed is a signature. Every constraint, a canvas.</p>
         </div>
         <div class="footer-col">
-          <h4>Gallery</h4>
-          <a href="gallery.html">All Works</a>
-          <a href="gallery.html?era=I">Era I</a>
-          <a href="gallery.html?era=III">Era III</a>
-          <a href="gallery.html?era=VI">Era VI</a>
-        </div>
-        <div class="footer-col">
-          <h4>Theory</h4>
+          <h4>Explore</h4>
+          <a href="gallery.html">Gallery</a>
+          <a href="studio.html">Studio</a>
           <a href="artist.html">The Artist</a>
-          <a href="theory.html">The Platform</a>
-          <a href="theory.html#faq">FAQ</a>
+          <a href="theory.html">Theory</a>
         </div>
         <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="#">Terms</a>
-          <a href="#">Privacy</a>
-          <a href="#">Shipping</a>
+          <h4>Connect</h4>
+          <a href="mailto:hello@zsignal.art">Contact</a>
+          <a href="theory.html#faq">FAQ</a>
+          <a href="pitch-deck.html">Pitch Deck</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy">&copy; 2026 ZSIGNAL Gallery. All rights reserved.</span>
+        <span class="footer-copy">&copy; 2026 ZSIGNAL. All rights reserved.</span>
       </div>
     </div>
   </footer>
 
-  <script src="js/z-engine.js"></script>
-  <script src="js/z-catalog.js"></script>
-  <script src="js/z-gallery.js"></script>
+  <script src="js/z-engine.js" defer></script>
+  <script src="js/z-catalog.js" defer></script>
+  <script src="js/z-gallery.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Portrait art (DOT_FIELD)

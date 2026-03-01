@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Studio &mdash; ZSIGNAL</title>
+  <title>ZSIGNAL — Studio</title>
+  <meta name="description" content="Create your own deterministic generative artwork. Choose an archetype, palette, and seed — then claim your creation. Limited to 10 prints per seed.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/z-gallery.css">
 </head>
 <body>
+
+  <!-- Skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- HEADER -->
   <header class="header">
@@ -22,21 +26,33 @@
         <a href="theory.html">Theory</a>
       </nav>
       <div class="header-actions">
-        <a href="gallery.html" class="btn btn-primary btn-sm">VIEW GALLERY</a>
-        <button class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">
+        <a href="studio.html" class="btn btn-primary btn-sm">CREATE</a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
 
+  <!-- REMIX BANNER (hidden by default, shown when ?remix= param present) -->
+  <div class="remix-banner" id="remix-banner" style="display:none;">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;">
+      <span style="font-family:var(--z-font-mono);font-size:13px;">
+        <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;vertical-align:-2px;" aria-hidden="true"><path d="M17,3 L14,6 L17,9 M3,10 C3,6.13 6.13,3 10,3 L14,3 M3,17 L6,14 L3,11 M17,10 C17,13.87 13.87,17 10,17 L6,17"/></svg>
+        Remixing: <strong id="remix-parent-title">—</strong>
+      </span>
+      <a href="studio.html" class="btn btn-ghost btn-sm" style="font-size:11px;">Clear Remix</a>
+    </div>
+  </div>
+
   <!-- STUDIO -->
+  <main id="main-content">
   <section class="section" style="padding-top:48px;">
     <div class="container">
       <div style="margin-bottom:40px;">
         <div class="hero-label">Live Composition Studio</div>
         <h1 style="font-family:var(--z-font-mono);font-size:40px;font-weight:700;line-height:1.1;">Create Your Own</h1>
-        <p style="font-size:16px;color:rgba(28,28,28,0.65);margin-top:12px;max-width:560px;">Mix archetype, palette, density, and seed to compose original Bauhaus artwork. Mint your favorites to your personal collection or order as a print.</p>
+        <p style="font-size:16px;color:rgba(28,28,28,0.65);margin-top:12px;max-width:560px;">Choose a style, pick colors, adjust density — then claim your creation. Each claimed seed is limited to 10 prints.</p>
       </div>
 
       <div class="studio-layout">
@@ -60,13 +76,13 @@
             <div class="studio-param-group">
               <div class="studio-param-label">Archetype</div>
               <div class="studio-param-options" id="studio-archetypes">
-                <button class="studio-pill active" data-val="FREE_FORM">Free Form</button>
-                <button class="studio-pill" data-val="GRID">Grid</button>
-                <button class="studio-pill" data-val="REPETITION">Repetition</button>
-                <button class="studio-pill" data-val="CONSTRUCTIVIST">Constructivist</button>
-                <button class="studio-pill" data-val="COLOR_STUDY">Color Study</button>
-                <button class="studio-pill" data-val="DOT_FIELD">Dot Field</button>
-                <button class="studio-pill" data-val="ARABIAN_GEOMETRIC">Arabian Geometric</button>
+                <button class="studio-pill active" data-val="FREE_FORM" aria-pressed="true">Free Form</button>
+                <button class="studio-pill" data-val="GRID" aria-pressed="false">Grid</button>
+                <button class="studio-pill" data-val="REPETITION" aria-pressed="false">Repetition</button>
+                <button class="studio-pill" data-val="CONSTRUCTIVIST" aria-pressed="false">Constructivist</button>
+                <button class="studio-pill" data-val="COLOR_STUDY" aria-pressed="false">Color Study</button>
+                <button class="studio-pill" data-val="DOT_FIELD" aria-pressed="false">Dot Field</button>
+                <button class="studio-pill" data-val="ARABIAN_GEOMETRIC" aria-pressed="false">Arabian Geometric</button>
               </div>
             </div>
 
@@ -74,23 +90,23 @@
             <div class="studio-param-group">
               <div class="studio-param-label">Palette</div>
               <div class="studio-param-options" id="studio-palettes">
-                <button class="studio-pill active" data-val="ZSIGNAL">
-                  <span style="display:inline-block;width:8px;height:8px;background:#C04B3C;margin-right:4px;vertical-align:middle;"></span>ZSIGNAL
+                <button class="studio-pill active" data-val="ZSIGNAL" aria-pressed="true">
+                  <span style="display:inline-block;width:8px;height:8px;background:#D4A84B;margin-right:4px;vertical-align:middle;border-radius:9999px;"></span>ZSIGNAL
                 </button>
-                <button class="studio-pill" data-val="CLASSIC_BAUHAUS">
-                  <span style="display:inline-block;width:8px;height:8px;background:#E63946;margin-right:4px;vertical-align:middle;"></span>Classic
+                <button class="studio-pill" data-val="CLASSIC_BAUHAUS" aria-pressed="false">
+                  <span style="display:inline-block;width:8px;height:8px;background:#E63946;margin-right:4px;vertical-align:middle;border-radius:9999px;"></span>Classic
                 </button>
-                <button class="studio-pill" data-val="CONSTRUCTIVIST">
-                  <span style="display:inline-block;width:8px;height:8px;background:#CC0000;margin-right:4px;vertical-align:middle;"></span>Constructivist
+                <button class="studio-pill" data-val="CONSTRUCTIVIST" aria-pressed="false">
+                  <span style="display:inline-block;width:8px;height:8px;background:#CC0000;margin-right:4px;vertical-align:middle;border-radius:9999px;"></span>Constructivist
                 </button>
-                <button class="studio-pill" data-val="WARM_EARTH">
-                  <span style="display:inline-block;width:8px;height:8px;background:#C67B5C;margin-right:4px;vertical-align:middle;"></span>Warm Earth
+                <button class="studio-pill" data-val="WARM_EARTH" aria-pressed="false">
+                  <span style="display:inline-block;width:8px;height:8px;background:#A67C52;margin-right:4px;vertical-align:middle;border-radius:9999px;"></span>Warm Earth
                 </button>
-                <button class="studio-pill" data-val="COOL_STEEL">
-                  <span style="display:inline-block;width:8px;height:8px;background:#3A6EA5;margin-right:4px;vertical-align:middle;"></span>Cool Steel
+                <button class="studio-pill" data-val="COOL_STEEL" aria-pressed="false">
+                  <span style="display:inline-block;width:8px;height:8px;background:#5B7C99;margin-right:4px;vertical-align:middle;border-radius:9999px;"></span>Cool Steel
                 </button>
-                <button class="studio-pill" data-val="MONOCHROME">
-                  <span style="display:inline-block;width:8px;height:8px;background:#707070;margin-right:4px;vertical-align:middle;"></span>Mono
+                <button class="studio-pill" data-val="MONOCHROME" aria-pressed="false">
+                  <span style="display:inline-block;width:8px;height:8px;background:#666;margin-right:4px;vertical-align:middle;border-radius:9999px;"></span>Mono
                 </button>
               </div>
             </div>
@@ -100,7 +116,7 @@
               <div class="studio-param-label">Density</div>
               <div class="studio-slider-row">
                 <span style="font-family:var(--z-font-mono);font-size:11px;color:rgba(28,28,28,0.40);">Sparse</span>
-                <input type="range" class="studio-slider" id="studio-density" min="0.1" max="0.9" step="0.05" value="0.5">
+                <input type="range" class="studio-slider" id="studio-density" min="0.1" max="0.9" step="0.05" value="0.5" aria-label="Density slider">
                 <span style="font-family:var(--z-font-mono);font-size:11px;color:rgba(28,28,28,0.40);">Dense</span>
                 <span class="studio-slider-value" id="studio-density-val">0.50</span>
               </div>
@@ -110,9 +126,9 @@
             <div class="studio-param-group">
               <div class="studio-param-label">Seed</div>
               <div class="studio-seed-row">
-                <input type="number" class="studio-seed-input" id="studio-seed" min="0" max="99999" value="42718">
+                <input type="number" class="studio-seed-input" id="studio-seed" min="0" max="99999" value="42718" aria-label="Seed value">
                 <button class="btn btn-secondary btn-sm" id="studio-randomize" style="height:38px;">
-                  <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:4px;"><path d="M17,3 L14,6 L17,9 M3,10 C3,6.13 6.13,3 10,3 L14,3 M3,17 L6,14 L3,11 M17,10 C17,13.87 13.87,17 10,17 L6,17"/></svg>
+                  <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:4px;" aria-hidden="true"><path d="M17,3 L14,6 L17,9 M3,10 C3,6.13 6.13,3 10,3 L14,3 M3,17 L6,14 L3,11 M17,10 C17,13.87 13.87,17 10,17 L6,17"/></svg>
                   RANDOMIZE
                 </button>
               </div>
@@ -121,16 +137,21 @@
 
           <!-- Actions -->
           <div class="studio-actions">
-            <button class="btn btn-primary btn-full" id="studio-mint">
-              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;"><path d="M10,2 L12.5,7 L18,7.5 L14,11.5 L15,17 L10,14.5 L5,17 L6,11.5 L2,7.5 L7.5,7 Z"/></svg>
-              MINT TO COLLECTION
+            <button class="btn btn-ghost btn-full" id="studio-random-combo">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;" aria-hidden="true"><path d="M17,3 L14,6 L17,9 M3,10 C3,6.13 6.13,3 10,3 L14,3 M3,17 L6,14 L3,11 M17,10 C17,13.87 13.87,17 10,17 L6,17"/></svg>
+              RANDOM COMBINATION
             </button>
+            <button class="btn btn-primary btn-full" id="studio-claim">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;" aria-hidden="true"><path d="M10,2 L12.5,7 L18,7.5 L14,11.5 L15,17 L10,14.5 L5,17 L6,11.5 L2,7.5 L7.5,7 Z"/></svg>
+              CLAIM THIS SEED
+            </button>
+            <div style="text-align:center;font-family:var(--z-font-mono);font-size:11px;color:rgba(28,28,28,0.4);text-transform:uppercase;letter-spacing:0.1em;">Limited to 10 prints per seed</div>
             <button class="btn btn-secondary btn-full" id="studio-genesis">
-              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;"><polygon points="4,2 18,10 4,18"/></svg>
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;" aria-hidden="true"><polygon points="4,2 18,10 4,18"/></svg>
               WATCH IT BUILD
             </button>
             <button class="btn btn-secondary btn-full" id="studio-download">
-              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;"><path d="M10,2 L10,13 M6,9 L10,13 L14,9 M3,16 L17,16"/></svg>
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;" aria-hidden="true"><path d="M10,2 L10,13 M6,9 L10,13 L14,9 M3,16 L17,16"/></svg>
               DOWNLOAD SVG
             </button>
           </div>
@@ -139,20 +160,48 @@
     </div>
   </section>
 
-  <!-- COLLECTION -->
+  <!-- MY COLLECTION -->
   <section class="section section-alt" id="collection-section">
     <div class="container">
       <div class="section-header" style="text-align:left;margin-bottom:32px;">
-        <div class="studio-collection-label">Your Collection</div>
-        <h2 style="font-size:28px;">Minted Compositions</h2>
-        <p style="margin-left:0;">Your saved compositions live in this browser. Each one can be loaded back into the studio or ordered as a print.</p>
+        <div class="studio-collection-label">My Collection</div>
+        <h2 style="font-size:28px;">Claimed Seeds</h2>
+        <p style="margin-left:0;">Your claimed compositions live in this browser. Click any to load it back into the studio.</p>
       </div>
       <div class="collection-grid" id="collection-grid"></div>
       <div class="collection-empty" id="collection-empty">
-        <p>No compositions minted yet.<br>Create one above and hit Mint to Collection.</p>
+        <p>No seeds claimed yet.<br>Create a composition above and claim it to start your collection.</p>
       </div>
     </div>
   </section>
+
+  </main>
+
+  <!-- CLAIM MODAL (Email Capture) -->
+  <div class="modal-overlay" id="claim-modal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="claim-modal-title">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <h3 id="claim-modal-title">Claim This Seed</h3>
+      <p style="color:rgba(28,28,28,0.6);margin-bottom:16px;">This composition is limited to <strong>10 prints</strong>. Enter your email to claim it and add it to your collection.</p>
+      <div class="modal-summary" id="claim-summary" style="font-family:var(--z-font-mono);font-size:14px;line-height:1.8;margin-bottom:24px;padding:16px;border:2px solid #1C1C1C;text-align:left;"></div>
+      <form name="seed-claim" data-netlify="true" method="POST" id="claim-form">
+        <input type="hidden" name="archetype" id="claim-archetype">
+        <input type="hidden" name="palette" id="claim-palette">
+        <input type="hidden" name="seed" id="claim-seed">
+        <input type="hidden" name="density" id="claim-density">
+        <div class="form-group">
+          <label class="form-label" for="claim-email">Email</label>
+          <input type="email" id="claim-email" name="email" class="form-input" placeholder="your@email.com" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">CLAIM &amp; SAVE TO COLLECTION</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="studio-toast" aria-live="polite">
+    <span id="toast-message">Seed claimed!</span>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -160,55 +209,60 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
-          <p>Generative Bauhaus art. Algorithmic compositions available as museum-quality framed prints.</p>
+          <p>A deterministic generative art system. Every seed is a signature. Every constraint, a canvas.</p>
         </div>
         <div class="footer-col">
-          <h4>Gallery</h4>
-          <a href="gallery.html">All Works</a>
-          <a href="gallery.html?era=I">Era I</a>
-          <a href="gallery.html?era=III">Era III</a>
-          <a href="gallery.html?era=VI">Era VI</a>
+          <h4>Explore</h4>
+          <a href="gallery.html">Gallery</a>
+          <a href="studio.html">Studio</a>
+          <a href="artist.html">The Artist</a>
+          <a href="theory.html">Theory</a>
         </div>
         <div class="footer-col">
-          <h4>Create</h4>
-          <a href="studio.html">Composition Studio</a>
-          <a href="theory.html">About the Engine</a>
+          <h4>Connect</h4>
+          <a href="mailto:hello@zsignal.art">Contact</a>
           <a href="theory.html#faq">FAQ</a>
-        </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="#">Terms</a>
-          <a href="#">Privacy</a>
-          <a href="#">Shipping</a>
+          <a href="pitch-deck.html">Pitch Deck</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy">&copy; 2026 ZSIGNAL Gallery. All rights reserved.</span>
+        <span class="footer-copy">&copy; 2026 ZSIGNAL. All rights reserved.</span>
       </div>
     </div>
   </footer>
 
-  <script src="js/z-engine.js"></script>
-  <script src="js/z-catalog.js"></script>
-  <script src="js/z-gallery.js"></script>
+  <script src="js/z-engine.js" defer></script>
+  <script src="js/z-catalog.js" defer></script>
+  <script src="js/z-gallery.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // ── STATE ──
+      const archetypes = ['FREE_FORM', 'GRID', 'REPETITION', 'CONSTRUCTIVIST', 'COLOR_STUDY', 'DOT_FIELD', 'ARABIAN_GEOMETRIC'];
+      const palettes = ['ZSIGNAL', 'CLASSIC_BAUHAUS', 'CONSTRUCTIVIST', 'WARM_EARTH', 'COOL_STEEL', 'MONOCHROME'];
+
       let state = {
         archetype: 'FREE_FORM',
         palette: 'ZSIGNAL',
         density: 0.5,
         seed: Math.floor(Math.random() * 99999)
       };
+      let remixParentId = null;
       let genesisController = null;
 
       const canvas = document.getElementById('studio-canvas');
       const seedInput = document.getElementById('studio-seed');
       const densitySlider = document.getElementById('studio-density');
       const densityVal = document.getElementById('studio-density-val');
+      const toast = document.getElementById('studio-toast');
+      const toastMsg = document.getElementById('toast-message');
 
-      // Set initial seed
       seedInput.value = state.seed;
+
+      function showToast(msg) {
+        toastMsg.textContent = msg;
+        toast.classList.add('active');
+        setTimeout(() => toast.classList.remove('active'), 2500);
+      }
 
       // ── RENDER ──
       function renderStudio() {
@@ -218,18 +272,18 @@
           seed: state.seed,
           density: state.density
         });
-        // Update info bar
         document.getElementById('studio-info-archetype').textContent = state.archetype;
         document.getElementById('studio-info-palette').textContent = state.palette;
         document.getElementById('studio-info-seed').textContent = state.seed;
         document.getElementById('studio-info-density').textContent = state.density.toFixed(2);
 
-        // Update URL for sharing (without page reload)
+        // Shareable URL
         const url = new URL(window.location);
-        url.searchParams.set('a', state.archetype);
-        url.searchParams.set('p', state.palette);
-        url.searchParams.set('s', state.seed);
-        url.searchParams.set('d', state.density);
+        url.searchParams.set('archetype', state.archetype);
+        url.searchParams.set('palette', state.palette);
+        url.searchParams.set('seed', state.seed);
+        url.searchParams.set('density', state.density);
+        if (remixParentId) url.searchParams.set('remix', remixParentId);
         history.replaceState(null, '', url);
       }
 
@@ -237,8 +291,12 @@
       function bindPills(containerId, key) {
         document.querySelectorAll(`#${containerId} .studio-pill`).forEach(pill => {
           pill.addEventListener('click', () => {
-            document.querySelectorAll(`#${containerId} .studio-pill`).forEach(p => p.classList.remove('active'));
+            document.querySelectorAll(`#${containerId} .studio-pill`).forEach(p => {
+              p.classList.remove('active');
+              p.setAttribute('aria-pressed', 'false');
+            });
             pill.classList.add('active');
+            pill.setAttribute('aria-pressed', 'true');
             state[key] = pill.dataset.val;
             renderStudio();
           });
@@ -264,6 +322,29 @@
       document.getElementById('studio-randomize').addEventListener('click', () => {
         state.seed = Math.floor(Math.random() * 99999);
         seedInput.value = state.seed;
+        renderStudio();
+      });
+
+      // ── RANDOM COMBINATION ──
+      document.getElementById('studio-random-combo').addEventListener('click', () => {
+        state.archetype = archetypes[Math.floor(Math.random() * archetypes.length)];
+        state.palette = palettes[Math.floor(Math.random() * palettes.length)];
+        state.seed = Math.floor(Math.random() * 99999);
+        state.density = Math.round((0.2 + Math.random() * 0.6) * 20) / 20; // snap to 0.05
+        // Sync UI
+        seedInput.value = state.seed;
+        densitySlider.value = state.density;
+        densityVal.textContent = state.density.toFixed(2);
+        document.querySelectorAll('#studio-archetypes .studio-pill').forEach(p => {
+          const isActive = p.dataset.val === state.archetype;
+          p.classList.toggle('active', isActive);
+          p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        document.querySelectorAll('#studio-palettes .studio-pill').forEach(p => {
+          const isActive = p.dataset.val === state.palette;
+          p.classList.toggle('active', isActive);
+          p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
         renderStudio();
       });
 
@@ -298,7 +379,7 @@
       });
 
       // ── COLLECTION (localStorage) ──
-      const STORAGE_KEY = 'zsignal_collection';
+      const STORAGE_KEY = 'z-gallery-collection';
 
       function loadCollection() {
         try {
@@ -307,7 +388,11 @@
       }
 
       function saveCollection(collection) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(collection));
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(collection));
+        } catch (e) {
+          console.warn('Could not save collection:', e.message);
+        }
       }
 
       function renderCollection() {
@@ -331,25 +416,7 @@
 
           const artDiv = document.createElement('div');
           artDiv.className = 'collection-card-art';
-          artDiv.addEventListener('click', () => {
-            // Load into studio
-            state.archetype = item.archetype;
-            state.palette = item.palette;
-            state.seed = item.seed;
-            state.density = item.density;
-            seedInput.value = state.seed;
-            densitySlider.value = state.density;
-            densityVal.textContent = state.density.toFixed(2);
-            // Update pills
-            document.querySelectorAll('#studio-archetypes .studio-pill').forEach(p => {
-              p.classList.toggle('active', p.dataset.val === state.archetype);
-            });
-            document.querySelectorAll('#studio-palettes .studio-pill').forEach(p => {
-              p.classList.toggle('active', p.dataset.val === state.palette);
-            });
-            renderStudio();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          });
+          artDiv.addEventListener('click', () => loadItem(item));
 
           ZEngine.render(artDiv, {
             archetype: item.archetype,
@@ -362,7 +429,7 @@
           meta.className = 'collection-card-meta';
           meta.innerHTML = `
             <div class="collection-card-params">
-              ${item.archetype} &middot; ${item.palette}<br>
+              ${ZGallery.ARCHETYPE_LABELS[item.archetype] || item.archetype} &middot; ${item.palette}<br>
               Seed: ${item.seed} &middot; Density: ${item.density}
             </div>
             <div class="collection-card-actions">
@@ -380,22 +447,7 @@
         grid.querySelectorAll('.load-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             const item = collection[parseInt(btn.dataset.idx, 10)];
-            if (!item) return;
-            state.archetype = item.archetype;
-            state.palette = item.palette;
-            state.seed = item.seed;
-            state.density = item.density;
-            seedInput.value = state.seed;
-            densitySlider.value = state.density;
-            densityVal.textContent = state.density.toFixed(2);
-            document.querySelectorAll('#studio-archetypes .studio-pill').forEach(p => {
-              p.classList.toggle('active', p.dataset.val === state.archetype);
-            });
-            document.querySelectorAll('#studio-palettes .studio-pill').forEach(p => {
-              p.classList.toggle('active', p.dataset.val === state.palette);
-            });
-            renderStudio();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (item) loadItem(item);
           });
         });
         grid.querySelectorAll('.delete').forEach(btn => {
@@ -408,43 +460,133 @@
         });
       }
 
-      // ── MINT ──
-      document.getElementById('studio-mint').addEventListener('click', () => {
+      function loadItem(item) {
+        state.archetype = item.archetype;
+        state.palette = item.palette;
+        state.seed = item.seed;
+        state.density = item.density;
+        seedInput.value = state.seed;
+        densitySlider.value = state.density;
+        densityVal.textContent = state.density.toFixed(2);
+        document.querySelectorAll('#studio-archetypes .studio-pill').forEach(p => {
+          const isActive = p.dataset.val === state.archetype;
+          p.classList.toggle('active', isActive);
+          p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        document.querySelectorAll('#studio-palettes .studio-pill').forEach(p => {
+          const isActive = p.dataset.val === state.palette;
+          p.classList.toggle('active', isActive);
+          p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        renderStudio();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // ── CLAIM FLOW ──
+      const claimBtn = document.getElementById('studio-claim');
+      const claimModal = document.getElementById('claim-modal');
+      const claimForm = document.getElementById('claim-form');
+
+      claimBtn.addEventListener('click', () => {
+        // Pre-fill modal
+        document.getElementById('claim-archetype').value = state.archetype;
+        document.getElementById('claim-palette').value = state.palette;
+        document.getElementById('claim-seed').value = state.seed;
+        document.getElementById('claim-density').value = state.density;
+        document.getElementById('claim-summary').innerHTML = `
+          <strong>${ZGallery.ARCHETYPE_LABELS[state.archetype] || state.archetype}</strong> &middot; ${state.palette}<br>
+          Seed: ${state.seed} &middot; Density: ${state.density.toFixed(2)}<br>
+          <span style="color:var(--z-gold);">Limited to 10 prints</span>
+        `;
+        claimModal.classList.add('active');
+      });
+
+      claimModal.addEventListener('click', (e) => {
+        if (e.target === claimModal || e.target.closest('.modal-close')) {
+          claimModal.classList.remove('active');
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && claimModal.classList.contains('active')) {
+          claimModal.classList.remove('active');
+        }
+      });
+
+      claimForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('claim-email').value;
+
+        // Submit to Netlify Forms
+        const formData = new URLSearchParams(new FormData(claimForm)).toString();
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: formData
+        }).catch(() => {}); // Silent fail — collection still saved locally
+
+        // Save to collection (no email stored locally for privacy)
         const collection = loadCollection();
-        // Check for duplicate
         const exists = collection.some(item =>
           item.archetype === state.archetype &&
           item.palette === state.palette &&
           item.seed === state.seed &&
           item.density === state.density
         );
-        if (exists) {
-          // Flash the canvas border gold briefly
-          canvas.style.boxShadow = '0 0 0 4px var(--z-gold)';
-          setTimeout(() => { canvas.style.boxShadow = ''; }, 800);
-          return;
+
+        if (!exists) {
+          collection.unshift({
+            archetype: state.archetype,
+            palette: state.palette,
+            seed: state.seed,
+            density: state.density,
+            claimedAt: Date.now()
+          });
+          saveCollection(collection);
         }
 
-        collection.unshift({
-          archetype: state.archetype,
-          palette: state.palette,
-          seed: state.seed,
-          density: state.density,
-          mintedAt: Date.now()
+        // Show confirmation in modal
+        claimModal.querySelector('.modal').innerHTML = `
+          <h3>Seed Claimed!</h3>
+          <p style="color:rgba(28,28,28,0.6);margin-bottom:16px;">Your composition has been saved to your collection and we'll contact you at <strong>${email}</strong> about print options.</p>
+          <div style="font-family:var(--z-font-mono);font-size:13px;padding:16px;border:2px solid var(--z-charcoal);margin-bottom:24px;text-align:left;">
+            ${ZGallery.ARCHETYPE_LABELS[state.archetype]} &middot; ${state.palette}<br>
+            Seed: ${state.seed} &middot; Density: ${state.density.toFixed(2)}<br>
+            Limited edition: 10 prints
+          </div>
+          <button class="btn btn-secondary btn-full modal-close-btn">CLOSE</button>
+        `;
+        claimModal.querySelector('.modal-close-btn').addEventListener('click', () => {
+          claimModal.classList.remove('active');
+          // Rebuild modal for next use
+          setTimeout(() => location.reload(), 100);
         });
-        saveCollection(collection);
-        renderCollection();
 
         // Flash success
         canvas.classList.add('mint-flash');
         setTimeout(() => canvas.classList.remove('mint-flash'), 700);
 
-        // Scroll to collection
-        document.getElementById('collection-section').scrollIntoView({ behavior: 'smooth' });
+        renderCollection();
       });
 
       // ── LOAD FROM URL PARAMS ──
       const params = new URLSearchParams(window.location.search);
+
+      // Handle remix entry
+      if (params.has('remix')) {
+        remixParentId = params.get('remix');
+        const parentWork = ZCatalog.getById(remixParentId);
+        if (parentWork) {
+          document.getElementById('remix-banner').style.display = '';
+          document.getElementById('remix-parent-title').textContent = parentWork.title;
+        }
+      }
+
+      // Load params (from URL share or remix)
+      if (params.has('archetype')) state.archetype = params.get('archetype');
+      if (params.has('palette')) state.palette = params.get('palette');
+      if (params.has('seed')) state.seed = parseInt(params.get('seed'), 10);
+      if (params.has('density')) state.density = parseFloat(params.get('density'));
+      // Legacy param support
       if (params.has('a')) state.archetype = params.get('a');
       if (params.has('p')) state.palette = params.get('p');
       if (params.has('s')) state.seed = parseInt(params.get('s'), 10);
@@ -455,10 +597,14 @@
       densitySlider.value = state.density;
       densityVal.textContent = state.density.toFixed(2);
       document.querySelectorAll('#studio-archetypes .studio-pill').forEach(p => {
-        p.classList.toggle('active', p.dataset.val === state.archetype);
+        const isActive = p.dataset.val === state.archetype;
+        p.classList.toggle('active', isActive);
+        p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       });
       document.querySelectorAll('#studio-palettes .studio-pill').forEach(p => {
-        p.classList.toggle('active', p.dataset.val === state.palette);
+        const isActive = p.dataset.val === state.palette;
+        p.classList.toggle('active', isActive);
+        p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       });
 
       // ── INIT ──

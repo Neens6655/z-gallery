@@ -1,0 +1,41 @@
+{
+  "editions": [
+    { "id": "ff-001", "editionSize": 30, "claimed": 7, "seedHash": "a3f7c1d2", "createdAt": "2018-03-12", "status": "available" },
+    { "id": "ff-002", "editionSize": 30, "claimed": 12, "seedHash": "b8e4a5f0", "createdAt": "2018-05-20", "status": "available" },
+    { "id": "ff-003", "editionSize": 30, "claimed": 19, "seedHash": "c2d9b3e7", "createdAt": "2018-07-08", "status": "available" },
+    { "id": "ff-004", "editionSize": 30, "claimed": 25, "seedHash": "d1c8e6a4", "createdAt": "2018-09-15", "status": "limited" },
+    { "id": "ff-005", "editionSize": 30, "claimed": 30, "seedHash": "e5f2d7b9", "createdAt": "2018-11-02", "status": "claimed" },
+
+    { "id": "gr-001", "editionSize": 30, "claimed": 5, "seedHash": "f4a3c8d1", "createdAt": "2019-02-14", "status": "available" },
+    { "id": "gr-002", "editionSize": 30, "claimed": 14, "seedHash": "a7b6e2f3", "createdAt": "2019-04-22", "status": "available" },
+    { "id": "gr-003", "editionSize": 30, "claimed": 22, "seedHash": "b9d1c5a8", "createdAt": "2019-06-30", "status": "limited" },
+    { "id": "gr-004", "editionSize": 30, "claimed": 30, "seedHash": "c3e7f4d2", "createdAt": "2019-09-10", "status": "claimed" },
+
+    { "id": "rp-001", "editionSize": 30, "claimed": 3, "seedHash": "d6a8b1c9", "createdAt": "2020-01-18", "status": "available" },
+    { "id": "rp-002", "editionSize": 30, "claimed": 9, "seedHash": "e2f5d3a7", "createdAt": "2020-03-25", "status": "available" },
+    { "id": "rp-003", "editionSize": 30, "claimed": 18, "seedHash": "f1c4e8b6", "createdAt": "2020-06-12", "status": "available" },
+    { "id": "rp-004", "editionSize": 30, "claimed": 26, "seedHash": "a4d7f2c3", "createdAt": "2020-08-30", "status": "limited" },
+    { "id": "rp-005", "editionSize": 30, "claimed": 30, "seedHash": "b8e1a5d9", "createdAt": "2020-11-07", "status": "claimed" },
+
+    { "id": "cn-001", "editionSize": 30, "claimed": 11, "seedHash": "c5f3d6a2", "createdAt": "2021-01-22", "status": "available" },
+    { "id": "cn-002", "editionSize": 30, "claimed": 8, "seedHash": "d9a4b7e1", "createdAt": "2021-04-09", "status": "available" },
+    { "id": "cn-003", "editionSize": 30, "claimed": 27, "seedHash": "e3c8f1d5", "createdAt": "2021-07-16", "status": "limited" },
+    { "id": "cn-004", "editionSize": 30, "claimed": 15, "seedHash": "f6d2a9b4", "createdAt": "2021-10-03", "status": "available" },
+
+    { "id": "cs-001", "editionSize": 30, "claimed": 20, "seedHash": "a1e5c3f7", "createdAt": "2022-02-11", "status": "available" },
+    { "id": "cs-002", "editionSize": 30, "claimed": 6, "seedHash": "b4f8d1a3", "createdAt": "2022-05-19", "status": "available" },
+    { "id": "cs-003", "editionSize": 30, "claimed": 28, "seedHash": "c7a2e6f4", "createdAt": "2022-08-27", "status": "limited" },
+    { "id": "cs-004", "editionSize": 30, "claimed": 13, "seedHash": "d3b9f5c8", "createdAt": "2022-11-14", "status": "available" },
+
+    { "id": "df-001", "editionSize": 30, "claimed": 4, "seedHash": "e8c1d7a6", "createdAt": "2023-03-08", "status": "available" },
+    { "id": "df-002", "editionSize": 30, "claimed": 10, "seedHash": "f2a5b3e9", "createdAt": "2024-01-15", "status": "available" },
+    { "id": "df-003", "editionSize": 30, "claimed": 23, "seedHash": "a6d4c8f1", "createdAt": "2024-06-22", "status": "limited" },
+    { "id": "df-004", "editionSize": 30, "claimed": 2, "seedHash": "b1e7f9d3", "createdAt": "2025-01-05", "status": "available" },
+
+    { "id": "ag-001", "editionSize": 30, "claimed": 7, "seedHash": "c9f2a4b8", "createdAt": "2025-03-18", "status": "available" },
+    { "id": "ag-002", "editionSize": 30, "claimed": 16, "seedHash": "d5a8e3c6", "createdAt": "2025-06-25", "status": "available" },
+    { "id": "ag-003", "editionSize": 30, "claimed": 23, "seedHash": "e4b1d9f7", "createdAt": "2026-01-10", "status": "limited" },
+    { "id": "ag-004", "editionSize": 30, "claimed": 1, "seedHash": "f7c6a2e5", "createdAt": "2026-02-01", "status": "available" },
+    { "id": "ag-005", "editionSize": 30, "claimed": 0, "seedHash": "a2d8f4b3", "createdAt": "2026-02-10", "status": "available" }
+  ]
+}

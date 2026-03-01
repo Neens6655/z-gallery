@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Theory &mdash; ZSIGNAL Gallery</title>
+  <title>ZSIGNAL — Theory</title>
+  <meta name="description" content="The theory behind ZSIGNAL: why deterministic generative art matters, how seeds become signatures, and the compositional rules inherited from seven master artists across the Bauhaus and Islamic geometric traditions.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/z-gallery.css">
 </head>
 <body>
+
+  <!-- Skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- HEADER -->
   <header class="header">
@@ -22,24 +26,61 @@
         <a href="theory.html" class="active">Theory</a>
       </nav>
       <div class="header-actions">
-        <a href="gallery.html" class="btn btn-primary btn-sm">VIEW GALLERY</a>
-        <button class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">
+        <a href="studio.html" class="btn btn-primary btn-sm">CREATE</a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
 
+  <main id="main-content">
   <!-- HERO -->
   <section class="section">
     <div class="container" style="max-width:800px;text-align:center;">
       <h1 style="font-family:var(--z-font-mono);font-size:48px;font-weight:700;line-height:1.1;margin-bottom:24px;">Theory</h1>
-      <p style="font-size:18px;line-height:1.7;color:rgba(28,28,28,0.70);">Every ZSIGNAL composition is built on principles inherited from seven master artists and one immutable set of design constraints. This page catalogs the artists, the rules, and the engine that binds them.</p>
+      <p style="font-size:18px;line-height:1.7;color:rgba(28,28,28,0.70);">Every ZSIGNAL composition is built on principles inherited from seven master artists and one immutable set of design constraints. This page catalogs the artists, the rules, the philosophy, and the engine that binds them.</p>
+    </div>
+  </section>
+
+  <!-- WHY DETERMINISM MATTERS -->
+  <section class="section section-alt">
+    <div class="container" style="max-width:800px;">
+      <div class="section-header">
+        <h2>Why Determinism Matters</h2>
+        <p>In a world of infinite generation, scarcity is a choice. Determinism is the mechanism.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:32px;">
+        <div class="feature-card" style="padding:32px;">
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:12px;">Principle 01</div>
+          <h3 style="margin-bottom:12px;">Seeds as Signatures</h3>
+          <p style="line-height:1.7;">Every ZSIGNAL artwork is defined by four parameters: archetype, palette, seed, and density. The seed is a number&mdash;but it functions as a signature. Change one digit and you get an entirely different composition. The same seed always produces the same output. This is not randomness wearing a mask. It is identity encoded in mathematics. When you collect a seed, you collect a specific, unrepeatable moment in the system&rsquo;s possibility space.</p>
+        </div>
+
+        <div class="feature-card" style="padding:32px;">
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:12px;">Principle 02</div>
+          <h3 style="margin-bottom:12px;">Constraint as Canvas</h3>
+          <p style="line-height:1.7;">ZSIGNAL does not aspire to infinite expression. It aspires to the beauty that emerges when rules are tight. Twelve primitives. Six palettes. Seven archetypes. Zero border-radius. These are not limitations&mdash;they are the grammar of a visual language. The Bauhaus masters understood this: when you reduce the vocabulary, every remaining word carries maximum weight. A circle in a ZSIGNAL composition is never decorative. It is structural.</p>
+        </div>
+
+        <div class="feature-card" style="padding:32px;">
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:12px;">Principle 03</div>
+          <h3 style="margin-bottom:12px;">Scarcity by Design</h3>
+          <p style="line-height:1.7;">The ZIGNAL.ENGINE can generate billions of unique compositions. But ZSIGNAL is not a faucet&mdash;it is a curated system. Only 31 seeds have been selected as canonical works. Each canonical work is a limited edition: a fixed number of prints, each tied to a specific seed. When all editions are claimed, that seed is closed. The engine still runs. The art still renders. But the edition is complete. Scarcity is not artificial&mdash;it is architectural.</p>
+        </div>
+
+        <div class="feature-card" style="padding:32px;">
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:12px;">Principle 04</div>
+          <h3 style="margin-bottom:12px;">Collecting as Participation</h3>
+          <p style="line-height:1.7;">Owning a ZSIGNAL work is not passive consumption. Every collector receives the seed&mdash;the complete genetic code of their artwork. They can verify it in the Studio. They can remix it into new compositions. They can trace its lineage back to the master artist tradition that spawned its archetype. Collecting is not the end of the creative process. It is entry into it. The artwork is the invitation. The system is the gift.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- MASTER ARTISTS CATALOG -->
-  <section class="section section-alt">
+  <section class="section">
     <div class="container">
       <div class="section-header">
         <h2>Master Artists</h2>
@@ -107,7 +148,7 @@
   </section>
 
   <!-- COMPOSITIONAL RULES -->
-  <section class="section">
+  <section class="section section-alt">
     <div class="container" style="max-width:800px;">
       <div class="section-header">
         <h2>The Rules</h2>
@@ -151,188 +192,6 @@
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-header">
-        <h2>How It Works</h2>
-      </div>
-      <div class="steps-grid">
-        <div class="step">
-          <div class="step-icon">
-            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="4" y="4" width="20" height="20" stroke="#1C1C1C" stroke-width="2"/>
-              <rect x="8" y="8" width="5" height="5" fill="#D4A84B"/>
-              <rect x="15" y="15" width="5" height="5" fill="#D4A84B"/>
-            </svg>
-          </div>
-          <div class="step-number">01</div>
-          <h3>Browse</h3>
-          <p>Explore 31 generative compositions across seven artistic eras. Filter by era, palette, or archetype.</p>
-        </div>
-        <div class="step">
-          <div class="step-icon">
-            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="14" cy="14" r="10" stroke="#1C1C1C" stroke-width="2"/>
-              <circle cx="14" cy="14" r="4" fill="#D4A84B"/>
-              <line x1="14" y1="4" x2="14" y2="8" stroke="#1C1C1C" stroke-width="2"/>
-              <line x1="14" y1="20" x2="14" y2="24" stroke="#1C1C1C" stroke-width="2"/>
-            </svg>
-          </div>
-          <div class="step-number">02</div>
-          <h3>Customize</h3>
-          <p>Choose your size, material, and frame. See a live preview of your framed print before ordering.</p>
-        </div>
-        <div class="step">
-          <div class="step-icon">
-            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="14,4 24,24 4,24" stroke="#1C1C1C" stroke-width="2" fill="none"/>
-              <circle cx="14" cy="17" r="3" fill="#D4A84B"/>
-            </svg>
-          </div>
-          <div class="step-number">03</div>
-          <h3>Delivered</h3>
-          <p>Museum-quality prints on fine art paper, canvas, or acrylic. Free worldwide shipping in 5&ndash;7 days.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUALITY -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Museum Quality</h2>
-        <p>Every print is produced to the highest archival standards.</p>
-      </div>
-      <div class="grid-3">
-        <div class="feature-card">
-          <div class="feature-card-icon"></div>
-          <h3>Fine Art Paper</h3>
-          <p>310gsm Hahnem&uuml;hle cotton rag. Acid-free, archival grade. Rich color reproduction with a subtle matte texture that brings generative compositions to life.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card-icon" style="background:var(--z-charcoal);"></div>
-          <h3>Gallery Canvas</h3>
-          <p>Premium poly-cotton blend stretched over solid wood bars. UV-resistant inks ensure the composition remains vivid for decades. Ready to hang.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card-icon" style="background:var(--z-blue);"></div>
-          <h3>Acrylic Face Mount</h3>
-          <p>Printed behind 3mm crystal-clear acrylic with an aluminum backing. Creates a luminous floating effect that makes Bauhaus geometries glow.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FRAMING -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-header">
-        <h2>Frame Options</h2>
-        <p>Five frame styles designed to complement the Z-Signal aesthetic.</p>
-      </div>
-      <div class="grid-3" style="max-width:900px;margin:0 auto;">
-        <div class="feature-card">
-          <div style="width:100%;height:8px;background:#1C1C1C;margin-bottom:16px;"></div>
-          <h3>Black</h3>
-          <p>Matte black solid wood. 25mm profile. The classic gallery choice&mdash;disappears into the composition.</p>
-        </div>
-        <div class="feature-card">
-          <div style="width:100%;height:8px;background:#FFFFFF;border:2px solid #E0E0E0;margin-bottom:16px;"></div>
-          <h3>White</h3>
-          <p>Clean white solid wood. 25mm profile. Opens up the composition against any wall color.</p>
-        </div>
-        <div class="feature-card">
-          <div style="width:100%;height:8px;background:#C4A06A;margin-bottom:16px;"></div>
-          <h3>Natural Oak</h3>
-          <p>Light oak with visible grain. 30mm profile. Adds warmth to geometric compositions.</p>
-        </div>
-      </div>
-      <div style="max-width:400px;margin:24px auto 0;">
-        <div class="feature-card">
-          <div style="width:100%;height:8px;background:#D4A84B;margin-bottom:16px;"></div>
-          <h3>Gold</h3>
-          <p>Brushed gold aluminum. 20mm slim profile. Echoes the signature gold accent in every ZSIGNAL composition. The artist's choice.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="pricing-canvas">
-    <div class="pricing-canvas-texture"></div>
-    <div class="container" style="position:relative;z-index:1;">
-      <div class="section-header" style="margin-bottom:48px;">
-        <div class="pricing-canvas-label">Print Pricing</div>
-        <h2 class="pricing-canvas-title">Size &amp; Pricing Guide</h2>
-        <p class="pricing-canvas-sub">All prints include free worldwide shipping. 30-day satisfaction guarantee on every order.</p>
-      </div>
-
-      <div class="pricing-frames">
-        <div class="pricing-frame-card">
-          <div class="pricing-frame frame-style-black">
-            <div class="pricing-frame-mat">
-              <div class="pricing-frame-art" data-pricing-art="0"></div>
-            </div>
-          </div>
-          <div class="pricing-frame-info">
-            <div class="pricing-frame-size">8&times;10&Prime;</div>
-            <div class="pricing-frame-label">Small</div>
-            <div class="pricing-frame-price">From $89</div>
-            <div class="pricing-frame-detail">Paper $89 &middot; Canvas $119 &middot; Acrylic $149</div>
-          </div>
-        </div>
-
-        <div class="pricing-frame-card pricing-frame-card-featured">
-          <div class="pricing-frame frame-style-gold">
-            <div class="pricing-frame-mat">
-              <div class="pricing-frame-art" data-pricing-art="1"></div>
-            </div>
-          </div>
-          <div class="pricing-frame-info">
-            <div class="pricing-frame-size">16&times;20&Prime;</div>
-            <div class="pricing-frame-label">Medium &middot; Most Popular</div>
-            <div class="pricing-frame-price">From $159</div>
-            <div class="pricing-frame-detail">Paper $159 &middot; Canvas $199 &middot; Acrylic $249</div>
-          </div>
-        </div>
-
-        <div class="pricing-frame-card">
-          <div class="pricing-frame frame-style-oak">
-            <div class="pricing-frame-mat">
-              <div class="pricing-frame-art" data-pricing-art="2"></div>
-            </div>
-          </div>
-          <div class="pricing-frame-info">
-            <div class="pricing-frame-size">24&times;36&Prime;</div>
-            <div class="pricing-frame-label">Large</div>
-            <div class="pricing-frame-price">From $249</div>
-            <div class="pricing-frame-detail">Paper $249 &middot; Canvas $299 &middot; Acrylic $379</div>
-          </div>
-        </div>
-
-        <div class="pricing-frame-card">
-          <div class="pricing-frame frame-style-white">
-            <div class="pricing-frame-mat">
-              <div class="pricing-frame-art" data-pricing-art="3"></div>
-            </div>
-          </div>
-          <div class="pricing-frame-info">
-            <div class="pricing-frame-size">30&times;40&Prime;</div>
-            <div class="pricing-frame-label">Extra Large</div>
-            <div class="pricing-frame-price">From $349</div>
-            <div class="pricing-frame-detail">Paper $349 &middot; Canvas $419 &middot; Acrylic $499</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="text-align:center;">
-        <a href="gallery.html" class="btn btn-primary">CHOOSE YOUR ARTWORK</a>
-      </div>
-    </div>
-  </section>
-
   <!-- THE ENGINE -->
   <section class="section">
     <div class="container">
@@ -367,7 +226,7 @@
         <div class="demo-controls">
           <div class="filter-group" style="flex:1;">
             <span class="filter-label">Density</span>
-            <input type="range" class="demo-density-slider" min="0.1" max="0.9" step="0.1" value="0.5">
+            <input type="range" class="demo-density-slider" min="0.1" max="0.9" step="0.1" value="0.5" aria-label="Density slider">
             <span class="demo-density-value">0.5</span>
           </div>
           <div class="demo-seed-display">
@@ -389,66 +248,84 @@
       </div>
       <div class="accordion">
         <div class="accordion-item">
-          <button class="accordion-trigger">
+          <button class="accordion-trigger" aria-expanded="false">
             What is generative art?
             <span class="accordion-icon">+</span>
           </button>
           <div class="accordion-content">
-            <div class="accordion-body">Generative art is artwork created by a system&mdash;an algorithm, a set of rules, or a process&mdash;rather than by direct hand. The artist designs the system, and the system generates the composition. In ZSIGNAL's case, each artwork is defined by three parameters: an archetype (compositional grammar), a palette (color vocabulary), and a seed (specific instance). The system is deterministic: identical inputs always produce identical outputs.</div>
+            <div class="accordion-body">Generative art is artwork created by a system&mdash;an algorithm, a set of rules, or a process&mdash;rather than by direct hand. The artist designs the system, and the system generates the composition. In ZSIGNAL&rsquo;s case, each artwork is defined by three parameters: an archetype (compositional grammar), a palette (color vocabulary), and a seed (specific instance). The system is deterministic: identical inputs always produce identical outputs.</div>
           </div>
         </div>
         <div class="accordion-item">
-          <button class="accordion-trigger">
-            Are these unique artworks?
+          <button class="accordion-trigger" aria-expanded="false">
+            What does &ldquo;deterministic&rdquo; mean?
             <span class="accordion-icon">+</span>
           </button>
           <div class="accordion-content">
-            <div class="accordion-body">Yes. Each artwork has a unique seed number that produces a one-of-a-kind composition. While the system could theoretically generate billions of variations, only 31 specific seeds have been selected by the artist as finished works. Each print includes the artwork's seed number, archetype, and palette&mdash;its complete genetic identity.</div>
+            <div class="accordion-body">Deterministic means the same inputs always produce the same output. There is no true randomness in the ZIGNAL.ENGINE. The seed number drives a pseudorandom number generator (mulberry32) that produces a predictable sequence of decisions. This means your artwork is not a fleeting moment&mdash;it is a permanent, verifiable object. Anyone with the same seed, archetype, palette, and density will see exactly the same composition, on any device, at any time.</div>
           </div>
         </div>
         <div class="accordion-item">
-          <button class="accordion-trigger">
+          <button class="accordion-trigger" aria-expanded="false">
+            What is a seed, and why does it matter?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">A seed is a number that initializes the generative engine. Think of it as the DNA of the artwork: it determines every shape, every position, every color choice. Each seed produces a unique composition. When you collect a ZSIGNAL work, you receive the seed along with the archetype, palette, and density&mdash;the complete genetic code. You can enter that seed in the Studio and watch the exact same artwork render before your eyes. The seed is your proof of authenticity.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            How do editions and scarcity work?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Each of the 31 canonical works has a fixed edition size (typically 10&ndash;30 prints). As collectors claim editions, the count decreases. Once all editions of a work are claimed, that seed is closed&mdash;no more prints of that specific work will be produced. The engine can still render the artwork (it is deterministic, after all), but the collectible edition is complete. This creates genuine scarcity rooted in the system&rsquo;s architecture, not artificial limitation.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            Can I create my own compositions?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Yes. The Studio is open to everyone. Choose an archetype, pick a palette, set a density, and explore as many seeds as you like. When you find a composition you love, you can claim it&mdash;this reserves a limited edition tied to that exact combination of parameters. You can also remix any existing canonical work as a starting point. Your claimed seeds are saved in your personal collection and persist across sessions.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            What is remixing?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Remixing is the act of taking an existing artwork&rsquo;s parameters and using them as a starting point for a new composition. Every artwork detail page has a &ldquo;Remix&rdquo; button that opens the Studio pre-loaded with that work&rsquo;s archetype, palette, seed, and density. From there, you can change any parameter to create something new. Remixed works carry a lineage&mdash;a visible chain connecting them to their parent composition. This makes creative evolution visible and traceable.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
             What is the Arabian Geometric archetype?
             <span class="accordion-icon">+</span>
           </button>
           <div class="accordion-content">
-            <div class="accordion-body">The newest archetype, ARABIAN_GEOMETRIC, draws on centuries of Islamic geometric art. Three strategies produce distinct compositions: star tessellations inspired by the Alhambra's zellige tilework, interlocking girih tile fields from Isfahan's Darb-e Imam shrine, and radial muqarnas dome patterns. These patterns use 6-fold, 8-fold, and 12-fold rotational symmetry&mdash;mathematical systems that predate European modernism by centuries.</div>
+            <div class="accordion-body">The newest archetype, ARABIAN_GEOMETRIC, draws on centuries of Islamic geometric art. Three strategies produce distinct compositions: star tessellations inspired by the Alhambra&rsquo;s zellige tilework, interlocking girih tile fields from Isfahan&rsquo;s Darb-e Imam shrine, and radial muqarnas dome patterns. These patterns use 6-fold, 8-fold, and 12-fold rotational symmetry&mdash;mathematical systems that predate European modernism by centuries.</div>
           </div>
         </div>
         <div class="accordion-item">
-          <button class="accordion-trigger">
-            What paper do you print on?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div class="accordion-content">
-            <div class="accordion-body">Our fine art paper prints use 310gsm Hahnem&uuml;hle cotton rag&mdash;the same archival-grade paper used by major museums and galleries worldwide. It's acid-free, lignin-free, and rated to last over 200 years without yellowing or degradation. Canvas prints use a premium poly-cotton blend, and acrylic prints feature 3mm crystal-clear acrylic with an aluminum backing.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger">
-            How long does shipping take?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div class="accordion-content">
-            <div class="accordion-body">All orders include free worldwide shipping. Standard delivery takes 5&ndash;7 business days. Orders are printed on demand at our production facility, carefully packaged in custom protective packaging, and shipped via tracked courier. You'll receive a tracking number as soon as your order ships.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger">
-            Can I return a print?
-            <span class="accordion-icon">+</span>
-          </button>
-          <div class="accordion-content">
-            <div class="accordion-body">Yes. We offer a 30-day satisfaction guarantee. If you're not completely satisfied with your print, contact us within 30 days of delivery for a full refund. We'll arrange a free return pickup. Custom-framed orders are also covered&mdash;we want you to love your artwork.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <button class="accordion-trigger">
+          <button class="accordion-trigger" aria-expanded="false">
             What is the Z-Signal genome?
             <span class="accordion-icon">+</span>
           </button>
           <div class="accordion-content">
-            <div class="accordion-body">The Z-Signal genome is the set of immutable design constraints that define every ZSIGNAL composition: IBM Plex Mono typeface, 2px solid borders, zero border-radius (sharp corners only), the terminal shadow (6px offset), cream background, charcoal text, and gold as the universal accent color. These constraints derive from Bauhaus principles of geometric purity and functional typography.</div>
+            <div class="accordion-body">The Z-Signal genome is the set of immutable design constraints that define every ZSIGNAL composition: IBM Plex Mono typeface, 2px solid borders, zero border-radius (sharp corners only), the terminal shadow (6px offset), cream background, charcoal text, and gold as the universal accent color. These constraints derive from Bauhaus principles of geometric purity and functional typography. They cannot be overridden. They are the constitution of the system.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            How do I verify an artwork is authentic?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Every ZSIGNAL artwork includes its full parameter set: archetype, palette, seed, and density. Enter those parameters in the Studio or on the artwork detail page and the engine will render the identical composition. If the output matches, the work is authentic. This is the power of determinism&mdash;verification is built into the system itself. No certificates needed. No third-party authentication. The math is the proof.</div>
           </div>
         </div>
       </div>
@@ -464,6 +341,7 @@
       <a href="gallery.html" class="btn btn-primary btn-lg">VIEW GALLERY</a>
     </div>
   </section>
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -471,37 +349,31 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
-          <p>Generative Bauhaus art. Algorithmic compositions available as museum-quality framed prints.</p>
+          <p>A deterministic generative art system. Every seed is a signature. Every constraint, a canvas.</p>
         </div>
         <div class="footer-col">
-          <h4>Gallery</h4>
-          <a href="gallery.html">All Works</a>
-          <a href="gallery.html?era=I">Era I</a>
-          <a href="gallery.html?era=III">Era III</a>
-          <a href="gallery.html?era=VII">Era VII</a>
-        </div>
-        <div class="footer-col">
-          <h4>Theory</h4>
+          <h4>Explore</h4>
+          <a href="gallery.html">Gallery</a>
+          <a href="studio.html">Studio</a>
           <a href="artist.html">The Artist</a>
-          <a href="theory.html">The Platform</a>
-          <a href="theory.html#faq">FAQ</a>
+          <a href="theory.html">Theory</a>
         </div>
         <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="#">Terms</a>
-          <a href="#">Privacy</a>
-          <a href="#">Shipping</a>
+          <h4>Connect</h4>
+          <a href="mailto:hello@zsignal.art">Contact</a>
+          <a href="theory.html#faq">FAQ</a>
+          <a href="pitch-deck.html">Pitch Deck</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy">&copy; 2026 ZSIGNAL Gallery. All rights reserved.</span>
+        <span class="footer-copy">&copy; 2026 ZSIGNAL. All rights reserved.</span>
       </div>
     </div>
   </footer>
 
-  <script src="js/z-engine.js"></script>
-  <script src="js/z-catalog.js"></script>
-  <script src="js/z-gallery.js"></script>
+  <script src="js/z-engine.js" defer></script>
+  <script src="js/z-catalog.js" defer></script>
+  <script src="js/z-gallery.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Interactive demo
@@ -520,18 +392,6 @@
       document.querySelectorAll('[data-theory-art]').forEach(el => {
         const idx = parseInt(el.dataset.theoryArt, 10);
         if (theorySeeds[idx]) ZEngine.render(el, theorySeeds[idx]);
-      });
-
-      // Pricing framed artworks
-      const pricingSeeds = [
-        { archetype: 'DOT_FIELD', palette: 'COOL_STEEL', seed: 89034, density: 0.7 },
-        { archetype: 'ARABIAN_GEOMETRIC', palette: 'WARM_EARTH', seed: 72541, density: 0.6 },
-        { archetype: 'COLOR_STUDY', palette: 'WARM_EARTH', seed: 67854, density: 0.6 },
-        { archetype: 'FREE_FORM', palette: 'ZSIGNAL', seed: 77891, density: 0.7 }
-      ];
-      document.querySelectorAll('[data-pricing-art]').forEach(el => {
-        const idx = parseInt(el.dataset.pricingArt, 10);
-        if (pricingSeeds[idx]) ZEngine.render(el, pricingSeeds[idx]);
       });
 
       // CTA art background

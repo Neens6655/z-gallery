@@ -4,26 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Artwork &mdash; ZSIGNAL</title>
+  <meta name="description" content="A deterministic generative artwork from the ZSIGNAL system. Seed-signed, limited edition, reproducible across devices.">
+  <!-- OG meta tags — updated dynamically by JS -->
+  <meta property="og:title" content="Artwork — ZSIGNAL">
+  <meta property="og:description" content="A deterministic generative artwork from the ZSIGNAL system.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/z-gallery.css">
+  <!-- JSON-LD Structured Data — updated dynamically by JS -->
+  <script type="application/ld+json" id="artwork-jsonld">
+  {
+    "@context": "https://schema.org",
+    "@type": "VisualArtwork",
+    "name": "ZSIGNAL Artwork",
+    "creator": {
+      "@type": "Person",
+      "name": "ZSIGNAL"
+    },
+    "artMedium": "Deterministic Generative SVG",
+    "artform": "Digital Art",
+    "description": "A deterministic generative artwork from the ZSIGNAL system.",
+    "url": ""
+  }
+  </script>
 </head>
 <body>
+
+  <!-- Skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- HEADER -->
   <header class="header">
     <div class="container">
       <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
       <nav class="nav" id="nav">
-        <a href="gallery.html" class="active">Gallery</a>
+        <a href="gallery.html">Gallery</a>
         <a href="studio.html">Studio</a>
         <a href="artist.html">Artist</a>
         <a href="theory.html">Theory</a>
       </nav>
       <div class="header-actions">
-        <a href="gallery.html" class="btn btn-primary btn-sm">VIEW GALLERY</a>
-        <button class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">
+        <a href="studio.html" class="btn btn-primary btn-sm">CREATE</a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -33,7 +59,7 @@
   <!-- BREADCRUMB -->
   <div class="container">
     <div class="breadcrumb">
-      <a href="gallery.html">Gallery</a>
+      <a href="gallery.html" class="breadcrumb-back">&larr; Back to Gallery</a>
       <span>&rsaquo;</span>
       <a href="#" class="breadcrumb-era">Era</a>
       <span>&rsaquo;</span>
@@ -42,28 +68,19 @@
   </div>
 
   <!-- ARTWORK DETAIL -->
+  <main id="main-content">
   <section class="artwork-detail">
     <div class="container">
       <div class="artwork-main">
         <!-- LEFT: Artwork -->
         <div>
-          <div class="artwork-image"></div>
+          <div class="artwork-image" aria-label="Generative artwork"></div>
           <div class="genesis-controls">
             <button class="btn btn-secondary btn-sm genesis-btn" id="genesis-btn">
-              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;"><polygon points="4,2 18,10 4,18"/></svg>
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;" aria-hidden="true"><polygon points="4,2 18,10 4,18"/></svg>
               WATCH IT BUILD
             </button>
             <span class="genesis-status" id="genesis-status"></span>
-          </div>
-
-          <!-- Frame Preview -->
-          <div style="margin-top:32px;">
-            <div style="font-family:var(--z-font-mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,28,28,0.40);margin-bottom:12px;">Frame Preview</div>
-            <div class="frame-preview frame-none">
-              <div class="frame-mat">
-                <div class="frame-artwork" style="width:280px;height:280px;"></div>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -71,67 +88,39 @@
         <div class="artwork-sidebar">
           <h1 class="artwork-title">Loading...</h1>
           <div class="artwork-artist-line"></div>
+
+          <!-- Edition Status -->
+          <div class="artwork-badges">
+            <span class="artwork-edition-badge"></span>
+          </div>
+
+          <!-- Edition Detail -->
+          <div class="artwork-edition">
+            <span class="artwork-edition-detail">Loading edition data...</span>
+          </div>
+          <div class="artwork-seed-hash"></div>
+
+          <hr class="artwork-divider">
+
           <p class="artwork-description"></p>
 
-          <div class="order-section-title">Order a Print</div>
+          <hr class="artwork-divider">
 
-          <!-- SIZE -->
-          <div class="selector-group">
-            <div class="selector-label">Size</div>
-            <div class="selector-options">
-              <button class="selector-option" data-size="small">8&times;10&Prime;</button>
-              <button class="selector-option" data-size="medium">16&times;20&Prime;</button>
-              <button class="selector-option" data-size="large">24&times;36&Prime;</button>
-              <button class="selector-option" data-size="xl">30&times;40&Prime;</button>
-            </div>
+          <!-- ACTIONS -->
+          <div class="artwork-actions">
+            <button class="btn btn-primary btn-full request-print-btn" type="button">REQUEST PRINT</button>
+            <a href="#" class="btn btn-secondary btn-full remix-btn">REMIX THIS ARTWORK</a>
+            <button class="btn btn-ghost btn-full share-btn" type="button">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="margin-right:6px;">
+                <path d="M15 7a3 3 0 100-6 3 3 0 000 6zM5 13a3 3 0 100-6 3 3 0 000 6zM15 19a3 3 0 100-6 3 3 0 000 6zM7.5 11.5l5-3M7.5 8.5l5 3"/>
+              </svg>
+              SHARE ARTWORK
+            </button>
           </div>
 
-          <!-- FRAME -->
-          <div class="selector-group">
-            <div class="selector-label">Frame</div>
-            <div class="selector-options">
-              <button class="selector-option" data-frame="none">None</button>
-              <button class="selector-option" data-frame="black">Black</button>
-              <button class="selector-option" data-frame="white">White</button>
-              <button class="selector-option" data-frame="oak">Oak</button>
-              <button class="selector-option" data-frame="gold">Gold</button>
-            </div>
-          </div>
-
-          <!-- MATERIAL -->
-          <div class="selector-group">
-            <div class="selector-label">Material</div>
-            <div class="selector-options">
-              <button class="selector-option" data-material="paper">Fine Art Paper</button>
-              <button class="selector-option" data-material="canvas">Canvas</button>
-              <button class="selector-option" data-material="acrylic">Acrylic</button>
-            </div>
-          </div>
-
-          <!-- PRICE -->
-          <div class="price-display">
-            <div class="price-line">
-              <span>Print</span>
-              <span class="price-base">$159</span>
-            </div>
-            <div class="price-line muted">
-              <span>Frame</span>
-              <span class="price-frame-val">&mdash;</span>
-            </div>
-            <div class="price-total">
-              <span>Total</span>
-              <span class="price-total-val">$159</span>
-            </div>
-          </div>
-
-          <!-- ORDER BUTTON -->
-          <button class="btn btn-primary btn-full order-btn">
-            ORDER PRINT &mdash; <span class="order-btn-price">$159</span>
-          </button>
-
-          <div class="shipping-info">
-            Free worldwide shipping. 5&ndash;7 business days.<br>
-            30-day satisfaction guarantee.
+          <!-- Collector Interest -->
+          <div class="artwork-interest">
+            <span class="interest-count">12</span> collectors interested
           </div>
 
           <!-- TECHNICAL DETAILS -->
@@ -149,24 +138,59 @@
         </div>
       </div>
 
-      <!-- RELATED -->
+      <!-- REMIX LINEAGE -->
+      <div class="remix-lineage" id="remix-lineage" style="display:none;">
+        <div class="remix-lineage-title">Remix Lineage</div>
+        <div class="remix-chain" id="remix-chain"></div>
+      </div>
+
+      <!-- RELATED WORKS -->
       <div class="related-section">
         <div class="section-header" style="text-align:left;">
-          <h2>More from this Era</h2>
+          <h2>Related Works</h2>
+          <p>More from the same era and archetype</p>
         </div>
         <div class="grid-3 related-grid"></div>
       </div>
     </div>
   </section>
+  </main>
 
-  <!-- ORDER MODAL -->
-  <div class="modal-overlay">
-    <div class="modal">
-      <h3>Order Confirmed</h3>
-      <p>This is a demonstration. In a production environment, you would be redirected to a secure checkout.</p>
+  <!-- REQUEST PRINT MODAL -->
+  <div class="modal-overlay" id="print-modal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="print-modal-title">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <h3 id="print-modal-title">Request a Print</h3>
+      <p style="color:rgba(28,28,28,0.6);margin-bottom:24px;">Interested in this artwork as a museum-quality print? Leave your details and we'll reach out with options.</p>
       <div class="modal-summary" style="font-family:var(--z-font-mono);font-size:14px;line-height:1.8;margin-bottom:24px;padding:16px;border:2px solid #1C1C1C;text-align:left;"></div>
-      <button class="btn btn-secondary modal-close">CLOSE</button>
+      <form name="print-request" data-netlify="true" method="POST">
+        <input type="hidden" name="artwork-id" class="form-artwork-id">
+        <input type="hidden" name="artwork-title" class="form-artwork-title">
+        <div class="form-group">
+          <label class="form-label" for="print-email">Email</label>
+          <input type="email" id="print-email" name="email" class="form-input" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="print-size">Preferred Size</label>
+          <select id="print-size" name="size" class="form-input">
+            <option value="small">8&times;10&Prime; — Small</option>
+            <option value="medium" selected>16&times;20&Prime; — Medium</option>
+            <option value="large">24&times;36&Prime; — Large</option>
+            <option value="xl">30&times;40&Prime; — Extra Large</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="print-notes">Notes (optional)</label>
+          <textarea id="print-notes" name="notes" class="form-input" rows="3" placeholder="Any specific requests..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">SUBMIT REQUEST</button>
+      </form>
     </div>
+  </div>
+
+  <!-- SHARE TOAST -->
+  <div class="toast" id="share-toast" aria-live="polite">
+    <span>Link copied to clipboard</span>
   </div>
 
   <!-- FOOTER -->
@@ -175,59 +199,313 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
-          <p>Generative Bauhaus art. Algorithmic compositions available as museum-quality framed prints.</p>
+          <p>A deterministic generative art system. Every seed is a signature. Every constraint, a canvas.</p>
         </div>
         <div class="footer-col">
-          <h4>Gallery</h4>
-          <a href="gallery.html">All Works</a>
-          <a href="gallery.html?era=I">Era I</a>
-          <a href="gallery.html?era=III">Era III</a>
-          <a href="gallery.html?era=VI">Era VI</a>
-        </div>
-        <div class="footer-col">
-          <h4>Theory</h4>
+          <h4>Explore</h4>
+          <a href="gallery.html">Gallery</a>
+          <a href="studio.html">Studio</a>
           <a href="artist.html">The Artist</a>
-          <a href="theory.html">The Platform</a>
-          <a href="theory.html#faq">FAQ</a>
+          <a href="theory.html">Theory</a>
         </div>
         <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="#">Terms</a>
-          <a href="#">Privacy</a>
-          <a href="#">Shipping</a>
+          <h4>Connect</h4>
+          <a href="mailto:hello@zsignal.art">Contact</a>
+          <a href="theory.html#faq">FAQ</a>
+          <a href="pitch-deck.html">Pitch Deck</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy">&copy; 2026 ZSIGNAL Gallery. All rights reserved.</span>
+        <span class="footer-copy">&copy; 2026 ZSIGNAL. All rights reserved.</span>
       </div>
     </div>
   </footer>
 
-  <script src="js/z-engine.js"></script>
-  <script src="js/z-catalog.js"></script>
-  <script src="js/z-gallery.js"></script>
+  <script src="js/z-engine.js" defer></script>
+  <script src="js/z-catalog.js" defer></script>
+  <script src="js/z-gallery.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      ZGallery.initArtworkPage();
-
-      // Animated Genesis View
       const params = new URLSearchParams(window.location.search);
       const id = params.get('id');
       const work = id ? ZCatalog.getById(id) : null;
-      if (work) {
-        const genesisBtn = document.getElementById('genesis-btn');
-        const genesisStatus = document.getElementById('genesis-status');
-        let controller = null;
 
+      if (!work) {
+        document.body.innerHTML = '<p style="padding:64px;font-family:monospace;">Artwork not found.</p>';
+        return;
+      }
+
+      // ── Fill metadata ──
+      const setEl = (sel, val) => { const e = document.querySelector(sel); if (e) e.innerHTML = val; };
+      setEl('.artwork-title', work.title);
+      setEl('.artwork-artist-line', `ZSIGNAL, ${work.year} &middot; Era ${work.era}: ${work.eraName}`);
+      setEl('.artwork-description', work.description);
+      setEl('.breadcrumb-era', `Era ${work.era}`);
+      setEl('.breadcrumb-title', work.title);
+      document.title = `${work.title} — ZSIGNAL`;
+
+      // OG meta tags (dynamic)
+      document.querySelector('meta[property="og:title"]').content = `${work.title} — ZSIGNAL`;
+      document.querySelector('meta[property="og:description"]').content = work.description;
+      document.querySelector('meta[property="og:url"]').content = window.location.href;
+
+      // JSON-LD structured data (dynamic)
+      const jsonLd = document.getElementById('artwork-jsonld');
+      if (jsonLd) {
+        jsonLd.textContent = JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'VisualArtwork',
+          'name': work.title,
+          'creator': { '@type': 'Person', 'name': 'ZSIGNAL' },
+          'artMedium': 'Deterministic Generative SVG',
+          'artform': 'Digital Art',
+          'description': work.description,
+          'url': window.location.href,
+          'dateCreated': work.year.toString(),
+          'artworkSurface': 'SVG Canvas 560x560',
+          'genre': 'Generative Art',
+          'isPartOf': {
+            '@type': 'CreativeWorkSeries',
+            'name': 'ZSIGNAL Era ' + work.era + ': ' + work.eraName
+          }
+        });
+      }
+
+      // Breadcrumb era link
+      const eraLink = document.querySelector('.breadcrumb-era');
+      if (eraLink) eraLink.href = `gallery.html?era=${work.era}`;
+
+      // Back to gallery — preserve filter state
+      const backLink = document.querySelector('.breadcrumb-back');
+      if (backLink) {
+        const ref = document.referrer;
+        if (ref && ref.includes('gallery.html')) {
+          backLink.href = ref;
+        }
+      }
+
+      // ── Render artwork ──
+      const artContainer = document.querySelector('.artwork-image');
+      if (artContainer) {
+        ZEngine.render(artContainer, {
+          archetype: work.archetype,
+          palette: work.palette,
+          seed: work.seed,
+          density: work.density
+        });
+        artContainer.setAttribute('aria-label', `Generative ${ZGallery.ARCHETYPE_LABELS[work.archetype] || work.archetype} artwork in ${work.palette} palette`);
+      }
+
+      // ── Technical details ──
+      setEl('.tech-archetype', ZGallery.ARCHETYPE_LABELS[work.archetype] || work.archetype);
+      setEl('.tech-palette', work.palette);
+      setEl('.tech-seed', work.seed);
+      setEl('.tech-density', work.density);
+
+      // ── Seed hash (computed client-side) ──
+      function computeSeedHash(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+          const char = str.charCodeAt(i);
+          hash = ((hash << 5) - hash) + char;
+          hash = hash & hash; // Convert to 32bit integer
+        }
+        return Math.abs(hash).toString(16).padStart(8, '0');
+      }
+      const seedHashStr = `${work.archetype}-${work.palette}-${work.seed}-${work.density}`;
+      const seedHash = computeSeedHash(seedHashStr);
+
+      // ── Edition data ──
+      ZGallery.loadEditions().then(editions => {
+        const ed = editions[id];
+        if (ed) {
+          const edBadgeEl = document.querySelector('.artwork-edition-badge');
+          if (edBadgeEl) edBadgeEl.innerHTML = ZGallery.editionBadgeHTML(ed.status, ed.claimed, ed.editionSize);
+
+          const edDetailEl = document.querySelector('.artwork-edition-detail');
+          if (edDetailEl) edDetailEl.textContent = `Edition: ${ed.claimed} of ${ed.editionSize} claimed`;
+
+          const seedHashEl = document.querySelector('.artwork-seed-hash');
+          if (seedHashEl) seedHashEl.textContent = `Seed hash: ${ed.seedHash || seedHash}`;
+
+          // Update interest count based on claimed
+          const interestEl = document.querySelector('.interest-count');
+          if (interestEl) interestEl.textContent = Math.max(ed.claimed, 3);
+        } else {
+          const seedHashEl = document.querySelector('.artwork-seed-hash');
+          if (seedHashEl) seedHashEl.textContent = `Seed hash: ${seedHash}`;
+          const edDetailFallback = document.querySelector('.artwork-edition-detail');
+          if (edDetailFallback) edDetailFallback.textContent = 'Edition: 0 of 30 claimed';
+          const edBadgeFallback = document.querySelector('.artwork-edition-badge');
+          if (edBadgeFallback) edBadgeFallback.innerHTML = ZGallery.editionBadgeHTML('available', 0, 30);
+        }
+      });
+
+      // ── Remix button ──
+      const remixBtn = document.querySelector('.remix-btn');
+      if (remixBtn) {
+        remixBtn.href = `studio.html?remix=${work.id}&archetype=${work.archetype}&palette=${work.palette}&seed=${work.seed}&density=${work.density}`;
+      }
+
+      // ── Share button ──
+      const shareBtn = document.querySelector('.share-btn');
+      const shareToast = document.getElementById('share-toast');
+      if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+          const url = window.location.href;
+          navigator.clipboard.writeText(url).then(() => {
+            shareToast.classList.add('active');
+            setTimeout(() => shareToast.classList.remove('active'), 2500);
+          }).catch(() => {
+            // Fallback for older browsers
+            const input = document.createElement('input');
+            input.value = url;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            shareToast.classList.add('active');
+            setTimeout(() => shareToast.classList.remove('active'), 2500);
+          });
+        });
+      }
+
+      // ── Request Print modal ──
+      const printBtn = document.querySelector('.request-print-btn');
+      const printModal = document.getElementById('print-modal');
+      if (printBtn && printModal) {
+        printBtn.addEventListener('click', () => {
+          // Pre-fill form
+          const idInput = printModal.querySelector('.form-artwork-id');
+          const titleInput = printModal.querySelector('.form-artwork-title');
+          const summary = printModal.querySelector('.modal-summary');
+          if (idInput) idInput.value = work.id;
+          if (titleInput) titleInput.value = work.title;
+          if (summary) {
+            summary.innerHTML = `
+              <strong>${work.title}</strong><br>
+              Era ${work.era}: ${work.eraName}<br>
+              Archetype: ${ZGallery.ARCHETYPE_LABELS[work.archetype] || work.archetype}<br>
+              Seed: ${work.seed} &middot; Density: ${work.density}
+            `;
+          }
+          printModal.classList.add('active');
+        });
+        printModal.addEventListener('click', (e) => {
+          if (e.target === printModal || e.target.closest('.modal-close')) {
+            printModal.classList.remove('active');
+          }
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && printModal.classList.contains('active')) {
+            printModal.classList.remove('active');
+          }
+        });
+        // Handle form submission
+        const form = printModal.querySelector('form');
+        if (form) {
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Submit to Netlify Forms
+            const formData = new URLSearchParams(new FormData(form)).toString();
+            fetch('/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: formData
+            }).catch(() => {}); // Silent fail — confirmation still shown
+            printModal.querySelector('.modal').innerHTML = `
+              <h3>Request Submitted</h3>
+              <p style="color:rgba(28,28,28,0.6);margin-bottom:24px;">We've received your print request for <strong>${work.title}</strong>. We'll reach out within 48 hours with options and pricing.</p>
+              <button class="btn btn-secondary modal-close">CLOSE</button>
+            `;
+            printModal.querySelector('.modal-close').addEventListener('click', () => {
+              printModal.classList.remove('active');
+            });
+          });
+        }
+      }
+
+      // ── Remix Lineage + Social Meta ──
+      fetch('data/remixes.json')
+        .then(r => r.json())
+        .then(data => {
+          const remixes = data.remixes || [];
+          // Find this work's remix entry
+          const thisRemix = remixes.find(r => r.id === id);
+          const children = remixes.filter(r => r.parentId === id);
+          const parent = thisRemix ? remixes.find(r => r.id === thisRemix.parentId) : null;
+
+          if (parent || children.length > 0) {
+            const lineageSection = document.getElementById('remix-lineage');
+            const chain = document.getElementById('remix-chain');
+            lineageSection.style.display = '';
+
+            // Update OG tags with remix lineage info
+            if (parent) {
+              const parentWork = ZCatalog.getById(parent.id);
+              if (parentWork) {
+                document.querySelector('meta[property="og:description"]').content =
+                  `Remixed from "${parentWork.title}" — ${work.description}`;
+              }
+            }
+
+            // Build chain: parent → this → children
+            const nodes = [];
+            if (parent) {
+              const pWork = ZCatalog.getById(parent.id);
+              if (pWork) nodes.push(pWork);
+            }
+            nodes.push(work); // current
+            children.forEach(c => {
+              const cWork = ZCatalog.getById(c.id);
+              if (cWork) nodes.push(cWork);
+            });
+
+            nodes.forEach((node, i) => {
+              if (i > 0) {
+                const arrow = document.createElement('span');
+                arrow.className = 'remix-arrow';
+                arrow.textContent = '→';
+                chain.appendChild(arrow);
+              }
+              const nodeEl = document.createElement('a');
+              nodeEl.className = 'remix-node' + (node.id === id ? ' active' : '');
+              nodeEl.href = `artwork.html?id=${node.id}`;
+              nodeEl.title = node.title;
+              ZEngine.render(nodeEl, {
+                archetype: node.archetype,
+                palette: node.palette,
+                seed: node.seed,
+                density: node.density
+              });
+              chain.appendChild(nodeEl);
+            });
+          }
+        })
+        .catch(() => { /* No remix data available */ });
+
+      // ── Related works ──
+      ZGallery.getMergedWorks().then(allWorks => {
+        const related = allWorks.filter(w => w.id !== id && (w.era === work.era || w.archetype === work.archetype)).slice(0, 4);
+        const relatedGrid = document.querySelector('.related-grid');
+        if (relatedGrid && related.length > 0) {
+          ZGallery.renderArtCards(relatedGrid, related, { animate: false });
+        }
+      });
+
+      // ── Animated Genesis View ──
+      const genesisBtn = document.getElementById('genesis-btn');
+      const genesisStatus = document.getElementById('genesis-status');
+      let controller = null;
+
+      if (genesisBtn) {
         genesisBtn.addEventListener('click', () => {
-          const artContainer = document.querySelector('.artwork-image');
           if (controller && controller.isPlaying()) {
             controller.reveal();
             genesisBtn.innerHTML = '<svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;"><polygon points="4,2 18,10 4,18"/></svg> WATCH IT BUILD';
             genesisStatus.textContent = '';
             return;
           }
-
           controller = ZEngine.renderAnimated(artContainer, {
             archetype: work.archetype,
             palette: work.palette,
