@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vera Kohl / ZSIGNAL — Artist</title>
+  <meta name="description" content="Vera Kohl / ZSIGNAL — computational artist exploring deterministic generative systems and Bauhaus principles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23000' width='100' height='100'/><text x='50' y='72' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-size='70' font-weight='800'>Z</text></svg>">
+  <link rel="stylesheet" href="css/gallery-noir.css">
+</head>
+<body>
+  <a href="#main-content" class="gn-skip-link">Skip to content</a>
+
+  <!-- Mobile Nav Overlay -->
+  <nav class="gn-mobile-nav" aria-label="Mobile navigation">
+    <a href="index-v2.html" class="gn-mobile-nav__link">Home</a>
+    <a href="archive-v2.html" class="gn-mobile-nav__link">Archive</a>
+    <a href="artist-v2.html" class="gn-mobile-nav__link">Artist</a>
+    <a href="info-v2.html" class="gn-mobile-nav__link">Info & Contact</a>
+  </nav>
+
+  <!-- Sticky Top Nav -->
+  <nav class="gn-nav gn-nav--top" aria-label="Main navigation">
+    <a href="index-v2.html" class="gn-nav__brand">ZSIGNAL Gallery<sup>TM</sup></a>
+    <span class="gn-nav__separator"></span>
+    <a href="archive-v2.html" class="gn-nav__link">Archive</a>
+    <a href="artist-v2.html" class="gn-nav__link gn-nav__link--active">Artist</a>
+    <a href="info-v2.html" class="gn-nav__link">Info & Contact</a>
+    <button class="gn-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span class="gn-hamburger__line"></span>
+    </button>
+  </nav>
+
+  <!-- Living Background -->
+  <canvas id="noir-bg" class="gn-bg-canvas" aria-hidden="true"></canvas>
+
+  <main id="main-content" class="gn-page gn-artist" role="main">
+    <h1 class="gn-sr-only">Vera Kohl / ZSIGNAL — Artist</h1>
+
+    <!-- ══ HERO ══ -->
+    <section class="gn-artist__hero">
+      <div class="gn-artist__hero-text">
+        <div class="gn-artist__hero-eyebrow">Computational Artist</div>
+        <div class="gn-artist__hero-name">Vera Kohl</div>
+        <div class="gn-artist__hero-alias">/ ZSIGNAL</div>
+      </div>
+      <div class="gn-artist__hero-stats">
+        <div class="gn-artist__stat">
+          <div class="gn-artist__stat-number">31</div>
+          <div class="gn-artist__stat-label">Works</div>
+        </div>
+        <div class="gn-artist__stat">
+          <div class="gn-artist__stat-number">7</div>
+          <div class="gn-artist__stat-label">Eras</div>
+        </div>
+        <div class="gn-artist__stat">
+          <div class="gn-artist__stat-number">12</div>
+          <div class="gn-artist__stat-label">Primitives</div>
+        </div>
+        <div class="gn-artist__stat">
+          <div class="gn-artist__stat-number">&infin;</div>
+          <div class="gn-artist__stat-label">Seeds</div>
+        </div>
+      </div>
+      <!-- Featured artwork renders here -->
+      <div class="gn-artist__hero-art" id="hero-art" aria-hidden="true"></div>
+    </section>
+
+    <!-- ══ SEVEN ERAS ══ -->
+    <section class="gn-artist__eras">
+      <div class="gn-artist__section-header">
+        <div class="gn-artist__section-eyebrow">The Collection</div>
+        <h2 class="gn-artist__section-title">Seven Eras</h2>
+        <p class="gn-artist__section-desc">Each era explores a different archetype of compositional logic, inspired by the master artists of geometric abstraction.</p>
+      </div>
+
+      <div class="gn-artist__eras-grid" id="eras-grid">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- ══ PHILOSOPHY ══ -->
+    <section class="gn-artist__philosophy">
+      <div class="gn-artist__philosophy-grid">
+        <div class="gn-artist__philosophy-text">
+          <div class="gn-artist__section-eyebrow">Philosophy</div>
+          <h2 class="gn-artist__section-title">The Algorithm as Brush</h2>
+          <p class="gn-artist__philosophy-body">
+            A ZSIGNAL artwork is not drawn. It is computed. The artist defines the system of constraints: 12 geometric primitives, 6 palettes derived from art history, 7 compositional archetypes. The seed number becomes the artist's signature, the density their brushstroke pressure.
+          </p>
+          <p class="gn-artist__philosophy-body">
+            Every composition is deterministic. The same parameters always produce the same artwork. This is not a limitation. It is a guarantee. In a world of generative noise, ZSIGNAL offers generative truth.
+          </p>
+          <p class="gn-artist__philosophy-body">
+            The engine draws from Moholy-Nagy's transparency, Mondrian's grids, Klee's rhythms, Lissitzky's tension, Albers' color interactions, and the infinite tessellations of Islamic geometry. Seven eras. Seven conversations with the masters.
+          </p>
+        </div>
+        <div class="gn-artist__philosophy-art" id="philosophy-art" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ══ EXHIBITIONS ══ -->
+    <section class="gn-artist__exhibitions">
+      <div class="gn-artist__section-header">
+        <div class="gn-artist__section-eyebrow">Selected</div>
+        <h2 class="gn-artist__section-title">Exhibitions</h2>
+      </div>
+      <div class="gn-artist__exhibitions-list">
+        <div class="gn-artist__exhibition">
+          <span class="gn-artist__exhibition-year">2025</span>
+          <span class="gn-artist__exhibition-name">Sacred Geometry: East Meets West</span>
+          <span class="gn-artist__exhibition-venue">Alhambra Digital Arts, Granada</span>
+        </div>
+        <div class="gn-artist__exhibition">
+          <span class="gn-artist__exhibition-year">2024</span>
+          <span class="gn-artist__exhibition-name">Data Landscapes</span>
+          <span class="gn-artist__exhibition-venue">SIGNAL Festival, Prague</span>
+        </div>
+        <div class="gn-artist__exhibition">
+          <span class="gn-artist__exhibition-year">2023</span>
+          <span class="gn-artist__exhibition-name">Deterministic Futures</span>
+          <span class="gn-artist__exhibition-venue">ZKM Center for Art and Media, Karlsruhe</span>
+        </div>
+        <div class="gn-artist__exhibition">
+          <span class="gn-artist__exhibition-year">2022</span>
+          <span class="gn-artist__exhibition-name">Color Dialogues: After Albers</span>
+          <span class="gn-artist__exhibition-venue">Josef & Anni Albers Foundation, Bethany</span>
+        </div>
+        <div class="gn-artist__exhibition">
+          <span class="gn-artist__exhibition-year">2021</span>
+          <span class="gn-artist__exhibition-name">Constructivist Redux</span>
+          <span class="gn-artist__exhibition-venue">Barbican Centre, London</span>
+        </div>
+        <div class="gn-artist__exhibition">
+          <span class="gn-artist__exhibition-year">2020</span>
+          <span class="gn-artist__exhibition-name">Visual Music: Generative Rhythms</span>
+          <span class="gn-artist__exhibition-venue">Ars Electronica, Linz</span>
+        </div>
+        <div class="gn-artist__exhibition">
+          <span class="gn-artist__exhibition-year">2019</span>
+          <span class="gn-artist__exhibition-name">Organic Abstraction: First Seeds</span>
+          <span class="gn-artist__exhibition-venue">Bauhaus-Archiv, Berlin</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CTA ══ -->
+    <section class="gn-artist__cta">
+      <a href="archive-v2.html" class="gn-artist__cta-link">View All 31 Works &rarr;</a>
+    </section>
+
+  </main>
+
+  <!-- Custom Cursor -->
+  <div class="gn-cursor" aria-hidden="true"></div>
+
+  <script src="js/noir-bg.js" defer></script>
+  <script src="js/z-engine.js" defer></script>
+  <script src="js/z-catalog.js" defer></script>
+  <script src="js/gallery-noir.js" defer></script>
+</body>
+</html>

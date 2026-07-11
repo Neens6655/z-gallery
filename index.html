@@ -1,395 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZSIGNAL — Deterministic Generative Art System</title>
-  <meta name="description" content="Z-Gallery is a deterministic generative art system where every artwork is a limited, seed-signed artifact that can be collected, remixed, and evolved. 31 canonical works across 7 eras.">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="ZSIGNAL — Deterministic Generative Art System">
-  <meta property="og:description" content="Every artwork is a limited, seed-signed artifact. Same seed, same art, forever. Collect the algorithm, own the output.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://zsignal.art">
-  <meta property="og:image" content="https://zsignal.art/og-image.png">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ZSIGNAL — Deterministic Generative Art System">
-  <meta name="twitter:description" content="Every artwork is a limited, seed-signed artifact. Collect the algorithm, own the output.">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/z-gallery.css">
+  <title>ZSIGNAL™</title>
+  <link rel="stylesheet" href="css/tokens.css?v=11">
+  <link rel="stylesheet" href="css/z-gallery.css?v=11">
 </head>
-<body>
-
-  <!-- Skip link for keyboard users -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container">
-      <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
-      <nav class="nav" id="nav">
-        <a href="gallery.html">Gallery</a>
-        <a href="studio.html">Studio</a>
-        <a href="artist.html">Artist</a>
-        <a href="theory.html">Theory</a>
-      </nav>
-      <div class="header-actions">
-        <a href="studio.html" class="btn btn-primary btn-sm">CREATE</a>
-        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <main id="main-content">
-  <section class="section hero-section">
-    <div class="container hero">
-      <div class="hero-content">
-        <div class="hero-label">Deterministic Generative Art &middot; Est. 2018</div>
-        <h1>The Art of<br>the Algorithm</h1>
-        <p class="hero-sub">A generative art system where every artwork is a limited, seed-signed artifact. Same seed, same art, forever. No AI randomness — pure deterministic composition.</p>
-        <div class="hero-stats">
-          <div class="hero-stat"><span class="hero-stat-num">31</span><span class="hero-stat-label">Works</span></div>
-          <div class="hero-stat"><span class="hero-stat-num">7</span><span class="hero-stat-label">Eras</span></div>
-          <div class="hero-stat"><span class="hero-stat-num">7</span><span class="hero-stat-label">Archetypes</span></div>
-        </div>
-        <div class="hero-ctas">
-          <a href="gallery.html" class="btn btn-primary">Explore the Gallery</a>
-          <a href="studio.html" class="btn btn-secondary">Create in the Studio</a>
-        </div>
-      </div>
-      <div class="hero-art-wrapper">
-        <div class="hero-art" id="hero-art"></div>
-        <div class="hero-art-caption">
-          <span class="hero-art-title"></span>
-          <span class="hero-art-era"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MANIFESTO -->
-  <section class="manifesto-section">
-    <div class="container">
-      <div class="manifesto">
-        <p>Art from algorithms,<br>not accidents.</p>
-        <p>Every seed is a signature.<br>Every constraint, a canvas.</p>
-        <p>Collect the system.<br>Own the signal.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURED LIMITED DROP -->
-  <section class="section">
-    <div class="container">
-      <div class="featured-drop" id="featured-drop">
-        <div class="featured-drop-art" id="featured-drop-art"></div>
-        <div class="featured-drop-info">
-          <div class="featured-drop-label">Featured Limited Edition</div>
-          <h2 class="featured-drop-title" id="featured-drop-title"></h2>
-          <div class="featured-drop-meta" id="featured-drop-meta"></div>
-          <div style="display:flex;gap:8px;align-items:center;margin-bottom:24px;">
-            <span class="edition-badge edition-badge-available" id="featured-drop-badge">23 of 30 available</span>
-          </div>
-          <p style="font-size:var(--z-text-body);color:var(--z-charcoal-70);line-height:1.7;margin-bottom:24px;" id="featured-drop-desc"></p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;">
-            <a href="#" class="btn btn-primary" id="featured-drop-link">View Artwork</a>
-            <a href="#" class="btn btn-secondary" id="featured-drop-remix">Remix This</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ERA HIGHLIGHTS -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-header">
-        <h2>Seven Eras of Composition</h2>
-        <p>Each era represents a distinct compositional philosophy, from organic abstraction to sacred geometry.</p>
-      </div>
-      <div class="grid-3 grid-3-tablet era-overview-grid" style="grid-template-columns:repeat(4,1fr);" id="era-highlights">
-        <!-- Filled by JS — showing 4 curated eras -->
-      </div>
-      <div style="text-align:center;margin-top:var(--z-space-xl);">
-        <a href="gallery.html" class="btn btn-ghost">View All 7 Eras &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOCIAL PROOF BAR -->
-  <div class="social-proof">
-    <span>147 seeds claimed</span>
-    <span>&middot;</span>
-    <span>31 canonical works</span>
-    <span>&middot;</span>
-    <span>7 composition archetypes</span>
-    <span>&middot;</span>
-    <span>6 color palettes</span>
+<body class="spatial-mode">
+  <div class="zs-noise-overlay"></div>
+  
+  <!-- YZAVOKU HUB -->
+  <div class="spatial-hub">
+    <h1>ZSIGNAL™</h1>
   </div>
 
-  <!-- ARTIST INTRO -->
-  <section class="section">
-    <div class="container">
-      <div class="artist-intro">
-        <div class="artist-intro-art" id="artist-art"></div>
-        <div class="artist-intro-text">
-          <h3>The Algorithm as Brush</h3>
-          <p>ZSIGNAL creates compositions the way Moholy-Nagy once ordered them by telephone&mdash;through precise instructions executed by a system. Each work is defined by an archetype, a palette, and a seed number. The same inputs always produce the same output.</p>
-          <p>The artist's hand lies not in the mark, but in the rules that generate it. Across seven distinct eras, ZSIGNAL has explored the full vocabulary of Bauhaus geometry.</p>
-          <a href="artist.html" class="btn btn-secondary btn-sm">About the Artist</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <nav class="spatial-nav">
+    <a href="gallery.html">Archive</a>
+    <a href="studio.html">Studio</a>
+    <a href="artist.html">AI Artists</a>
+    <a href="theory.html">Info & Systems</a>
+  </nav>
 
-  <!-- AI CHATBOT — Art History Discussion -->
-  <section class="chatbot-section" id="chatbot-section">
-    <div class="container">
-      <div class="chatbot-layout">
-        <div class="chatbot-intro">
-          <div class="hero-label" style="color:var(--z-gold);">AI Art Historian</div>
-          <h2>Ask About the Art</h2>
-          <p>Our AI art historian knows every composition, era, and artistic reference in the ZSIGNAL collection. Ask about Bauhaus influences, color theory, Islamic geometry, or any specific work.</p>
-          <p style="color:rgba(242,232,213,0.45);font-size:13px;">Powered by a curated knowledge base of the ZSIGNAL catalog, Bauhaus history, and generative art theory.</p>
-        </div>
-        <div class="chatbot-window">
-          <div class="chatbot-header">ZSIGNAL ART HISTORIAN</div>
-          <div class="chatbot-messages" id="chatbot-messages" aria-live="polite" aria-label="Chat messages">
-            <div class="chatbot-msg bot">Welcome to the ZSIGNAL gallery. I can discuss any artwork, era, artistic influence, or technique. What would you like to know?</div>
-          </div>
-          <div class="chatbot-suggestions" id="chatbot-suggestions">
-            <button class="chatbot-suggestion" data-q="What is the Bauhaus influence?">Bauhaus influence</button>
-            <button class="chatbot-suggestion" data-q="Tell me about Era VII Sacred Geometry">Sacred Geometry</button>
-            <button class="chatbot-suggestion" data-q="How does the engine generate art?">How it works</button>
-            <button class="chatbot-suggestion" data-q="Who is El Lissitzky?">El Lissitzky</button>
-            <button class="chatbot-suggestion" data-q="What makes Albers' color studies special?">Albers &amp; Color</button>
-          </div>
-          <div class="chatbot-input-row">
-            <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Ask about any artwork or era..." autocomplete="off" aria-label="Ask the art historian a question">
-            <button class="chatbot-send" id="chatbot-send">SEND</button>
-          </div>
-        </div>
-      </div>
+  <!-- 3D WORLD -->
+  <div class="spatial-viewport">
+    <div class="spatial-world" id="spatial-world">
+      <!-- Generated by JS -->
     </div>
-  </section>
+  </div>
 
-  <!-- COLLECTOR CTA -->
-  <section class="cta-banner">
-    <div class="cta-banner-art" id="cta-art"></div>
-    <div class="cta-banner-content">
-      <h2>Interested in collecting?</h2>
-      <p>Every composition is available as a limited-edition museum-quality print. Request a print, inquire about a commission, or simply get in touch.</p>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-        <a href="gallery.html" class="btn btn-primary">Browse the Collection</a>
-        <a href="mailto:hello@zsignal.art" class="btn btn-secondary">Get in Touch</a>
-      </div>
-    </div>
-  </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
-          <p>A deterministic generative art system. Every seed is a signature. Every constraint, a canvas.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <a href="gallery.html">Gallery</a>
-          <a href="studio.html">Studio</a>
-          <a href="artist.html">The Artist</a>
-          <a href="theory.html">Theory</a>
-        </div>
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <a href="mailto:hello@zsignal.art">Contact</a>
-          <a href="theory.html#faq">FAQ</a>
-          <a href="pitch-deck.html">Pitch Deck</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span class="footer-copy">&copy; 2026 ZSIGNAL. All rights reserved.</span>
-      </div>
-    </div>
-  </footer>
+  <div class="spatial-scroller"></div>
 
   <script src="js/z-engine.js" defer></script>
   <script src="js/z-catalog.js" defer></script>
-  <script src="js/z-gallery.js" defer></script>
+  <script src="js/zs-motion.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // ── HERO ART (cursor-responsive) ──
-      ZGallery.initCursorHero();
-
-      // ── FEATURED DROP ──
-      const featured = ZCatalog.WORKS[28]; // ag-003 Muqarnas Dome — impressive & recent
-      if (featured) {
-        ZEngine.render('#featured-drop-art', {
-          archetype: featured.archetype,
-          palette: featured.palette,
-          seed: featured.seed,
-          density: featured.density
+        const world = document.getElementById('spatial-world');
+        if (!world || typeof ZCatalog === 'undefined') return;
+        
+        // Remove standard body scroll, we map it via virtual scroller
+        document.body.style.overflow = 'auto'; // ensure scroller works
+        
+        const works = Object.values(ZCatalog.WORKS).slice(0, 31); // load all 31 works in the void
+        
+        // Build the Orbiting Z-tunnel
+        works.forEach((w, index) => {
+            const item = document.createElement('a');
+            item.href = 'artwork.html?id=' + w.id;
+            item.className = 'spatial-item';
+            
+            // Spatial Distribution
+            const spacingZ = 400; // depth between items
+            const zPos = -(index * spacingZ);
+            
+            // Swirl math
+            const angle = (index / works.length) * Math.PI * 2 * 6; // 6 rotations
+            const radius = 250 + (Math.random() * 200);
+            
+            // X and Y offset in space
+            const xPos = Math.cos(angle) * radius;
+            const yPos = Math.sin(angle) * (radius * 0.7);
+            
+            item.style.transform = `translate3d(${xPos}px, ${yPos}px, ${zPos}px)`;
+            item.dataset.z = zPos;
+            
+            item.innerHTML = `
+                <div class="art-canvas" id="art-${index}"></div>
+                <div class="item-meta">${w.id} • ${w.archetype}</div>
+            `;
+            world.appendChild(item);
+            
+            // Render deterministic canvas
+            requestAnimationFrame(() => {
+                ZEngine.render('#art-' + index, {
+                    archetype: w.archetype,
+                    palette: w.palette,
+                    seed: w.seed,
+                    density: w.density
+                });
+            });
         });
-        document.getElementById('featured-drop-title').textContent = featured.title;
-        document.getElementById('featured-drop-meta').textContent =
-          `Era ${featured.era}: ${featured.eraName} \u2022 ${featured.archetype} \u2022 ${featured.palette} \u2022 ${featured.year}`;
-        document.getElementById('featured-drop-desc').textContent = featured.description;
-        document.getElementById('featured-drop-link').href = `artwork.html?id=${featured.id}`;
-        document.getElementById('featured-drop-remix').href =
-          `studio.html?remix=${featured.id}&a=${featured.archetype}&p=${featured.palette}&s=${featured.seed}&d=${featured.density}`;
-      }
 
-      // ── ERA HIGHLIGHTS (4 curated eras) ──
-      const highlightEras = ['I', 'III', 'V', 'VII'];
-      const eraGrid = document.getElementById('era-highlights');
-      if (eraGrid) {
-        highlightEras.forEach(eraKey => {
-          const eraInfo = ZCatalog.ERAS[eraKey];
-          const sampleWork = ZCatalog.WORKS.find(w => w.era === eraKey);
-          if (!eraInfo || !sampleWork) return;
+        // Native Scroll synced to Z-Axis translation
+        let currentScroll = 0;
+        let targetScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            targetScroll = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+        }, { passive: true });
 
-          const card = document.createElement('a');
-          card.className = 'era-card';
-          card.href = `gallery.html?era=${eraKey}`;
-          card.innerHTML = `
-            <div class="era-card-art"></div>
-            <div class="era-card-meta">
-              <div class="era-card-number">${eraKey}</div>
-              <div class="era-card-name">${eraInfo.name}</div>
-              <div class="era-card-year">${eraInfo.year}</div>
-              <div class="era-card-archetype">${eraInfo.archetype}</div>
-            </div>
-          `;
-          eraGrid.appendChild(card);
-
-          ZEngine.render(card.querySelector('.era-card-art'), {
-            archetype: sampleWork.archetype,
-            palette: sampleWork.palette,
-            seed: sampleWork.seed,
-            density: sampleWork.density
-          });
-        });
-      }
-
-      // ── ARTIST INTRO ART ──
-      const csWork = ZCatalog.WORKS[18]; // COLOR_STUDY piece
-      if (csWork) {
-        ZEngine.render('#artist-art', {
-          archetype: csWork.archetype,
-          palette: csWork.palette,
-          seed: csWork.seed,
-          density: csWork.density
-        });
-      }
-
-      // ── CTA BACKGROUND ART ──
-      ZEngine.render('#cta-art', {
-        archetype: 'REPETITION',
-        palette: 'ZSIGNAL',
-        seed: 77777,
-        density: 0.6
-      });
-
-      // ── AI CHATBOT ──
-      const chatMessages = document.getElementById('chatbot-messages');
-      const chatInput = document.getElementById('chatbot-input');
-      const chatSend = document.getElementById('chatbot-send');
-
-      const KB = {
-        bauhaus: 'The Bauhaus school (1919\u20131933) unified art, craft, and technology. ZSIGNAL draws directly from its masters: Moholy-Nagy\'s spatial planes (FREE_FORM), Mondrian\'s grids (GRID), Klee\'s rhythmic compositions (REPETITION), Lissitzky\'s constructivist energy (CONSTRUCTIVIST), and Albers\' color interaction studies (COLOR_STUDY). Each archetype is a computational tribute to these pioneers.',
-        'era i': 'Era I: Organic Abstraction (2018) explores overlapping transparent planes inspired by Moholy-Nagy\'s photograms and telephone paintings. Shapes extend boldly beyond canvas edges, creating spatial depth through overlap and transparency.',
-        'era ii': 'Era II: Systematic Order (2019) is rooted in Mondrian\'s asymmetric grids and Kandinsky\'s floating rectangles. Thick black dividing lines create cells of varying proportion.',
-        'era iii': 'Era III: Visual Music (2020) translates musical concepts into visual rhythm. Inspired by Paul Klee\'s "Rhythmisches" and Bridget Riley\'s optical art.',
-        'era iv': 'Era IV: Dynamic Tension (2021) channels El Lissitzky\'s revolutionary constructivism. The red wedge drives into the composition\u2019s intersection point.',
-        'era v': 'Era V: Color Dialogues (2022) is a computational homage to Josef Albers\' "Homage to the Square" series. Nested squares with color chosen for maximum interaction.',
-        'era vi': 'Era VI: Data Landscapes (2023\u20132025) merges Herbert Bayer\'s experiments with Victor Vasarely\'s optical effects. Mathematical dot grids modulate to create form and depth.',
-        'era vii': 'Era VII: Sacred Geometry (2025\u2013present) introduces Islamic geometric art into the ZSIGNAL vocabulary. Radial symmetry, star tessellations, and muqarnas patterns.',
-        engine: 'The ZSIGNAL engine generates SVG compositions using a seeded pseudo-random number generator (mulberry32). Each artwork is defined by four parameters: archetype, palette, seed, and density. Same inputs always produce the same output\u2014deterministic art.',
-        lissitzky: 'El Lissitzky (1890\u20131941) was a Russian artist who pioneered constructivist graphic design. His "Beat the Whites with the Red Wedge" (1920) is one of the most iconic political posters.',
-        albers: 'Josef Albers (1888\u20131976) spent 25 years creating his "Homage to the Square" series\u2014hundreds of paintings exploring how colors interact when placed next to each other.',
-        'moholy-nagy': 'Moholy-Nagy (1895\u20131946) created compositions by telephone\u2014giving precise instructions to a sign painter. ZSIGNAL operates on the same principle.',
-        klee: 'Paul Klee (1879\u20131940) treated visual composition like music, with rhythm, tempo, and counterpoint. His "Rhythmisches" (1930) uses colored rectangles in wave-like patterns.',
-        mondrian: 'Piet Mondrian (1872\u20131944) reduced painting to essentials: horizontal and vertical lines, primary colors, and white.',
-        palette: 'ZSIGNAL offers 6 palettes: ZSIGNAL, CLASSIC_BAUHAUS, CONSTRUCTIVIST, WARM_EARTH, COOL_STEEL, and MONOCHROME. Each references a different tradition.',
-        islamic: 'Islamic geometric art, spanning 1400+ years, is based on compass-and-straightedge construction. Radial symmetry, star-and-polygon tessellations, and infinite tiling logic.',
-        seed: 'A seed is a number that determines every aspect of the artwork. Same seed + same parameters = identical artwork every time. Seeds are signatures\u2014unique, verifiable, permanent.',
-        collect: 'Every canonical work has 30 limited editions. Playground creations are limited to 10 prints each. Claim a seed to add it to your collection.',
-        remix: 'Remixing lets you take an existing artwork\'s parameters and modify them in the studio. The remix lineage shows the evolution from original to derivative.',
-      };
-
-      function findResponse(q) {
-        const lower = q.toLowerCase();
-        for (const [key, val] of Object.entries(KB)) {
-          if (lower.includes(key)) return val;
+        const totalDepth = works.length * 400;
+        
+        function renderLoop() {
+            // Smooth lerp scrolling
+            currentScroll += (targetScroll - currentScroll) * 0.08;
+            
+            const scrollMax = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight) - window.innerHeight;
+            const progress = scrollMax > 0 ? (currentScroll / scrollMax) : 0;
+            
+            // Move camera forward
+            const zTravel = progress * totalDepth;
+            world.style.transform = `translateZ(${zTravel}px)`;
+            
+            // Depth of field (Lens blur) calculations
+            document.querySelectorAll('.spatial-item').forEach(item => {
+                const itemZ = parseFloat(item.dataset.z);
+                const absoluteZ = itemZ + zTravel;
+                
+                // If it passes the camera lens
+                if (absoluteZ > 400) {
+                    item.style.opacity = 0;
+                    item.style.pointerEvents = 'none';
+                } else {
+                    // Calculate distance from perfect focus (absoluteZ = 0 is plane)
+                    const distance = Math.abs(absoluteZ);
+                    let blur = 0;
+                    let opac = 1;
+                    
+                    if (distance > 1500) {
+                        opac = Math.max(0, 1 - (distance - 1500) / 1000);
+                        blur = Math.min(20, (distance - 1500) / 100);
+                    }
+                    
+                    item.style.opacity = opac;
+                    item.style.filter = blur > 0 ? `blur(${blur}px)` : 'none';
+                    item.style.pointerEvents = opac > 0.5 ? 'auto' : 'none';
+                }
+            });
+            
+            requestAnimationFrame(renderLoop);
         }
-        const matchedWork = ZCatalog.WORKS.find(w => lower.includes(w.title.toLowerCase()) || lower.includes(w.id));
-        if (matchedWork) {
-          return `"${matchedWork.title}" (${matchedWork.year}, Era ${matchedWork.era}: ${matchedWork.eraName}) \u2014 ${matchedWork.description}`;
-        }
-        const eraMatch = lower.match(/era\s*(i{1,3}v?|vi{0,2}|[1-7])/i);
-        if (eraMatch) {
-          const eraMap = {'1':'I','2':'II','3':'III','4':'IV','5':'V','6':'VI','7':'VII'};
-          const eraKey = eraMap[eraMatch[1]] || eraMatch[1].toUpperCase();
-          const eraInfo = ZCatalog.ERAS[eraKey];
-          if (eraInfo) return KB['era ' + eraKey.toLowerCase()] || `Era ${eraKey}: ${eraInfo.name} (${eraInfo.year}) uses the ${eraInfo.archetype} archetype.`;
-        }
-        if (lower.includes('how') && lower.includes('work')) return KB.engine;
-        if (lower.includes('color') || lower.includes('colour')) return KB.palette;
-        if (lower.includes('print') || lower.includes('buy') || lower.includes('order')) return KB.collect;
-        if (lower.includes('geometric') || lower.includes('arabian') || lower.includes('islamic')) return KB.islamic;
-        if (lower.includes('sacred')) return KB['era vii'];
-        if (lower.includes('seed')) return KB.seed;
-        if (lower.includes('remix') || lower.includes('fork')) return KB.remix;
-        if (lower.includes('collect')) return KB.collect;
-        return 'I can tell you about any of the 7 eras, the 31 artworks, the artists who inspired them (Moholy-Nagy, Mondrian, Klee, Lissitzky, Albers), seeds, remixing, or how the engine works. Try asking about a specific era or artist!';
-      }
-
-      function addMessage(text, isUser) {
-        const msg = document.createElement('div');
-        msg.className = 'chatbot-msg ' + (isUser ? 'user' : 'bot');
-        msg.textContent = text;
-        chatMessages.appendChild(msg);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }
-
-      function handleChat() {
-        const q = chatInput.value.trim();
-        if (!q) return;
-        addMessage(q, true);
-        chatInput.value = '';
-
-        const typing = document.createElement('div');
-        typing.className = 'chatbot-msg typing';
-        typing.textContent = 'Thinking...';
-        chatMessages.appendChild(typing);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-
-        setTimeout(() => {
-          typing.remove();
-          addMessage(findResponse(q), false);
-        }, 600 + Math.random() * 800);
-      }
-
-      chatSend.addEventListener('click', handleChat);
-      chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleChat(); });
-
-      document.querySelectorAll('.chatbot-suggestion').forEach(btn => {
-        btn.addEventListener('click', () => {
-          chatInput.value = btn.dataset.q;
-          handleChat();
-        });
-      });
+        
+        requestAnimationFrame(renderLoop);
     });
   </script>
 </body>

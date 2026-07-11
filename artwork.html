@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/z-gallery.css">
+  <link rel="stylesheet" href="css/tokens.css?v=11">
+  <link rel="stylesheet" href="css/z-gallery.css?v=11">
   <!-- JSON-LD Structured Data — updated dynamically by JS -->
   <script type="application/ld+json" id="artwork-jsonld">
   {
@@ -32,7 +33,8 @@
   }
   </script>
 </head>
-<body>
+<body class="cinematic-mode">
+  <div class="zs-noise-overlay"></div>
 
   <!-- Skip link for keyboard users -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -44,8 +46,9 @@
       <nav class="nav" id="nav">
         <a href="gallery.html">Gallery</a>
         <a href="studio.html">Studio</a>
-        <a href="artist.html">Artist</a>
+        <a href="artist.html">AI Artists</a>
         <a href="theory.html">Theory</a>
+        <a href="generator.html">Generator</a>
       </nav>
       <div class="header-actions">
         <a href="studio.html" class="btn btn-primary btn-sm">CREATE</a>
@@ -97,6 +100,7 @@
           <!-- Edition Detail -->
           <div class="artwork-edition">
             <span class="artwork-edition-detail">Loading edition data...</span>
+            <div class="edition-progress" style="margin-top:8px;"><div class="edition-progress-fill artwork-edition-progress-fill"></div></div>
           </div>
           <div class="artwork-seed-hash"></div>
 
@@ -106,9 +110,16 @@
 
           <hr class="artwork-divider">
 
+          <!-- Price -->
+          <div class="artwork-price-block">
+            <span class="artwork-price-from">From</span>
+            <span class="artwork-price-amount">$89</span>
+            <span class="artwork-price-unit">fine art print</span>
+          </div>
+
           <!-- ACTIONS -->
           <div class="artwork-actions">
-            <button class="btn btn-primary btn-full request-print-btn" type="button">REQUEST PRINT</button>
+            <button class="btn btn-primary btn-full btn-cta-glow request-print-btn" type="button">REQUEST PRINT</button>
             <a href="#" class="btn btn-secondary btn-full remix-btn">REMIX THIS ARTWORK</a>
             <button class="btn btn-ghost btn-full share-btn" type="button">
               <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="margin-right:6px;">
@@ -205,8 +216,9 @@
           <h4>Explore</h4>
           <a href="gallery.html">Gallery</a>
           <a href="studio.html">Studio</a>
-          <a href="artist.html">The Artist</a>
+          <a href="artist.html">AI Artists</a>
           <a href="theory.html">Theory</a>
+          <a href="generator.html">Generator</a>
         </div>
         <div class="footer-col">
           <h4>Connect</h4>
@@ -224,6 +236,7 @@
   <script src="js/z-engine.js" defer></script>
   <script src="js/z-catalog.js" defer></script>
   <script src="js/z-gallery.js" defer></script>
+  <script src="js/z-chatbot.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
@@ -324,6 +337,13 @@
 
           const edDetailEl = document.querySelector('.artwork-edition-detail');
           if (edDetailEl) edDetailEl.textContent = `Edition: ${ed.claimed} of ${ed.editionSize} claimed`;
+
+          const edProgressFill = document.querySelector('.artwork-edition-progress-fill');
+          if (edProgressFill) {
+            edProgressFill.style.width = Math.min((ed.claimed / ed.editionSize) * 100, 100).toFixed(1) + '%';
+            if (ed.status === 'limited') edProgressFill.classList.add('limited');
+            if (ed.status === 'claimed') edProgressFill.classList.add('claimed');
+          }
 
           const seedHashEl = document.querySelector('.artwork-seed-hash');
           if (seedHashEl) seedHashEl.textContent = `Seed hash: ${ed.seedHash || seedHash}`;
@@ -526,5 +546,6 @@
       }
     });
   </script>
+  <script src="js/zs-motion.js" defer></script>
 </body>
 </html>

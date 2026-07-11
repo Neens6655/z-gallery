@@ -75,12 +75,13 @@ const ZGallery = (() => {
    */
   function editionBadgeHTML(status, claimed, editionSize) {
     const remaining = editionSize - claimed;
+    const urgent = status === 'limited' && remaining <= 5;
     const labels = {
       available: `${remaining} of ${editionSize} available`,
       limited: `${remaining} of ${editionSize} remaining`,
       claimed: 'Fully claimed'
     };
-    const badgeClass = `edition-badge edition-badge-${status}`;
+    const badgeClass = `edition-badge edition-badge-${status}${urgent ? ' edition-badge-urgent' : ''}`;
     return `<span class="${badgeClass}">${labels[status] || labels.available}</span>`;
   }
 
@@ -143,7 +144,7 @@ const ZGallery = (() => {
 
     works.forEach((work, i) => {
       const card = document.createElement('a');
-      card.className = 'art-card';
+      card.className = 'art-card z-tilt';
       if (animate) card.classList.add('art-card-enter');
       card.href = `artwork.html?id=${work.id}`;
       card.setAttribute('role', 'listitem');
@@ -194,6 +195,12 @@ const ZGallery = (() => {
       const edSize = work.editionSize || 30;
 
       const meta = document.createElement('div');
+      const edPct = Math.min((edClaimed / edSize) * 100, 100).toFixed(1);
+      const edFillClass = edStatus === 'limited' ? 'limited' : edStatus === 'claimed' ? 'claimed' : '';
+      const startingPrice = (typeof ZCatalog !== 'undefined' && ZCatalog.BASE_PRICES)
+        ? ZCatalog.BASE_PRICES.paper.small
+        : 89;
+
       meta.className = 'art-card-meta';
       meta.innerHTML = `
         <div class="art-card-title">${work.title}</div>
@@ -202,7 +209,11 @@ const ZGallery = (() => {
           <span class="art-card-archetype">${ARCHETYPE_LABELS[work.archetype] || work.archetype}</span>
         </div>
         <div class="art-card-bottom">
-          ${editionBadgeHTML(edStatus, edClaimed, edSize)}
+          <div>
+            ${editionBadgeHTML(edStatus, edClaimed, edSize)}
+            <div class="edition-progress"><div class="edition-progress-fill ${edFillClass}" style="width:${edPct}%"></div></div>
+          </div>
+          <div class="art-card-price-tag"><span class="art-card-price-from">from</span>$${startingPrice}</div>
         </div>
       `;
 
@@ -319,7 +330,7 @@ const ZGallery = (() => {
     container.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         const focused = document.activeElement;
-        if (focused && focused.classList.contains('art-card')) {
+        if (focused && focused.classList.contains('art-card z-tilt')) {
           e.preventDefault();
           focused.click();
         }
@@ -573,16 +584,110 @@ const ZGallery = (() => {
     renderDemo();
   }
 
+  // ── CURSOR PAINTING MODE ──────────────────────────────────────────
+  function initCursorPainting() {
+    if (document.getElementById('cursor-paint-overlay')) return; // guard double-init
+
+    // Overlay (captures mouse, renders nodes)
+    const overlay = document.createElement('div');
+    overlay.className = 'cursor-paint-overlay';
+    overlay.id = 'cursor-paint-overlay';
+    document.body.appendChild(overlay);
+
+    // Toast
+    const toast = document.createElement('div');
+    toast.className = 'cursor-paint-toast';
+    toast.id = 'cursor-paint-toast';
+    toast.innerHTML = 'Moholy-Nagy composed by telephone.<br>You compose by cursor.&nbsp;&nbsp;Press <kbd style="opacity:0.6">ESC</kbd> to exit.';
+    document.body.appendChild(toast);
+
+    // Exit button
+    const exitBtn = document.createElement('button');
+    exitBtn.className = 'cursor-paint-exit';
+    exitBtn.id = 'cursor-paint-exit';
+    exitBtn.textContent = '\u00D7 EXIT PAINT MODE';
+    document.body.appendChild(exitBtn);
+
+    const ARCHETYPES = ['FREE_FORM', 'DOT_FIELD', 'GRID', 'REPETITION', 'CONSTRUCTIVIST', 'COLOR_STUDY', 'ARABIAN_GEOMETRIC'];
+    const PALETTES   = ['ZSIGNAL', 'CLASSIC_BAUHAUS', 'CONSTRUCTIVIST', 'WARM_EARTH', 'COOL_STEEL'];
+    const MAX_NODES  = 60;
+    const MIN_DIST   = 30;
+    let active = false;
+    let lastX = -9999, lastY = -9999;
+    const nodes = [];
+
+    function activate() {
+      active = true;
+      overlay.classList.add('active');
+      toast.classList.add('visible');
+      exitBtn.classList.add('visible');
+      setTimeout(() => toast.classList.remove('visible'), 5000);
+    }
+
+    function deactivate() {
+      active = false;
+      overlay.classList.remove('active');
+      toast.classList.remove('visible');
+      exitBtn.classList.remove('visible');
+    }
+
+    function spawnNode(x, y) {
+      const seed     = Math.round(x / 30) * 1000 + Math.round(y / 30);
+      const archetype = ARCHETYPES[Math.abs(seed) % ARCHETYPES.length];
+      const palette   = PALETTES[Math.abs(seed >> 3) % PALETTES.length];
+
+      const node = document.createElement('div');
+      node.className = 'cursor-paint-node';
+      node.style.left = x + 'px';
+      node.style.top  = y + 'px';
+
+      if (typeof ZEngine !== 'undefined' && ZEngine.renderToString) {
+        node.innerHTML = ZEngine.renderToString({ archetype, palette, seed, density: 0.62, width: 64, height: 64 });
+      }
+
+      overlay.appendChild(node);
+      requestAnimationFrame(() => node.classList.add('visible'));
+      nodes.push(node);
+
+      // FIFO: remove oldest when over limit
+      if (nodes.length > MAX_NODES) {
+        const old = nodes.shift();
+        old.classList.remove('visible');
+        setTimeout(() => { if (old.parentNode) old.parentNode.removeChild(old); }, 350);
+      }
+    }
+
+    overlay.addEventListener('mousemove', e => {
+      if (!active) return;
+      const dx = e.clientX - lastX, dy = e.clientY - lastY;
+      if (Math.sqrt(dx * dx + dy * dy) < MIN_DIST) return;
+      lastX = e.clientX; lastY = e.clientY;
+      spawnNode(e.clientX, e.clientY);
+    });
+
+    exitBtn.addEventListener('click', deactivate);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && active) { deactivate(); return; }
+      if ((e.shiftKey && e.key === 'P') || (e.shiftKey && e.key === 'p')) {
+        e.preventDefault();
+        if (active) deactivate(); else activate();
+      }
+    });
+  }
+
   // ── INIT ──
   function init() {
     initNav();
     initAccordions();
+    initCursorPainting();
   }
 
   return {
     init, renderArtCards, initGalleryFilters,
     initHeroRotation, initCursorHero, renderEraCards, renderTimelineArt, initDemo,
-    ARCHETYPE_LABELS, loadEditions, getEdition, getMergedWorks, editionBadgeHTML
+    ARCHETYPE_LABELS, loadEditions, getEdition, getMergedWorks, editionBadgeHTML,
+    initCursorPainting
   };
 })();
 

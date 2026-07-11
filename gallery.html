@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/z-gallery.css">
+  <link rel="stylesheet" href="css/tokens.css?v=11">
+  <link rel="stylesheet" href="css/z-gallery.css?v=11">
 </head>
-<body>
+<body class="cinematic-mode">
+  <div class="zs-noise-overlay"></div>
+  <div class="zs-scroll-progress"></div>
 
   <!-- Skip link for keyboard users -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -22,8 +25,9 @@
       <nav class="nav" id="nav">
         <a href="gallery.html" class="active">Gallery</a>
         <a href="studio.html">Studio</a>
-        <a href="artist.html">Artist</a>
+        <a href="artist.html">AI Artists</a>
         <a href="theory.html">Theory</a>
+        <a href="generator.html">Generator</a>
       </nav>
       <div class="header-actions">
         <a href="studio.html" class="btn btn-primary btn-sm">CREATE</a>
@@ -36,12 +40,12 @@
 
   <!-- GALLERY -->
   <main id="main-content">
-  <section class="section">
+  <section class="section" data-spotlight>
     <div class="container">
-      <div class="gallery-header">
+      <div class="gallery-header" data-reveal>
         <div>
-          <h1 class="gallery-title">Gallery</h1>
-          <p class="gallery-count">31 works across 7 eras</p>
+          <h1 class="gallery-title" data-scramble>Gallery</h1>
+          <p class="gallery-count" data-reveal data-reveal-delay="1">31 works across 7 eras</p>
         </div>
       </div>
 
@@ -104,7 +108,7 @@
       </div>
 
       <!-- GRID -->
-      <div class="grid-3 gallery-grid" role="list" aria-label="Artwork gallery"></div>
+      <div class="grid-3 gallery-grid zs-tilt-container" role="list" aria-label="Artwork gallery" data-stagger-grid data-stagger-ms="80"></div>
 
       <!-- EMPTY STATE -->
       <div class="gallery-empty" style="display:none;" role="status" aria-live="polite">
@@ -133,8 +137,9 @@
           <h4>Explore</h4>
           <a href="gallery.html">Gallery</a>
           <a href="studio.html">Studio</a>
-          <a href="artist.html">The Artist</a>
+          <a href="artist.html">AI Artists</a>
           <a href="theory.html">Theory</a>
+          <a href="generator.html">Generator</a>
         </div>
         <div class="footer-col">
           <h4>Connect</h4>
@@ -152,10 +157,12 @@
   <script src="js/z-engine.js" defer></script>
   <script src="js/z-catalog.js" defer></script>
   <script src="js/z-gallery.js" defer></script>
+  <script src="js/z-chatbot.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       ZGallery.initGalleryFilters();
     });
   </script>
+  <script src="js/zs-motion.js" defer></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -383,7 +383,8 @@
     }
   </style>
 </head>
-<body>
+<body class="cinematic-mode">
+  <div class="zs-noise-overlay"></div>
 
   <!-- NAV DOTS -->
   <nav class="deck-nav" id="deckNav">
@@ -590,6 +591,7 @@
 
   <!-- ── SCRIPTS ── -->
   <script src="js/z-engine.js"></script>
+  <script src="js/z-chatbot.js" defer></script>
   <script src="js/z-catalog.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -677,5 +679,6 @@
       });
     });
   </script>
+  <script src="js/zs-motion.js" defer></script>
 </body>
 </html>

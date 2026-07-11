@@ -1,0 +1,225 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "ZSIGNAL" [ref=e5] [cursor=pointer]:
+        - /url: index.html
+        - text: ZSIGNAL
+      - navigation [ref=e7]:
+        - link "Gallery" [ref=e8] [cursor=pointer]:
+          - /url: gallery.html
+        - link "Studio" [ref=e9] [cursor=pointer]:
+          - /url: studio.html
+        - link "AI Artists" [ref=e10] [cursor=pointer]:
+          - /url: artist.html
+        - link "Theory" [ref=e11] [cursor=pointer]:
+          - /url: theory.html
+        - link "Generator" [ref=e12] [cursor=pointer]:
+          - /url: generator.html
+        - link "Brand" [ref=e13] [cursor=pointer]:
+          - /url: brand.html
+      - link "GALLERY" [ref=e15] [cursor=pointer]:
+        - /url: gallery.html
+  - main [ref=e16]:
+    - region "Brand introduction" [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]: ZGNAL Design System · V3.0
+        - heading "THE CODE BEHIND THE CANVAS" [level=1] [ref=e20]:
+          - text: THE CODE
+          - text: BEHIND
+          - text: THE CANVAS
+        - paragraph [ref=e21]: Six axioms. Two typefaces. One palette. Infinite configurations. The visual grammar of a deterministic generative art system.
+        - list [ref=e22]:
+          - listitem [ref=e23]:
+            - generic [ref=e24]: 300+
+            - text: Tokens
+          - listitem [ref=e25]:
+            - generic [ref=e26]: "7"
+            - text: Archetypes
+          - listitem [ref=e27]:
+            - generic [ref=e28]: "6"
+            - text: Palettes
+          - listitem [ref=e29]:
+            - generic [ref=e30]: ∞
+            - text: Seeds
+      - generic "ARABIAN_GEOMETRIC composition, ZSIGNAL palette" [ref=e31]:
+        - img [ref=e32]
+    - region "Brand Colors" [ref=e70]:
+      - generic [ref=e71]:
+        - generic [ref=e72]: 01 — Color System
+        - heading "Brand Colors" [level=2] [ref=e73]
+        - generic [ref=e74]:
+          - generic [ref=e77]:
+            - generic [ref=e78]: Cream
+            - generic [ref=e79]: "#F2E8D5"
+            - generic [ref=e80]: Primary background. Not white — warm.
+          - generic [ref=e83]:
+            - generic [ref=e84]: Charcoal
+            - generic [ref=e85]: "#1C1C1C"
+            - generic [ref=e86]: Primary text & borders.
+          - generic [ref=e89]:
+            - generic [ref=e90]: Gold
+            - generic [ref=e91]: "#D4A84B"
+            - generic [ref=e92]: Decorative. Dark bg only.
+          - generic [ref=e95]:
+            - generic [ref=e96]: Gold Dark
+            - generic [ref=e97]: "#8A6A20"
+            - generic [ref=e98]: Gold text on cream. WCAG AA.
+          - generic [ref=e101]:
+            - generic [ref=e102]: Brick
+            - generic [ref=e103]: "#A84235"
+            - generic [ref=e104]: Alert & accent.
+          - generic [ref=e107]:
+            - generic [ref=e108]: Blue
+            - generic [ref=e109]: "#2E5F94"
+            - generic [ref=e110]: Links & interactive.
+          - generic [ref=e113]:
+            - generic [ref=e114]: Olive
+            - generic [ref=e115]: "#566832"
+            - generic [ref=e116]: Secondary accent.
+    - region "Two Typefaces. One Grammar." [ref=e117]:
+      - generic [ref=e118]:
+        - generic [ref=e119]: 02 — Type System
+        - heading "Two Typefaces. One Grammar." [level=2] [ref=e120]
+        - generic [ref=e121]:
+          - generic [ref=e122]:
+            - generic [ref=e123]: IBM Plex Mono — Structure
+            - generic [ref=e124]: SIGNAL.
+            - generic [ref=e125]: Headings · Labels · Badges · Buttons · Eyebrows
+          - generic [ref=e126]:
+            - generic [ref=e127]: IBM Plex Sans — Voice
+            - generic [ref=e128]: The algorithm as brush. The constraint as canvas. The seed as gesture. Every work is a function with four inputs and infinite depth.
+            - generic [ref=e129]: Body copy · Descriptions · Captions · Quotes · Prose
+        - generic [ref=e130]:
+          - generic [ref=e131]:
+            - generic [ref=e132]: Display · 72
+            - generic [ref=e133]: Signal.
+          - generic [ref=e134]:
+            - generic [ref=e135]: H1 · 40
+            - generic [ref=e136]: Every seed is a signature.
+          - generic [ref=e137]:
+            - generic [ref=e138]: H2 · 28
+            - generic [ref=e139]: Every constraint, a canvas.
+          - generic [ref=e140]:
+            - generic [ref=e141]: Body · 16
+            - generic [ref=e142]: Born to a family of engineers, she spent her twenties designing distributed systems before discovering that algorithms could make art.
+          - generic [ref=e143]:
+            - generic [ref=e144]: Caption · 11
+            - generic [ref=e145]: Era VII · ARABIAN_GEOMETRIC · Seed 77777 · Density 0.60
+    - region "Six Palettes" [ref=e146]:
+      - generic [ref=e147]:
+        - generic [ref=e148]: 03 — Palette System
+        - heading "Six Palettes" [level=2] [ref=e149]
+        - generic [ref=e150]:
+          - generic [ref=e151]:
+            - generic "ZSIGNAL palette render" [ref=e152]:
+              - img [ref=e153]
+            - generic [ref=e176]: ZSIGNAL
+          - generic [ref=e183]:
+            - generic "CLASSIC BAUHAUS palette render" [ref=e184]:
+              - img [ref=e185]
+            - generic [ref=e201]: CLASSIC BAUHAUS
+          - generic [ref=e208]:
+            - generic "CONSTRUCTIVIST palette render" [ref=e209]:
+              - img [ref=e210]
+            - generic [ref=e229]: CONSTRUCTIVIST
+          - generic [ref=e234]:
+            - generic "WARM EARTH palette render" [ref=e235]:
+              - img [ref=e236]
+            - generic [ref=e330]: WARM EARTH
+          - generic [ref=e336]:
+            - generic "COOL STEEL palette render" [ref=e337]:
+              - img [ref=e338]
+            - generic [ref=e541]: COOL STEEL
+          - generic [ref=e547]:
+            - generic "MONOCHROME palette render" [ref=e548]:
+              - img [ref=e549]
+            - generic [ref=e650]: MONOCHROME
+    - region "Seven Archetypes" [ref=e656]:
+      - generic [ref=e657]:
+        - generic [ref=e658]: 04 — Art Engine
+        - heading "Seven Archetypes" [level=2] [ref=e659]
+        - generic [ref=e660]:
+          - generic [ref=e661]:
+            - generic "FREE_FORM archetype" [ref=e662]:
+              - img [ref=e663]
+            - generic [ref=e684]: FREE_FORM
+          - generic [ref=e685]:
+            - generic "GRID archetype" [ref=e686]:
+              - img [ref=e687]
+            - generic [ref=e735]: GRID
+          - generic [ref=e736]:
+            - generic "REPETITION archetype" [ref=e737]:
+              - img [ref=e738]
+            - generic [ref=e801]: REPETITION
+          - generic [ref=e802]:
+            - generic "CONSTRUCTIVIST archetype" [ref=e803]:
+              - img [ref=e804]
+            - generic [ref=e828]: CONSTRUCTIVIST
+          - generic [ref=e829]:
+            - generic "COLOR_STUDY archetype" [ref=e830]:
+              - img [ref=e831]
+            - generic [ref=e848]: COLOR_STUDY
+          - generic [ref=e849]:
+            - generic "DOT_FIELD archetype" [ref=e850]:
+              - img [ref=e851]
+            - generic [ref=e1028]: DOT_FIELD
+          - generic [ref=e1029]:
+            - generic "ARABIAN_GEOMETRIC archetype" [ref=e1030]:
+              - img [ref=e1031]
+            - generic [ref=e1179]: ARABIAN_GEOMETRIC
+        - generic [ref=e1180]:
+          - generic [ref=e1181]: "ZEngine.render(target, { archetype, palette, seed, density }) — same params → identical SVG. Always."
+          - link "STYLE GUIDE →" [ref=e1182] [cursor=pointer]:
+            - /url: styleguide.html
+    - region "Call to action" [ref=e1183]:
+      - generic [ref=e1184]:
+        - heading "Art from algorithms, not accidents." [level=2] [ref=e1185]:
+          - text: Art from algorithms,
+          - text: not accidents.
+        - paragraph [ref=e1186]: Every seed is a signature. Every constraint, a canvas.
+        - generic [ref=e1187]:
+          - link "VIEW GALLERY" [ref=e1188] [cursor=pointer]:
+            - /url: gallery.html
+          - link "OPEN STUDIO" [ref=e1189] [cursor=pointer]:
+            - /url: studio.html
+          - link "READ THE THEORY" [ref=e1190] [cursor=pointer]:
+            - /url: theory.html
+  - contentinfo [ref=e1191]:
+    - generic [ref=e1192]:
+      - generic [ref=e1193]:
+        - generic [ref=e1194]:
+          - link "ZSIGNAL" [ref=e1195] [cursor=pointer]:
+            - /url: index.html
+            - text: ZSIGNAL
+          - paragraph [ref=e1197]: A deterministic generative art system. Every seed is a signature. Every constraint, a canvas.
+        - generic [ref=e1198]:
+          - heading "Explore" [level=4] [ref=e1199]
+          - link "Gallery" [ref=e1200] [cursor=pointer]:
+            - /url: gallery.html
+          - link "Studio" [ref=e1201] [cursor=pointer]:
+            - /url: studio.html
+          - link "AI Artists" [ref=e1202] [cursor=pointer]:
+            - /url: artist.html
+          - link "Theory" [ref=e1203] [cursor=pointer]:
+            - /url: theory.html
+          - link "Generator" [ref=e1204] [cursor=pointer]:
+            - /url: generator.html
+          - link "Brand" [ref=e1205] [cursor=pointer]:
+            - /url: brand.html
+        - generic [ref=e1206]:
+          - heading "Design System" [level=4] [ref=e1207]
+          - link "Style Guide" [ref=e1208] [cursor=pointer]:
+            - /url: styleguide.html
+          - link "Brand & Identity" [ref=e1209] [cursor=pointer]:
+            - /url: brand.html
+          - link "FAQ" [ref=e1210] [cursor=pointer]:
+            - /url: theory.html#faq
+          - link "Pitch Deck" [ref=e1211] [cursor=pointer]:
+            - /url: pitch-deck.html
+      - generic [ref=e1213]: © 2026 ZSIGNAL — Brand & Design System
+  - generic:
+    - text: Moholy-Nagy composed by telephone.
+    - text: You compose by cursor. Press ESC to exit.
+  - button "× EXIT PAINT MODE"

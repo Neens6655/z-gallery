@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artwork — ZSIGNAL Gallery</title>
+  <meta name="description" content="Immersive view of a ZSIGNAL deterministic artwork.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23000' width='100' height='100'/><text x='50' y='72' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-size='70' font-weight='800'>Z</text></svg>">
+  <link rel="stylesheet" href="css/gallery-noir.css">
+</head>
+<body>
+  <a href="#main-content" class="gn-skip-link">Skip to content</a>
+
+  <!-- Living Background -->
+  <canvas id="noir-bg" class="gn-bg-canvas" aria-hidden="true"></canvas>
+
+  <main id="main-content" class="gn-page gn-detail" role="main">
+    <h1 class="gn-sr-only" id="detail-heading">Artwork — ZSIGNAL Gallery</h1>
+
+    <!-- Ambient glow -->
+    <div class="gn-detail__glow" aria-hidden="true"></div>
+
+    <!-- SVG Canvas (rendered by JS) -->
+    <div class="gn-detail__canvas" role="img" aria-label="Artwork"></div>
+
+    <!-- Metadata Panel — slides in from right -->
+    <aside class="gn-detail__panel" id="detail-panel" aria-label="Artwork details">
+      <button class="gn-detail__panel-close" data-action="close-panel" aria-label="Close details">&times;</button>
+
+      <div class="gn-detail__panel-inner">
+        <!-- Number + Title -->
+        <div class="gn-detail__panel-number" id="panel-number"></div>
+        <h2 class="gn-detail__panel-title" id="panel-title"></h2>
+
+        <!-- Era + Year -->
+        <div class="gn-detail__panel-meta">
+          <span class="gn-detail__panel-era" id="panel-era"></span>
+          <span class="gn-detail__panel-year" id="panel-year"></span>
+        </div>
+
+        <!-- Description -->
+        <p class="gn-detail__panel-desc" id="panel-desc"></p>
+
+        <!-- Technical Grid -->
+        <div class="gn-detail__panel-grid">
+          <div class="gn-detail__panel-cell">
+            <div class="gn-detail__panel-label">Archetype</div>
+            <div class="gn-detail__panel-value" id="panel-archetype"></div>
+          </div>
+          <div class="gn-detail__panel-cell">
+            <div class="gn-detail__panel-label">Palette</div>
+            <div class="gn-detail__panel-value" id="panel-palette"></div>
+          </div>
+          <div class="gn-detail__panel-cell">
+            <div class="gn-detail__panel-label">Seed</div>
+            <div class="gn-detail__panel-value" id="panel-seed"></div>
+          </div>
+          <div class="gn-detail__panel-cell">
+            <div class="gn-detail__panel-label">Density</div>
+            <div class="gn-detail__panel-value" id="panel-density"></div>
+          </div>
+          <div class="gn-detail__panel-cell">
+            <div class="gn-detail__panel-label">Canvas</div>
+            <div class="gn-detail__panel-value">560 &times; 560</div>
+          </div>
+          <div class="gn-detail__panel-cell">
+            <div class="gn-detail__panel-label">Engine</div>
+            <div class="gn-detail__panel-value">ZIGNAL V2</div>
+          </div>
+        </div>
+
+        <!-- Artist -->
+        <div class="gn-detail__panel-artist">
+          <div class="gn-detail__panel-label">Artist</div>
+          <a href="artist-v2.html" class="gn-detail__panel-artist-link">Vera Kohl / ZSIGNAL</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Floating Bottom Navigation -->
+    <nav class="gn-nav gn-nav--bottom" aria-label="Artwork navigation">
+      <a href="index-v2.html" class="gn-nav__brand">ZSIGNAL Gallery<sup>TM</sup></a>
+      <span class="gn-nav__separator"></span>
+      <button class="gn-detail__nav-btn" data-action="toggle-panel" aria-label="Show artwork details">
+        <span class="gn-nav__title" id="nav-title">Loading...</span>
+      </button>
+      <span class="gn-nav__separator"></span>
+      <button class="gn-detail__nav-btn gn-detail__nav-btn--prev" data-action="prev" aria-label="Previous artwork">Prev</button>
+      <button class="gn-detail__nav-btn gn-detail__nav-btn--next" data-action="next" aria-label="Next artwork">Next</button>
+      <span class="gn-nav__separator"></span>
+      <a href="archive-v2.html" class="gn-nav__link gn-nav__link--essential">Archive</a>
+      <a href="artist-v2.html" class="gn-nav__link">Artist</a>
+      <a href="info-v2.html" class="gn-nav__link">Info</a>
+    </nav>
+
+  </main>
+
+  <!-- Custom Cursor -->
+  <div class="gn-cursor" aria-hidden="true"></div>
+
+  <script src="js/noir-bg.js" defer></script>
+  <script src="js/z-engine.js" defer></script>
+  <script src="js/z-catalog.js" defer></script>
+  <script src="js/gallery-noir.js" defer></script>
+</body>
+</html>

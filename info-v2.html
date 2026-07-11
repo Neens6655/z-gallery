@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Info & Contact — ZSIGNAL Gallery</title>
+  <meta name="description" content="About ZSIGNAL — computational art at the intersection of algorithms and Bauhaus.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23000' width='100' height='100'/><text x='50' y='72' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-size='70' font-weight='800'>Z</text></svg>">
+  <link rel="stylesheet" href="css/gallery-noir.css">
+</head>
+<body>
+  <a href="#main-content" class="gn-skip-link">Skip to content</a>
+
+  <!-- Mobile Nav Overlay -->
+  <nav class="gn-mobile-nav" aria-label="Mobile navigation">
+    <a href="index-v2.html" class="gn-mobile-nav__link">Home</a>
+    <a href="archive-v2.html" class="gn-mobile-nav__link">Archive</a>
+    <a href="artist-v2.html" class="gn-mobile-nav__link">Artist</a>
+    <a href="info-v2.html" class="gn-mobile-nav__link">Info</a>
+  </nav>
+
+  <!-- Living Background -->
+  <canvas id="noir-bg" class="gn-bg-canvas" aria-hidden="true"></canvas>
+
+  <main id="main-content" class="gn-page gn-info" role="main">
+    <h1 class="gn-sr-only">About ZSIGNAL — Computational Art</h1>
+
+    <!-- Two-column bio -->
+    <div class="gn-info__content">
+      <div class="gn-info__col">
+        <p class="gn-info__text">
+          Vera Kohl / ZSIGNAL is a computational artist based in the intersection of algorithmic systems and Bauhaus principles. With background in generative art, mathematical composition and deterministic rendering, ZSIGNAL creates artworks where every seed produces a unique, reproducible artifact.
+        </p>
+      </div>
+      <div class="gn-info__col">
+        <p class="gn-info__text">
+          ZSIGNAL opens a playground for creation, experimentation and multidisciplinary intersection, fusing deterministic algorithms with historical art movements to develop visual stories with mathematical precision. 31 canonical works. 7 eras. Every render is inevitable.
+        </p>
+      </div>
+    </div>
+
+    <!-- Center Navigation -->
+    <nav class="gn-nav gn-nav--center" aria-label="Main navigation">
+      <a href="index-v2.html" class="gn-nav__brand">ZSIGNAL Gallery<sup>TM</sup></a>
+      <span class="gn-nav__separator"></span>
+      <a href="archive-v2.html" class="gn-nav__link">Archive</a>
+      <a href="info-v2.html" class="gn-nav__link gn-nav__link--active">Info & Contact</a>
+      <span class="gn-nav__separator"></span>
+      <a href="https://instagram.com/zsignal.gallery" class="gn-nav__link" target="_blank" rel="noopener">IG</a>
+      <a href="https://youtube.com/@zsignal" class="gn-nav__link" target="_blank" rel="noopener">YT</a>
+      <span class="gn-nav__separator"></span>
+      <a href="mailto:studio@zsignal.gallery" class="gn-nav__link">studio@zsignal.gallery</a>
+      <button class="gn-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span class="gn-hamburger__line"></span>
+      </button>
+    </nav>
+
+    <!-- Giant ZS Typography -->
+    <div class="gn-info__giant" aria-hidden="true">ZS</div>
+
+    <!-- Red Gradient -->
+    <div class="gn-info__gradient" aria-hidden="true"></div>
+
+  </main>
+
+  <!-- Custom Cursor -->
+  <div class="gn-cursor" aria-hidden="true"></div>
+
+  <script src="js/noir-bg.js" defer></script>
+  <script src="js/z-engine.js" defer></script>
+  <script src="js/z-catalog.js" defer></script>
+  <script src="js/gallery-noir.js" defer></script>
+</body>
+</html>

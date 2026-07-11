@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/z-gallery.css">
+  <link rel="stylesheet" href="css/tokens.css?v=11">
+  <link rel="stylesheet" href="css/z-gallery.css?v=11">
   <style>
     .sg-section { padding: 64px 0; border-bottom: 2px solid var(--z-charcoal-15); }
     .sg-section:last-child { border-bottom: none; }
@@ -112,7 +113,8 @@
     }
   </style>
 </head>
-<body>
+<body class="cinematic-mode">
+  <div class="zs-noise-overlay"></div>
 
   <!-- HEADER -->
   <header class="header">
@@ -121,8 +123,9 @@
       <nav class="nav" id="nav">
         <a href="gallery.html">Gallery</a>
         <a href="studio.html">Studio</a>
-        <a href="artist.html">Artist</a>
+        <a href="artist.html">AI Artists</a>
         <a href="theory.html">Theory</a>
+        <a href="generator.html">Generator</a>
       </nav>
       <div class="header-actions">
         <a href="gallery.html" class="btn btn-primary btn-sm">VIEW GALLERY</a>
@@ -637,6 +640,7 @@
   <script src="js/z-engine.js"></script>
   <script src="js/z-catalog.js"></script>
   <script src="js/z-gallery.js"></script>
+  <script src="js/z-chatbot.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Render sample art cards
@@ -701,5 +705,6 @@
       setTimeout(() => toast.classList.remove('active'), 3000);
     }
   </script>
+  <script src="js/zs-motion.js" defer></script>
 </body>
 </html>

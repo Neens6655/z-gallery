@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/z-gallery.css">
+  <link rel="stylesheet" href="css/tokens.css?v=11">
+  <link rel="stylesheet" href="css/z-gallery.css?v=11">
 </head>
-<body>
+<body class="cinematic-mode">
+  <div class="zs-noise-overlay"></div>
+  <div class="zs-scroll-progress"></div>
 
   <!-- Skip link for keyboard users -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -22,8 +25,9 @@
       <nav class="nav" id="nav">
         <a href="gallery.html">Gallery</a>
         <a href="studio.html" class="active">Studio</a>
-        <a href="artist.html">Artist</a>
+        <a href="artist.html">AI Artists</a>
         <a href="theory.html">Theory</a>
+        <a href="generator.html">Generator</a>
       </nav>
       <div class="header-actions">
         <a href="studio.html" class="btn btn-primary btn-sm">CREATE</a>
@@ -51,13 +55,13 @@
     <div class="container">
       <div style="margin-bottom:40px;">
         <div class="hero-label">Live Composition Studio</div>
-        <h1 style="font-family:var(--z-font-mono);font-size:40px;font-weight:700;line-height:1.1;">Create Your Own</h1>
-        <p style="font-size:16px;color:rgba(28,28,28,0.65);margin-top:12px;max-width:560px;">Choose a style, pick colors, adjust density — then claim your creation. Each claimed seed is limited to 10 prints.</p>
+        <h1 style="font-family:var(--z-font-mono);font-size:40px;font-weight:700;line-height:1.1;" data-scramble>Create Your Own</h1>
+        <p style="font-size:16px;color:rgba(28,28,28,0.65);margin-top:12px;max-width:560px;" data-reveal data-reveal-delay="1">Choose a style, pick colors, adjust density — then claim your creation. Each claimed seed is limited to 10 prints.</p>
       </div>
 
       <div class="studio-layout">
         <!-- LEFT: Canvas -->
-        <div class="studio-canvas-wrapper">
+        <div class="studio-canvas-wrapper" data-border-beam>
           <div class="studio-canvas" id="studio-canvas"></div>
           <div class="studio-canvas-info">
             <span id="studio-info-archetype">FREE_FORM</span>
@@ -170,7 +174,11 @@
       </div>
       <div class="collection-grid" id="collection-grid"></div>
       <div class="collection-empty" id="collection-empty">
-        <p>No seeds claimed yet.<br>Create a composition above and claim it to start your collection.</p>
+        <div class="studio-starters">
+          <div class="studio-starters-headline">Start with a seed</div>
+          <p class="studio-starters-sub">Click any composition below to load it into the studio, then adjust and make it yours.</p>
+          <div class="studio-starter-grid" id="starter-grid"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -215,8 +223,9 @@
           <h4>Explore</h4>
           <a href="gallery.html">Gallery</a>
           <a href="studio.html">Studio</a>
-          <a href="artist.html">The Artist</a>
+          <a href="artist.html">AI Artists</a>
           <a href="theory.html">Theory</a>
+          <a href="generator.html">Generator</a>
         </div>
         <div class="footer-col">
           <h4>Connect</h4>
@@ -607,10 +616,44 @@
         p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       });
 
+      // ── STARTER SEEDS ──
+      const STARTERS = [
+        { name: 'Grid Gold',   sub: 'GRID · ZSIGNAL',           archetype: 'GRID',             palette: 'ZSIGNAL',         seed: 12345, density: 0.50 },
+        { name: 'Wave Field',  sub: 'REPETITION · CLASSIC',     archetype: 'REPETITION',        palette: 'CLASSIC_BAUHAUS', seed: 54321, density: 0.60 },
+        { name: 'Muqarnas',   sub: 'ARABIAN · WARM EARTH',     archetype: 'ARABIAN_GEOMETRIC', palette: 'WARM_EARTH',      seed: 77777, density: 0.70 },
+        { name: 'Albers',     sub: 'COLOR STUDY · COOL STEEL', archetype: 'COLOR_STUDY',       palette: 'COOL_STEEL',      seed: 33333, density: 0.50 },
+        { name: 'Signal',     sub: 'FREE FORM · MONO',         archetype: 'FREE_FORM',         palette: 'MONOCHROME',      seed: 11111, density: 0.40 },
+        { name: 'Red Wedge',  sub: 'CONSTRUCTIVIST · SOVIET',  archetype: 'CONSTRUCTIVIST',    palette: 'CONSTRUCTIVIST',  seed: 42000, density: 0.55 },
+      ];
+
+      function renderStarters() {
+        const grid = document.getElementById('starter-grid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        STARTERS.forEach(s => {
+          const card = document.createElement('button');
+          card.className = 'studio-starter-card';
+          card.setAttribute('aria-label', `Load ${s.name}: ${s.sub}`);
+          const artDiv = document.createElement('div');
+          artDiv.className = 'studio-starter-art';
+          const meta = document.createElement('div');
+          meta.className = 'studio-starter-meta';
+          meta.innerHTML = `<div class="studio-starter-name">${s.name}</div><div class="studio-starter-sub">${s.sub}</div>`;
+          card.appendChild(artDiv);
+          card.appendChild(meta);
+          grid.appendChild(card);
+          ZEngine.render(artDiv, { archetype: s.archetype, palette: s.palette, seed: s.seed, density: s.density });
+          card.addEventListener('click', () => loadItem(s));
+        });
+      }
+
       // ── INIT ──
       renderStudio();
       renderCollection();
+      renderStarters();
     });
   </script>
+  <script src="js/z-chatbot.js" defer></script>
+  <script src="js/zs-motion.js" defer></script>
 </body>
 </html>
