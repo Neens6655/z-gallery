@@ -492,7 +492,7 @@
     document.addEventListener('DOMContentLoaded', () => {
 
       // Pre-fill API key — use saved value or fall back to default
-      const DEFAULT_API_KEY = 'REDACTED_ROTATE_THIS_REPLICATE_TOKEN';
+      const DEFAULT_API_KEY = ''; // Replicate integration removed (subscription cancelled)
       try {
         const saved = localStorage.getItem('z-replicate-key');
         apikeyInput.value = saved || DEFAULT_API_KEY;
