@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Z-Gallery — Design System Style Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css?v=11">
+  <link rel="stylesheet" href="css/z-gallery.css?v=11">
+  <style>
+    .sg-section { padding: 64px 0; border-bottom: 2px solid var(--z-charcoal-15); }
+    .sg-section:last-child { border-bottom: none; }
+    .sg-label {
+      font-family: var(--z-font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--z-gold);
+      margin-bottom: 8px;
+    }
+    .sg-title {
+      font-family: var(--z-font-mono);
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .sg-desc {
+      font-size: 14px;
+      color: var(--z-charcoal-70);
+      margin-bottom: 48px;
+      max-width: 600px;
+    }
+    .sg-subsection { margin-bottom: 48px; }
+    .sg-subsection-title {
+      font-family: var(--z-font-mono);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--z-charcoal);
+    }
+    .sg-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .sg-color-block {
+      width: 120px;
+      text-align: center;
+    }
+    .sg-color-swatch {
+      width: 120px;
+      height: 80px;
+      border: 2px solid var(--z-charcoal);
+      margin-bottom: 8px;
+    }
+    .sg-color-name {
+      font-family: var(--z-font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .sg-color-hex {
+      font-family: var(--z-font-mono);
+      font-size: 11px;
+      color: var(--z-charcoal-40);
+    }
+    .sg-type-sample { margin-bottom: 24px; }
+    .sg-type-meta {
+      font-family: var(--z-font-mono);
+      font-size: 11px;
+      color: var(--z-charcoal-40);
+      margin-top: 4px;
+    }
+    .sg-component-box {
+      padding: 32px;
+      border: 2px solid var(--z-charcoal-15);
+      background: var(--z-cream-light);
+      margin-bottom: 16px;
+    }
+    .sg-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .sg-spacing-demo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .sg-spacing-bar {
+      height: 16px;
+      background: var(--z-gold-soft);
+      border: 1px solid var(--z-gold);
+    }
+    .sg-spacing-label {
+      font-family: var(--z-font-mono);
+      font-size: 11px;
+      color: var(--z-charcoal-40);
+      min-width: 60px;
+    }
+    @media (max-width: 767px) {
+      .sg-card-grid { grid-template-columns: 1fr; }
+      .sg-color-block { width: 80px; }
+      .sg-color-swatch { width: 80px; height: 60px; }
+    }
+  </style>
+</head>
+<body class="cinematic-mode">
+  <div class="zs-noise-overlay"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+      <nav class="nav" id="nav">
+        <a href="gallery.html">Gallery</a>
+        <a href="studio.html">Studio</a>
+        <a href="artist.html">AI Artists</a>
+        <a href="theory.html">Theory</a>
+        <a href="generator.html">Generator</a>
+      </nav>
+      <div class="header-actions">
+        <a href="gallery.html" class="btn btn-primary btn-sm">VIEW GALLERY</a>
+        <button class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="padding-top:48px;padding-bottom:96px;">
+
+    <!-- INTRO -->
+    <div class="sg-label">Design System</div>
+    <h1 style="font-family:var(--z-font-mono);font-size:var(--z-text-h1);font-weight:700;margin-bottom:8px;">Z-Gallery Style Guide</h1>
+    <p style="font-size:var(--z-text-body-lg);color:var(--z-charcoal-70);margin-bottom:64px;max-width:640px;">
+      The visual language of a deterministic generative art system. Bauhaus DNA — IBM Plex Mono, 2px borders, zero radius, cream &amp; charcoal, gold accents.
+    </p>
+
+    <!-- ═══════════════════════════ COLORS ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">01</div>
+      <h2 class="sg-title">Color Palette</h2>
+      <p class="sg-desc">Six semantic colors plus extended variants for subtle UI states. Every color carries meaning.</p>
+
+      <div class="sg-subsection">
+        <div class="sg-subsection-title">Primary</div>
+        <div class="sg-row">
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:#F2E8D5;"></div>
+            <div class="sg-color-name">Cream</div>
+            <div class="sg-color-hex">#F2E8D5</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:#E8DCC8;"></div>
+            <div class="sg-color-name">Cream Dark</div>
+            <div class="sg-color-hex">#E8DCC8</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:#F7F0E3;"></div>
+            <div class="sg-color-name">Cream Light</div>
+            <div class="sg-color-hex">#F7F0E3</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:#1C1C1C;"></div>
+            <div class="sg-color-name">Charcoal</div>
+            <div class="sg-color-hex">#1C1C1C</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:#D4A84B;"></div>
+            <div class="sg-color-name">Gold</div>
+            <div class="sg-color-hex">#D4A84B</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:#C04B3C;"></div>
+            <div class="sg-color-name">Brick</div>
+            <div class="sg-color-hex">#C04B3C</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:#3A6EA5;"></div>
+            <div class="sg-color-name">Blue</div>
+            <div class="sg-color-hex">#3A6EA5</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:#6B7B3C;"></div>
+            <div class="sg-color-name">Olive</div>
+            <div class="sg-color-hex">#6B7B3C</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sg-subsection">
+        <div class="sg-subsection-title">Transparency &amp; Soft Variants</div>
+        <div class="sg-row">
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:rgba(28,28,28,0.70);"></div>
+            <div class="sg-color-name">Charcoal 70</div>
+            <div class="sg-color-hex">rgba(…, 0.70)</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:rgba(28,28,28,0.40);"></div>
+            <div class="sg-color-name">Charcoal 40</div>
+            <div class="sg-color-hex">rgba(…, 0.40)</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:rgba(28,28,28,0.15);"></div>
+            <div class="sg-color-name">Charcoal 15</div>
+            <div class="sg-color-hex">rgba(…, 0.15)</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:rgba(28,28,28,0.06);"></div>
+            <div class="sg-color-name">Charcoal 06</div>
+            <div class="sg-color-hex">rgba(…, 0.06)</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:rgba(212,168,75,0.12);border-color:var(--z-gold);"></div>
+            <div class="sg-color-name">Gold Soft</div>
+            <div class="sg-color-hex">rgba(…, 0.12)</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:rgba(192,75,60,0.10);border-color:var(--z-brick);"></div>
+            <div class="sg-color-name">Brick Soft</div>
+            <div class="sg-color-hex">rgba(…, 0.10)</div>
+          </div>
+          <div class="sg-color-block">
+            <div class="sg-color-swatch" style="background:rgba(107,123,60,0.10);border-color:var(--z-olive);"></div>
+            <div class="sg-color-name">Olive Soft</div>
+            <div class="sg-color-hex">rgba(…, 0.10)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ TYPOGRAPHY ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">02</div>
+      <h2 class="sg-title">Typography</h2>
+      <p class="sg-desc">IBM Plex Mono for headings, labels, and code. IBM Plex Sans for body text. Zero decorative fonts.</p>
+
+      <div class="sg-subsection">
+        <div class="sg-subsection-title">Type Scale</div>
+
+        <div class="sg-type-sample">
+          <div style="font-family:var(--z-font-mono);font-size:72px;font-weight:700;line-height:1.05;letter-spacing:-0.02em;">Display 72px</div>
+          <div class="sg-type-meta">IBM Plex Mono 700 &middot; line-height: 1.05 &middot; -0.02em &middot; Manifesto</div>
+        </div>
+
+        <div class="sg-type-sample">
+          <div style="font-family:var(--z-font-mono);font-size:56px;font-weight:700;line-height:1.10;letter-spacing:-0.02em;">Hero 56px</div>
+          <div class="sg-type-meta">IBM Plex Mono 700 &middot; line-height: 1.10 &middot; -0.02em &middot; Homepage hero</div>
+        </div>
+
+        <div class="sg-type-sample">
+          <div style="font-family:var(--z-font-mono);font-size:40px;font-weight:700;line-height:1.15;letter-spacing:-0.01em;">H1 — Page Title 40px</div>
+          <div class="sg-type-meta">IBM Plex Mono 700 &middot; line-height: 1.15 &middot; -0.01em</div>
+        </div>
+
+        <div class="sg-type-sample">
+          <div style="font-family:var(--z-font-mono);font-size:32px;font-weight:600;line-height:1.20;">H2 — Section Heading 32px</div>
+          <div class="sg-type-meta">IBM Plex Mono 600 &middot; line-height: 1.20</div>
+        </div>
+
+        <div class="sg-type-sample">
+          <div style="font-family:var(--z-font-mono);font-size:24px;font-weight:600;line-height:1.25;">H3 — Sub-section 24px</div>
+          <div class="sg-type-meta">IBM Plex Mono 600 &middot; line-height: 1.25</div>
+        </div>
+
+        <div class="sg-type-sample">
+          <div style="font-family:var(--z-font-mono);font-size:20px;font-weight:500;line-height:1.30;">H4 — Small Heading 20px</div>
+          <div class="sg-type-meta">IBM Plex Mono 500 &middot; line-height: 1.30</div>
+        </div>
+
+        <div class="sg-type-sample">
+          <div style="font-family:var(--z-font-sans);font-size:18px;line-height:1.65;">Body Large 18px — IBM Plex Sans. Used for manifesto sub-copy and lead paragraphs. The generative process begins with a seed.</div>
+          <div class="sg-type-meta">IBM Plex Sans 400 &middot; line-height: 1.65</div>
+        </div>
+
+        <div class="sg-type-sample">
+          <div style="font-family:var(--z-font-sans);font-size:16px;line-height:1.60;">Body 16px — IBM Plex Sans. Default body text for descriptions, paragraphs, and general content. Every artwork is a deterministic function of four parameters: archetype, palette, seed, and density.</div>
+          <div class="sg-type-meta">IBM Plex Sans 400 &middot; line-height: 1.60</div>
+        </div>
+
+        <div class="sg-type-sample">
+          <div style="font-family:var(--z-font-sans);font-size:14px;line-height:1.50;color:var(--z-charcoal-70);">Body Small 14px — IBM Plex Sans. Metadata, secondary info, supporting text.</div>
+          <div class="sg-type-meta">IBM Plex Sans 400 &middot; line-height: 1.50</div>
+        </div>
+
+        <div class="sg-type-sample">
+          <div style="font-family:var(--z-font-mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--z-charcoal-70);">CAPTION 12PX — Labels, Badges, Breadcrumbs</div>
+          <div class="sg-type-meta">IBM Plex Mono 500 &middot; uppercase &middot; 0.08em spacing</div>
+        </div>
+
+        <div class="sg-type-sample">
+          <div style="font-family:var(--z-font-mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.10em;color:var(--z-charcoal-40);">MICRO 11PX — TABLE HEADERS, TINY LABELS</div>
+          <div class="sg-type-meta">IBM Plex Mono 500 &middot; uppercase &middot; 0.10em spacing</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ SPACING ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">03</div>
+      <h2 class="sg-title">Spacing Scale</h2>
+      <p class="sg-desc">Consistent spacing tokens from 4px to 120px. Used for padding, margins, and gaps.</p>
+
+      <div class="sg-subsection">
+        <div class="sg-spacing-demo"><div class="sg-spacing-label">xs — 4px</div><div class="sg-spacing-bar" style="width:4px;"></div></div>
+        <div class="sg-spacing-demo"><div class="sg-spacing-label">sm — 8px</div><div class="sg-spacing-bar" style="width:8px;"></div></div>
+        <div class="sg-spacing-demo"><div class="sg-spacing-label">md — 16px</div><div class="sg-spacing-bar" style="width:16px;"></div></div>
+        <div class="sg-spacing-demo"><div class="sg-spacing-label">lg — 24px</div><div class="sg-spacing-bar" style="width:24px;"></div></div>
+        <div class="sg-spacing-demo"><div class="sg-spacing-label">xl — 32px</div><div class="sg-spacing-bar" style="width:32px;"></div></div>
+        <div class="sg-spacing-demo"><div class="sg-spacing-label">2xl — 48px</div><div class="sg-spacing-bar" style="width:48px;"></div></div>
+        <div class="sg-spacing-demo"><div class="sg-spacing-label">3xl — 64px</div><div class="sg-spacing-bar" style="width:64px;"></div></div>
+        <div class="sg-spacing-demo"><div class="sg-spacing-label">4xl — 80px</div><div class="sg-spacing-bar" style="width:80px;"></div></div>
+        <div class="sg-spacing-demo"><div class="sg-spacing-label">5xl — 96px</div><div class="sg-spacing-bar" style="width:96px;"></div></div>
+        <div class="sg-spacing-demo"><div class="sg-spacing-label">6xl — 120px</div><div class="sg-spacing-bar" style="width:120px;"></div></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ BORDERS & SHADOWS ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">04</div>
+      <h2 class="sg-title">Borders &amp; Shadows</h2>
+      <p class="sg-desc">Two border weights. Zero border-radius (except 9999px for dots). One terminal shadow system.</p>
+
+      <div class="sg-subsection">
+        <div class="sg-row" style="gap:32px;">
+          <div>
+            <div style="width:200px;height:120px;border:2px solid #1C1C1C;background:var(--z-cream-light);display:flex;align-items:center;justify-content:center;font-family:var(--z-font-mono);font-size:12px;color:var(--z-charcoal-40);">2px solid</div>
+            <div class="sg-type-meta" style="margin-top:8px;">Standard border</div>
+          </div>
+          <div>
+            <div style="width:200px;height:120px;border:1.5px solid rgba(28,28,28,0.15);background:var(--z-cream-light);display:flex;align-items:center;justify-content:center;font-family:var(--z-font-mono);font-size:12px;color:var(--z-charcoal-40);">1.5px subtle</div>
+            <div class="sg-type-meta" style="margin-top:8px;">Subtle border</div>
+          </div>
+          <div>
+            <div style="width:200px;height:120px;border:2px solid #1C1C1C;box-shadow:6px 6px 0 rgba(28,28,28,0.12);background:var(--z-cream-light);display:flex;align-items:center;justify-content:center;font-family:var(--z-font-mono);font-size:12px;color:var(--z-charcoal-40);">Terminal shadow</div>
+            <div class="sg-type-meta" style="margin-top:8px;">6px 6px 0 — default</div>
+          </div>
+          <div>
+            <div style="width:200px;height:120px;border:2px solid #1C1C1C;box-shadow:8px 8px 0 rgba(28,28,28,0.12);background:var(--z-cream-light);display:flex;align-items:center;justify-content:center;font-family:var(--z-font-mono);font-size:12px;color:var(--z-charcoal-40);">Hover shadow</div>
+            <div class="sg-type-meta" style="margin-top:8px;">8px 8px 0 — hover</div>
+          </div>
+          <div>
+            <div style="width:200px;height:120px;border:2px solid #1C1C1C;box-shadow:12px 12px 0 rgba(28,28,28,0.15);background:var(--z-cream-light);display:flex;align-items:center;justify-content:center;font-family:var(--z-font-mono);font-size:12px;color:var(--z-charcoal-40);">Modal shadow</div>
+            <div class="sg-type-meta" style="margin-top:8px;">12px 12px 0 — modal</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ BUTTONS ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">05</div>
+      <h2 class="sg-title">Buttons</h2>
+      <p class="sg-desc">Three tiers — Primary (claim, CTA), Secondary (navigate, remix), Ghost (minor actions). All 48px height, uppercase Mono.</p>
+
+      <div class="sg-subsection">
+        <div class="sg-subsection-title">Variants</div>
+        <div class="sg-row" style="gap:16px;align-items:center;">
+          <button class="btn btn-primary">Claim This Seed</button>
+          <button class="btn btn-secondary">Remix This</button>
+          <button class="btn btn-ghost">Share</button>
+          <button class="btn btn-primary" disabled>Disabled</button>
+        </div>
+      </div>
+
+      <div class="sg-subsection">
+        <div class="sg-subsection-title">Sizes</div>
+        <div class="sg-row" style="gap:16px;align-items:center;">
+          <button class="btn btn-primary btn-sm">Small 40px</button>
+          <button class="btn btn-primary">Default 48px</button>
+          <button class="btn btn-primary btn-lg">Large 56px</button>
+        </div>
+      </div>
+
+      <div class="sg-subsection">
+        <div class="sg-subsection-title">Full Width</div>
+        <div style="max-width:400px;">
+          <button class="btn btn-primary btn-full">Request Print</button>
+          <div style="height:8px;"></div>
+          <button class="btn btn-secondary btn-full">Remix This Artwork</button>
+          <div style="height:8px;"></div>
+          <button class="btn btn-ghost btn-full">Copy Link</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ EDITION BADGES ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">06</div>
+      <h2 class="sg-title">Edition Badges</h2>
+      <p class="sg-desc">Three states reflecting scarcity. Gallery placards, not flashy labels. The dot indicator pulses with status color.</p>
+
+      <div class="sg-subsection">
+        <div class="sg-row" style="gap:24px;align-items:center;">
+          <div>
+            <span class="edition-badge edition-badge-available">23 of 30 available</span>
+            <div class="sg-type-meta" style="margin-top:8px;">Available — Olive</div>
+          </div>
+          <div>
+            <span class="edition-badge edition-badge-limited">4 of 30 remaining</span>
+            <div class="sg-type-meta" style="margin-top:8px;">Limited (&lt;5 left) — Gold</div>
+          </div>
+          <div>
+            <span class="edition-badge edition-badge-claimed">30 of 30 claimed</span>
+            <div class="sg-type-meta" style="margin-top:8px;">Fully Claimed — Brick</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ ERA BADGE ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">07</div>
+      <h2 class="sg-title">Metadata Badges</h2>
+      <p class="sg-desc">Era badges and archetype labels for artwork identification.</p>
+
+      <div class="sg-subsection">
+        <div class="sg-row" style="gap:12px;align-items:center;">
+          <span class="era-badge">Era I</span>
+          <span class="era-badge">Era III</span>
+          <span class="era-badge">Era VII</span>
+          <span style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--z-charcoal-40);">FREE_FORM</span>
+          <span style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--z-charcoal-40);">CONSTRUCTIVIST</span>
+          <span style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--z-charcoal-40);">ARABIAN_GEOMETRIC</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ FILTER CHIPS ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">08</div>
+      <h2 class="sg-title">Filter Chips</h2>
+      <p class="sg-desc">Gallery filter controls. Active state inverts to charcoal. Palette chips include color dot.</p>
+
+      <div class="sg-subsection">
+        <div class="filter-bar" style="border-bottom:none;padding-bottom:0;">
+          <div class="filter-group">
+            <span class="filter-label">Era</span>
+            <button class="filter-chip active">All</button>
+            <button class="filter-chip">I</button>
+            <button class="filter-chip">II</button>
+            <button class="filter-chip">III</button>
+            <button class="filter-chip">IV</button>
+            <button class="filter-chip">V</button>
+            <button class="filter-chip">VI</button>
+            <button class="filter-chip">VII</button>
+          </div>
+          <div class="filter-divider"></div>
+          <div class="filter-group">
+            <span class="filter-label">Palette</span>
+            <button class="filter-chip active"><span class="filter-chip-dot" style="background:var(--z-gold);"></span>ZSIGNAL</button>
+            <button class="filter-chip"><span class="filter-chip-dot" style="background:#E63946;"></span>Bauhaus</button>
+            <button class="filter-chip"><span class="filter-chip-dot" style="background:#CC0000;"></span>Construct</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ ART CARDS ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">09</div>
+      <h2 class="sg-title">Art Cards</h2>
+      <p class="sg-desc">Gallery grid cards with live SVG, title, era label, archetype badge, and edition status. Hover lifts with shadow.</p>
+
+      <div class="sg-card-grid" id="sg-art-cards"></div>
+    </section>
+
+    <!-- ═══════════════════════════ FORMS ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">10</div>
+      <h2 class="sg-title">Form Inputs</h2>
+      <p class="sg-desc">48px height, 2px borders, gold focus state. Used in claim modal, print request, and contact forms.</p>
+
+      <div class="sg-subsection" style="max-width:480px;">
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="collector@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Print Size</label>
+          <select class="form-select">
+            <option>Select size...</option>
+            <option>8&times;10" — Small</option>
+            <option>16&times;20" — Medium</option>
+            <option>24&times;36" — Large</option>
+            <option>30&times;40" — Extra Large</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message (Optional)</label>
+          <textarea class="form-textarea" placeholder="Tell us about your interest in this work..."></textarea>
+        </div>
+        <button class="btn btn-primary btn-full">Submit Request</button>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ MODAL ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">11</div>
+      <h2 class="sg-title">Email Capture Modal</h2>
+      <p class="sg-desc">Claim flow modal. Backdrop blur, slide-up animation, gold submit button. Feels like an acquisition, not a checkout.</p>
+
+      <div class="sg-subsection">
+        <button class="btn btn-secondary" onclick="document.getElementById('demo-modal').classList.add('active')">Open Demo Modal</button>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ TOAST ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">12</div>
+      <h2 class="sg-title">Toast Notification</h2>
+      <p class="sg-desc">Fixed-bottom confirmation messages. Charcoal background, cream text, slide-up, auto-dismiss after 3s.</p>
+
+      <div class="sg-subsection">
+        <button class="btn btn-secondary" onclick="showDemoToast()">Show Toast</button>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ REMIX LINEAGE ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">13</div>
+      <h2 class="sg-title">Remix Lineage</h2>
+      <p class="sg-desc">Horizontal chain showing artwork genealogy. Thumbnails connected by arrows. Active node has full border + shadow.</p>
+
+      <div class="sg-subsection">
+        <div class="remix-lineage">
+          <div class="remix-lineage-title">Remix Lineage</div>
+          <div class="remix-chain" id="sg-remix-chain"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ COLLECTION CARDS ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">14</div>
+      <h2 class="sg-title">Collection UI</h2>
+      <p class="sg-desc">My Collection panel in studio sidebar. 3-column mini grid with tiny SVG thumbnails, parameter labels, and action buttons.</p>
+
+      <div class="sg-subsection" style="max-width:400px;">
+        <div class="collection-section" style="border-top:none;padding-top:0;margin-top:0;">
+          <button class="collection-toggle">
+            <span class="collection-label">My Collection</span>
+            <span class="collection-count">3 seeds</span>
+          </button>
+          <div class="collection-grid" id="sg-collection-grid"></div>
+          <div style="margin-top:16px;">
+            <div class="collection-empty" style="display:block;">
+              <p>No seeds claimed yet.<br>Create something beautiful, then claim it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ MANIFESTO ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">15</div>
+      <h2 class="sg-title">Manifesto Typography</h2>
+      <p class="sg-desc">The emotional anchor. Left-aligned, oversized Mono 700, thick border framing. Bauhaus poster energy.</p>
+
+      <div class="sg-subsection">
+        <div class="manifesto-section" style="padding:80px 0;">
+          <div class="container">
+            <div class="manifesto">
+              <p>Art from algorithms,<br>not accidents.</p>
+              <p>Every seed is a signature.<br>Every constraint, a canvas.</p>
+              <p>Collect the system.<br>Own the signal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ LIVE ART ═══════════════════════════ -->
+    <section class="sg-section">
+      <div class="sg-label">16</div>
+      <h2 class="sg-title">Live Art Rendering</h2>
+      <p class="sg-desc">ZEngine renders deterministic SVG. Same parameters always produce the same output. The tech demo moment.</p>
+
+      <div class="sg-subsection">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+          <div>
+            <div id="sg-art-1" style="aspect-ratio:1;border:2px solid var(--z-charcoal);box-shadow:var(--z-shadow);background:var(--z-cream-dark);overflow:hidden;"></div>
+            <div class="sg-type-meta" style="margin-top:8px;">FREE_FORM &middot; ZSIGNAL</div>
+          </div>
+          <div>
+            <div id="sg-art-2" style="aspect-ratio:1;border:2px solid var(--z-charcoal);box-shadow:var(--z-shadow);background:var(--z-cream-dark);overflow:hidden;"></div>
+            <div class="sg-type-meta" style="margin-top:8px;">GRID &middot; CLASSIC_BAUHAUS</div>
+          </div>
+          <div>
+            <div id="sg-art-3" style="aspect-ratio:1;border:2px solid var(--z-charcoal);box-shadow:var(--z-shadow);background:var(--z-cream-dark);overflow:hidden;"></div>
+            <div class="sg-type-meta" style="margin-top:8px;">CONSTRUCTIVIST &middot; CONSTRUCTIVIST</div>
+          </div>
+          <div>
+            <div id="sg-art-4" style="aspect-ratio:1;border:2px solid var(--z-charcoal);box-shadow:var(--z-shadow);background:var(--z-cream-dark);overflow:hidden;"></div>
+            <div class="sg-type-meta" style="margin-top:8px;">COLOR_STUDY &middot; WARM_EARTH</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /container -->
+
+  <!-- DEMO MODAL -->
+  <div class="modal-overlay" id="demo-modal">
+    <div class="modal">
+      <button class="modal-close" onclick="document.getElementById('demo-modal').classList.remove('active')">&times;</button>
+      <h3>Claim This Seed</h3>
+      <p>Limited to 10 prints. Enter your email to save this creation to your collection.</p>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="collector@example.com">
+      </div>
+      <button class="btn btn-primary btn-full" onclick="document.getElementById('demo-modal').classList.remove('active');showDemoToast();">Claim &amp; Save</button>
+    </div>
+  </div>
+
+  <!-- DEMO TOAST -->
+  <div class="toast" id="demo-toast">Seed claimed and saved to your collection</div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 ZSIGNAL — Design System Style Guide</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/z-engine.js"></script>
+  <script src="js/z-catalog.js"></script>
+  <script src="js/z-gallery.js"></script>
+  <script src="js/z-chatbot.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Render sample art cards
+      const sampleWorks = [ZCatalog.WORKS[0], ZCatalog.WORKS[10], ZCatalog.WORKS[18]].filter(Boolean);
+      ZGallery.renderArtCards('#sg-art-cards', sampleWorks);
+
+      // Render live art samples
+      ZEngine.render('#sg-art-1', { archetype: 'FREE_FORM', palette: 'ZSIGNAL', seed: 42718, density: 0.5 });
+      ZEngine.render('#sg-art-2', { archetype: 'GRID', palette: 'CLASSIC_BAUHAUS', seed: 84123, density: 0.7 });
+      ZEngine.render('#sg-art-3', { archetype: 'CONSTRUCTIVIST', palette: 'CONSTRUCTIVIST', seed: 33333, density: 0.6 });
+      ZEngine.render('#sg-art-4', { archetype: 'COLOR_STUDY', palette: 'WARM_EARTH', seed: 55555, density: 0.4 });
+
+      // Render remix chain samples
+      const remixChain = document.getElementById('sg-remix-chain');
+      const remixSeeds = [
+        { archetype: 'FREE_FORM', palette: 'ZSIGNAL', seed: 42718, density: 0.5, active: false },
+        { archetype: 'FREE_FORM', palette: 'CLASSIC_BAUHAUS', seed: 42718, density: 0.5, active: true },
+        { archetype: 'FREE_FORM', palette: 'CLASSIC_BAUHAUS', seed: 42718, density: 0.8, active: false },
+      ];
+      remixSeeds.forEach((config, i) => {
+        if (i > 0) {
+          const arrow = document.createElement('span');
+          arrow.className = 'remix-arrow';
+          arrow.textContent = '\u2192';
+          remixChain.appendChild(arrow);
+        }
+        const node = document.createElement('div');
+        node.className = 'remix-node' + (config.active ? ' active' : '');
+        remixChain.appendChild(node);
+        ZEngine.render(node, config);
+      });
+
+      // Render collection cards
+      const collGrid = document.getElementById('sg-collection-grid');
+      const collSeeds = [
+        { archetype: 'GRID', palette: 'ZSIGNAL', seed: 11111, density: 0.6 },
+        { archetype: 'REPETITION', palette: 'WARM_EARTH', seed: 22222, density: 0.5 },
+        { archetype: 'DOT_FIELD', palette: 'COOL_STEEL', seed: 33333, density: 0.7 },
+      ];
+      collSeeds.forEach(config => {
+        const card = document.createElement('div');
+        card.className = 'collection-card';
+        card.innerHTML = `
+          <div class="collection-card-art"></div>
+          <div class="collection-card-meta">
+            <div class="collection-card-params">${config.archetype}<br>${config.palette}<br>s:${config.seed}</div>
+            <div class="collection-card-actions">
+              <button class="collection-card-btn">Load</button>
+              <button class="collection-card-btn delete">Remove</button>
+            </div>
+          </div>
+        `;
+        collGrid.appendChild(card);
+        ZEngine.render(card.querySelector('.collection-card-art'), config);
+      });
+    });
+
+    // Toast demo
+    function showDemoToast() {
+      const toast = document.getElementById('demo-toast');
+      toast.classList.add('active');
+      setTimeout(() => toast.classList.remove('active'), 3000);
+    }
+  </script>
+  <script src="js/zs-motion.js" defer></script>
+</body>
+</html>

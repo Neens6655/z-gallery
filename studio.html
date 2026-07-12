@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZSIGNAL — Studio</title>
+  <meta name="description" content="Create your own deterministic generative artwork. Choose an archetype, palette, and seed — then claim your creation. Limited to 10 prints per seed.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css?v=11">
+  <link rel="stylesheet" href="css/z-gallery.css?v=11">
+</head>
+<body class="cinematic-mode">
+  <div class="zs-noise-overlay"></div>
+  <div class="zs-scroll-progress"></div>
+
+  <!-- Skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+      <nav class="nav" id="nav">
+        <a href="gallery.html">Gallery</a>
+        <a href="studio.html" class="active">Studio</a>
+        <a href="artist.html">AI Artists</a>
+        <a href="theory.html">Theory</a>
+        <a href="generator.html">Generator</a>
+      </nav>
+      <div class="header-actions">
+        <a href="studio.html" class="btn btn-primary btn-sm">CREATE</a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- REMIX BANNER (hidden by default, shown when ?remix= param present) -->
+  <div class="remix-banner" id="remix-banner" style="display:none;">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px;">
+      <span style="font-family:var(--z-font-mono);font-size:13px;">
+        <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;vertical-align:-2px;" aria-hidden="true"><path d="M17,3 L14,6 L17,9 M3,10 C3,6.13 6.13,3 10,3 L14,3 M3,17 L6,14 L3,11 M17,10 C17,13.87 13.87,17 10,17 L6,17"/></svg>
+        Remixing: <strong id="remix-parent-title">—</strong>
+      </span>
+      <a href="studio.html" class="btn btn-ghost btn-sm" style="font-size:11px;">Clear Remix</a>
+    </div>
+  </div>
+
+  <!-- STUDIO -->
+  <main id="main-content">
+  <section class="section" style="padding-top:48px;">
+    <div class="container">
+      <div style="margin-bottom:40px;">
+        <div class="hero-label">Live Composition Studio</div>
+        <h1 style="font-family:var(--z-font-mono);font-size:40px;font-weight:700;line-height:1.1;" data-scramble>Create Your Own</h1>
+        <p style="font-size:16px;color:rgba(28,28,28,0.65);margin-top:12px;max-width:560px;" data-reveal data-reveal-delay="1">Choose a style, pick colors, adjust density — then claim your creation. Each claimed seed is limited to 10 prints.</p>
+      </div>
+
+      <div class="studio-layout">
+        <!-- LEFT: Canvas -->
+        <div class="studio-canvas-wrapper" data-border-beam>
+          <div class="studio-canvas" id="studio-canvas"></div>
+          <div class="studio-canvas-info">
+            <span id="studio-info-archetype">FREE_FORM</span>
+            <span id="studio-info-palette">ZSIGNAL</span>
+            <span>Seed: <strong id="studio-info-seed">---</strong></span>
+            <span>Density: <strong id="studio-info-density">0.5</strong></span>
+          </div>
+        </div>
+
+        <!-- RIGHT: Controls -->
+        <div class="studio-sidebar">
+          <div>
+            <div class="studio-section-title">Composition Parameters</div>
+
+            <!-- Archetype -->
+            <div class="studio-param-group">
+              <div class="studio-param-label">Archetype</div>
+              <div class="studio-param-options" id="studio-archetypes">
+                <button class="studio-pill active" data-val="FREE_FORM" aria-pressed="true">Free Form</button>
+                <button class="studio-pill" data-val="GRID" aria-pressed="false">Grid</button>
+                <button class="studio-pill" data-val="REPETITION" aria-pressed="false">Repetition</button>
+                <button class="studio-pill" data-val="CONSTRUCTIVIST" aria-pressed="false">Constructivist</button>
+                <button class="studio-pill" data-val="COLOR_STUDY" aria-pressed="false">Color Study</button>
+                <button class="studio-pill" data-val="DOT_FIELD" aria-pressed="false">Dot Field</button>
+                <button class="studio-pill" data-val="ARABIAN_GEOMETRIC" aria-pressed="false">Arabian Geometric</button>
+              </div>
+            </div>
+
+            <!-- Palette -->
+            <div class="studio-param-group">
+              <div class="studio-param-label">Palette</div>
+              <div class="studio-param-options" id="studio-palettes">
+                <button class="studio-pill active" data-val="ZSIGNAL" aria-pressed="true">
+                  <span style="display:inline-block;width:8px;height:8px;background:#D4A84B;margin-right:4px;vertical-align:middle;border-radius:9999px;"></span>ZSIGNAL
+                </button>
+                <button class="studio-pill" data-val="CLASSIC_BAUHAUS" aria-pressed="false">
+                  <span style="display:inline-block;width:8px;height:8px;background:#E63946;margin-right:4px;vertical-align:middle;border-radius:9999px;"></span>Classic
+                </button>
+                <button class="studio-pill" data-val="CONSTRUCTIVIST" aria-pressed="false">
+                  <span style="display:inline-block;width:8px;height:8px;background:#CC0000;margin-right:4px;vertical-align:middle;border-radius:9999px;"></span>Constructivist
+                </button>
+                <button class="studio-pill" data-val="WARM_EARTH" aria-pressed="false">
+                  <span style="display:inline-block;width:8px;height:8px;background:#A67C52;margin-right:4px;vertical-align:middle;border-radius:9999px;"></span>Warm Earth
+                </button>
+                <button class="studio-pill" data-val="COOL_STEEL" aria-pressed="false">
+                  <span style="display:inline-block;width:8px;height:8px;background:#5B7C99;margin-right:4px;vertical-align:middle;border-radius:9999px;"></span>Cool Steel
+                </button>
+                <button class="studio-pill" data-val="MONOCHROME" aria-pressed="false">
+                  <span style="display:inline-block;width:8px;height:8px;background:#666;margin-right:4px;vertical-align:middle;border-radius:9999px;"></span>Mono
+                </button>
+              </div>
+            </div>
+
+            <!-- Density -->
+            <div class="studio-param-group">
+              <div class="studio-param-label">Density</div>
+              <div class="studio-slider-row">
+                <span style="font-family:var(--z-font-mono);font-size:11px;color:rgba(28,28,28,0.40);">Sparse</span>
+                <input type="range" class="studio-slider" id="studio-density" min="0.1" max="0.9" step="0.05" value="0.5" aria-label="Density slider">
+                <span style="font-family:var(--z-font-mono);font-size:11px;color:rgba(28,28,28,0.40);">Dense</span>
+                <span class="studio-slider-value" id="studio-density-val">0.50</span>
+              </div>
+            </div>
+
+            <!-- Seed -->
+            <div class="studio-param-group">
+              <div class="studio-param-label">Seed</div>
+              <div class="studio-seed-row">
+                <input type="number" class="studio-seed-input" id="studio-seed" min="0" max="99999" value="42718" aria-label="Seed value">
+                <button class="btn btn-secondary btn-sm" id="studio-randomize" style="height:38px;">
+                  <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:4px;" aria-hidden="true"><path d="M17,3 L14,6 L17,9 M3,10 C3,6.13 6.13,3 10,3 L14,3 M3,17 L6,14 L3,11 M17,10 C17,13.87 13.87,17 10,17 L6,17"/></svg>
+                  RANDOMIZE
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="studio-actions">
+            <button class="btn btn-ghost btn-full" id="studio-random-combo">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;" aria-hidden="true"><path d="M17,3 L14,6 L17,9 M3,10 C3,6.13 6.13,3 10,3 L14,3 M3,17 L6,14 L3,11 M17,10 C17,13.87 13.87,17 10,17 L6,17"/></svg>
+              RANDOM COMBINATION
+            </button>
+            <button class="btn btn-primary btn-full" id="studio-claim">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;" aria-hidden="true"><path d="M10,2 L12.5,7 L18,7.5 L14,11.5 L15,17 L10,14.5 L5,17 L6,11.5 L2,7.5 L7.5,7 Z"/></svg>
+              CLAIM THIS SEED
+            </button>
+            <div style="text-align:center;font-family:var(--z-font-mono);font-size:11px;color:rgba(28,28,28,0.4);text-transform:uppercase;letter-spacing:0.1em;">Limited to 10 prints per seed</div>
+            <button class="btn btn-secondary btn-full" id="studio-genesis">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;" aria-hidden="true"><polygon points="4,2 18,10 4,18"/></svg>
+              WATCH IT BUILD
+            </button>
+            <button class="btn btn-secondary btn-full" id="studio-download">
+              <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" style="margin-right:6px;" aria-hidden="true"><path d="M10,2 L10,13 M6,9 L10,13 L14,9 M3,16 L17,16"/></svg>
+              DOWNLOAD SVG
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MY COLLECTION -->
+  <section class="section section-alt" id="collection-section">
+    <div class="container">
+      <div class="section-header" style="text-align:left;margin-bottom:32px;">
+        <div class="studio-collection-label">My Collection</div>
+        <h2 style="font-size:28px;">Claimed Seeds</h2>
+        <p style="margin-left:0;">Your claimed compositions live in this browser. Click any to load it back into the studio.</p>
+      </div>
+      <div class="collection-grid" id="collection-grid"></div>
+      <div class="collection-empty" id="collection-empty">
+        <div class="studio-starters">
+          <div class="studio-starters-headline">Start with a seed</div>
+          <p class="studio-starters-sub">Click any composition below to load it into the studio, then adjust and make it yours.</p>
+          <div class="studio-starter-grid" id="starter-grid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- CLAIM MODAL (Email Capture) -->
+  <div class="modal-overlay" id="claim-modal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="claim-modal-title">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <h3 id="claim-modal-title">Claim This Seed</h3>
+      <p style="color:rgba(28,28,28,0.6);margin-bottom:16px;">This composition is limited to <strong>10 prints</strong>. Enter your email to claim it and add it to your collection.</p>
+      <div class="modal-summary" id="claim-summary" style="font-family:var(--z-font-mono);font-size:14px;line-height:1.8;margin-bottom:24px;padding:16px;border:2px solid #1C1C1C;text-align:left;"></div>
+      <form name="seed-claim" data-netlify="true" method="POST" id="claim-form">
+        <input type="hidden" name="archetype" id="claim-archetype">
+        <input type="hidden" name="palette" id="claim-palette">
+        <input type="hidden" name="seed" id="claim-seed">
+        <input type="hidden" name="density" id="claim-density">
+        <div class="form-group">
+          <label class="form-label" for="claim-email">Email</label>
+          <input type="email" id="claim-email" name="email" class="form-input" placeholder="your@email.com" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">CLAIM &amp; SAVE TO COLLECTION</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="studio-toast" aria-live="polite">
+    <span id="toast-message">Seed claimed!</span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+          <p>A deterministic generative art system. Every seed is a signature. Every constraint, a canvas.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="gallery.html">Gallery</a>
+          <a href="studio.html">Studio</a>
+          <a href="artist.html">AI Artists</a>
+          <a href="theory.html">Theory</a>
+          <a href="generator.html">Generator</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@zsignal.art">Contact</a>
+          <a href="theory.html#faq">FAQ</a>
+          <a href="pitch-deck.html">Pitch Deck</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 ZSIGNAL. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/z-engine.js" defer></script>
+  <script src="js/z-catalog.js" defer></script>
+  <script src="js/z-gallery.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ── STATE ──
+      const archetypes = ['FREE_FORM', 'GRID', 'REPETITION', 'CONSTRUCTIVIST', 'COLOR_STUDY', 'DOT_FIELD', 'ARABIAN_GEOMETRIC'];
+      const palettes = ['ZSIGNAL', 'CLASSIC_BAUHAUS', 'CONSTRUCTIVIST', 'WARM_EARTH', 'COOL_STEEL', 'MONOCHROME'];
+
+      let state = {
+        archetype: 'FREE_FORM',
+        palette: 'ZSIGNAL',
+        density: 0.5,
+        seed: Math.floor(Math.random() * 99999)
+      };
+      let remixParentId = null;
+      let genesisController = null;
+
+      const canvas = document.getElementById('studio-canvas');
+      const seedInput = document.getElementById('studio-seed');
+      const densitySlider = document.getElementById('studio-density');
+      const densityVal = document.getElementById('studio-density-val');
+      const toast = document.getElementById('studio-toast');
+      const toastMsg = document.getElementById('toast-message');
+
+      seedInput.value = state.seed;
+
+      function showToast(msg) {
+        toastMsg.textContent = msg;
+        toast.classList.add('active');
+        setTimeout(() => toast.classList.remove('active'), 2500);
+      }
+
+      // ── RENDER ──
+      function renderStudio() {
+        ZEngine.render(canvas, {
+          archetype: state.archetype,
+          palette: state.palette,
+          seed: state.seed,
+          density: state.density
+        });
+        document.getElementById('studio-info-archetype').textContent = state.archetype;
+        document.getElementById('studio-info-palette').textContent = state.palette;
+        document.getElementById('studio-info-seed').textContent = state.seed;
+        document.getElementById('studio-info-density').textContent = state.density.toFixed(2);
+
+        // Shareable URL
+        const url = new URL(window.location);
+        url.searchParams.set('archetype', state.archetype);
+        url.searchParams.set('palette', state.palette);
+        url.searchParams.set('seed', state.seed);
+        url.searchParams.set('density', state.density);
+        if (remixParentId) url.searchParams.set('remix', remixParentId);
+        history.replaceState(null, '', url);
+      }
+
+      // ── PILL CONTROLS ──
+      function bindPills(containerId, key) {
+        document.querySelectorAll(`#${containerId} .studio-pill`).forEach(pill => {
+          pill.addEventListener('click', () => {
+            document.querySelectorAll(`#${containerId} .studio-pill`).forEach(p => {
+              p.classList.remove('active');
+              p.setAttribute('aria-pressed', 'false');
+            });
+            pill.classList.add('active');
+            pill.setAttribute('aria-pressed', 'true');
+            state[key] = pill.dataset.val;
+            renderStudio();
+          });
+        });
+      }
+      bindPills('studio-archetypes', 'archetype');
+      bindPills('studio-palettes', 'palette');
+
+      // ── DENSITY SLIDER ──
+      densitySlider.addEventListener('input', () => {
+        state.density = parseFloat(densitySlider.value);
+        densityVal.textContent = state.density.toFixed(2);
+        renderStudio();
+      });
+
+      // ── SEED INPUT ──
+      seedInput.addEventListener('change', () => {
+        state.seed = parseInt(seedInput.value, 10) || 0;
+        renderStudio();
+      });
+
+      // ── RANDOMIZE ──
+      document.getElementById('studio-randomize').addEventListener('click', () => {
+        state.seed = Math.floor(Math.random() * 99999);
+        seedInput.value = state.seed;
+        renderStudio();
+      });
+
+      // ── RANDOM COMBINATION ──
+      document.getElementById('studio-random-combo').addEventListener('click', () => {
+        state.archetype = archetypes[Math.floor(Math.random() * archetypes.length)];
+        state.palette = palettes[Math.floor(Math.random() * palettes.length)];
+        state.seed = Math.floor(Math.random() * 99999);
+        state.density = Math.round((0.2 + Math.random() * 0.6) * 20) / 20; // snap to 0.05
+        // Sync UI
+        seedInput.value = state.seed;
+        densitySlider.value = state.density;
+        densityVal.textContent = state.density.toFixed(2);
+        document.querySelectorAll('#studio-archetypes .studio-pill').forEach(p => {
+          const isActive = p.dataset.val === state.archetype;
+          p.classList.toggle('active', isActive);
+          p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        document.querySelectorAll('#studio-palettes .studio-pill').forEach(p => {
+          const isActive = p.dataset.val === state.palette;
+          p.classList.toggle('active', isActive);
+          p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        renderStudio();
+      });
+
+      // ── GENESIS ANIMATION ──
+      document.getElementById('studio-genesis').addEventListener('click', () => {
+        if (genesisController && genesisController.isPlaying()) {
+          genesisController.reveal();
+          return;
+        }
+        genesisController = ZEngine.renderAnimated(canvas, {
+          archetype: state.archetype,
+          palette: state.palette,
+          seed: state.seed,
+          density: state.density
+        }, { delayPerElement: 140, initialDelay: 300 });
+        genesisController.play();
+      });
+
+      // ── DOWNLOAD SVG ──
+      document.getElementById('studio-download').addEventListener('click', () => {
+        const svgEl = canvas.querySelector('svg');
+        if (!svgEl) return;
+        const serializer = new XMLSerializer();
+        const svgString = serializer.serializeToString(svgEl);
+        const blob = new Blob([svgString], { type: 'image/svg+xml' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `zsignal-${state.archetype.toLowerCase()}-${state.seed}.svg`;
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      // ── COLLECTION (localStorage) ──
+      const STORAGE_KEY = 'z-gallery-collection';
+
+      function loadCollection() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        } catch { return []; }
+      }
+
+      function saveCollection(collection) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(collection));
+        } catch (e) {
+          console.warn('Could not save collection:', e.message);
+        }
+      }
+
+      function renderCollection() {
+        const collection = loadCollection();
+        const grid = document.getElementById('collection-grid');
+        const empty = document.getElementById('collection-empty');
+
+        if (collection.length === 0) {
+          grid.style.display = 'none';
+          empty.style.display = '';
+          return;
+        }
+
+        grid.style.display = '';
+        empty.style.display = 'none';
+        grid.innerHTML = '';
+
+        collection.forEach((item, idx) => {
+          const card = document.createElement('div');
+          card.className = 'collection-card';
+
+          const artDiv = document.createElement('div');
+          artDiv.className = 'collection-card-art';
+          artDiv.addEventListener('click', () => loadItem(item));
+
+          ZEngine.render(artDiv, {
+            archetype: item.archetype,
+            palette: item.palette,
+            seed: item.seed,
+            density: item.density
+          });
+
+          const meta = document.createElement('div');
+          meta.className = 'collection-card-meta';
+          meta.innerHTML = `
+            <div class="collection-card-params">
+              ${ZGallery.ARCHETYPE_LABELS[item.archetype] || item.archetype} &middot; ${item.palette}<br>
+              Seed: ${item.seed} &middot; Density: ${item.density}
+            </div>
+            <div class="collection-card-actions">
+              <button class="collection-card-btn load-btn" data-idx="${idx}">Load</button>
+              <button class="collection-card-btn delete" data-idx="${idx}">Remove</button>
+            </div>
+          `;
+
+          card.appendChild(artDiv);
+          card.appendChild(meta);
+          grid.appendChild(card);
+        });
+
+        // Bind buttons
+        grid.querySelectorAll('.load-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const item = collection[parseInt(btn.dataset.idx, 10)];
+            if (item) loadItem(item);
+          });
+        });
+        grid.querySelectorAll('.delete').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const col = loadCollection();
+            col.splice(parseInt(btn.dataset.idx, 10), 1);
+            saveCollection(col);
+            renderCollection();
+          });
+        });
+      }
+
+      function loadItem(item) {
+        state.archetype = item.archetype;
+        state.palette = item.palette;
+        state.seed = item.seed;
+        state.density = item.density;
+        seedInput.value = state.seed;
+        densitySlider.value = state.density;
+        densityVal.textContent = state.density.toFixed(2);
+        document.querySelectorAll('#studio-archetypes .studio-pill').forEach(p => {
+          const isActive = p.dataset.val === state.archetype;
+          p.classList.toggle('active', isActive);
+          p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        document.querySelectorAll('#studio-palettes .studio-pill').forEach(p => {
+          const isActive = p.dataset.val === state.palette;
+          p.classList.toggle('active', isActive);
+          p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        renderStudio();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // ── CLAIM FLOW ──
+      const claimBtn = document.getElementById('studio-claim');
+      const claimModal = document.getElementById('claim-modal');
+      const claimForm = document.getElementById('claim-form');
+
+      claimBtn.addEventListener('click', () => {
+        // Pre-fill modal
+        document.getElementById('claim-archetype').value = state.archetype;
+        document.getElementById('claim-palette').value = state.palette;
+        document.getElementById('claim-seed').value = state.seed;
+        document.getElementById('claim-density').value = state.density;
+        document.getElementById('claim-summary').innerHTML = `
+          <strong>${ZGallery.ARCHETYPE_LABELS[state.archetype] || state.archetype}</strong> &middot; ${state.palette}<br>
+          Seed: ${state.seed} &middot; Density: ${state.density.toFixed(2)}<br>
+          <span style="color:var(--z-gold);">Limited to 10 prints</span>
+        `;
+        claimModal.classList.add('active');
+      });
+
+      claimModal.addEventListener('click', (e) => {
+        if (e.target === claimModal || e.target.closest('.modal-close')) {
+          claimModal.classList.remove('active');
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && claimModal.classList.contains('active')) {
+          claimModal.classList.remove('active');
+        }
+      });
+
+      claimForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('claim-email').value;
+
+        // Submit to Netlify Forms
+        const formData = new URLSearchParams(new FormData(claimForm)).toString();
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: formData
+        }).catch(() => {}); // Silent fail — collection still saved locally
+
+        // Save to collection (no email stored locally for privacy)
+        const collection = loadCollection();
+        const exists = collection.some(item =>
+          item.archetype === state.archetype &&
+          item.palette === state.palette &&
+          item.seed === state.seed &&
+          item.density === state.density
+        );
+
+        if (!exists) {
+          collection.unshift({
+            archetype: state.archetype,
+            palette: state.palette,
+            seed: state.seed,
+            density: state.density,
+            claimedAt: Date.now()
+          });
+          saveCollection(collection);
+        }
+
+        // Show confirmation in modal
+        claimModal.querySelector('.modal').innerHTML = `
+          <h3>Seed Claimed!</h3>
+          <p style="color:rgba(28,28,28,0.6);margin-bottom:16px;">Your composition has been saved to your collection and we'll contact you at <strong>${email}</strong> about print options.</p>
+          <div style="font-family:var(--z-font-mono);font-size:13px;padding:16px;border:2px solid var(--z-charcoal);margin-bottom:24px;text-align:left;">
+            ${ZGallery.ARCHETYPE_LABELS[state.archetype]} &middot; ${state.palette}<br>
+            Seed: ${state.seed} &middot; Density: ${state.density.toFixed(2)}<br>
+            Limited edition: 10 prints
+          </div>
+          <button class="btn btn-secondary btn-full modal-close-btn">CLOSE</button>
+        `;
+        claimModal.querySelector('.modal-close-btn').addEventListener('click', () => {
+          claimModal.classList.remove('active');
+          // Rebuild modal for next use
+          setTimeout(() => location.reload(), 100);
+        });
+
+        // Flash success
+        canvas.classList.add('mint-flash');
+        setTimeout(() => canvas.classList.remove('mint-flash'), 700);
+
+        renderCollection();
+      });
+
+      // ── LOAD FROM URL PARAMS ──
+      const params = new URLSearchParams(window.location.search);
+
+      // Handle remix entry
+      if (params.has('remix')) {
+        remixParentId = params.get('remix');
+        const parentWork = ZCatalog.getById(remixParentId);
+        if (parentWork) {
+          document.getElementById('remix-banner').style.display = '';
+          document.getElementById('remix-parent-title').textContent = parentWork.title;
+        }
+      }
+
+      // Load params (from URL share or remix)
+      if (params.has('archetype')) state.archetype = params.get('archetype');
+      if (params.has('palette')) state.palette = params.get('palette');
+      if (params.has('seed')) state.seed = parseInt(params.get('seed'), 10);
+      if (params.has('density')) state.density = parseFloat(params.get('density'));
+      // Legacy param support
+      if (params.has('a')) state.archetype = params.get('a');
+      if (params.has('p')) state.palette = params.get('p');
+      if (params.has('s')) state.seed = parseInt(params.get('s'), 10);
+      if (params.has('d')) state.density = parseFloat(params.get('d'));
+
+      // Sync UI to loaded state
+      seedInput.value = state.seed;
+      densitySlider.value = state.density;
+      densityVal.textContent = state.density.toFixed(2);
+      document.querySelectorAll('#studio-archetypes .studio-pill').forEach(p => {
+        const isActive = p.dataset.val === state.archetype;
+        p.classList.toggle('active', isActive);
+        p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+      document.querySelectorAll('#studio-palettes .studio-pill').forEach(p => {
+        const isActive = p.dataset.val === state.palette;
+        p.classList.toggle('active', isActive);
+        p.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      // ── STARTER SEEDS ──
+      const STARTERS = [
+        { name: 'Grid Gold',   sub: 'GRID · ZSIGNAL',           archetype: 'GRID',             palette: 'ZSIGNAL',         seed: 12345, density: 0.50 },
+        { name: 'Wave Field',  sub: 'REPETITION · CLASSIC',     archetype: 'REPETITION',        palette: 'CLASSIC_BAUHAUS', seed: 54321, density: 0.60 },
+        { name: 'Muqarnas',   sub: 'ARABIAN · WARM EARTH',     archetype: 'ARABIAN_GEOMETRIC', palette: 'WARM_EARTH',      seed: 77777, density: 0.70 },
+        { name: 'Albers',     sub: 'COLOR STUDY · COOL STEEL', archetype: 'COLOR_STUDY',       palette: 'COOL_STEEL',      seed: 33333, density: 0.50 },
+        { name: 'Signal',     sub: 'FREE FORM · MONO',         archetype: 'FREE_FORM',         palette: 'MONOCHROME',      seed: 11111, density: 0.40 },
+        { name: 'Red Wedge',  sub: 'CONSTRUCTIVIST · SOVIET',  archetype: 'CONSTRUCTIVIST',    palette: 'CONSTRUCTIVIST',  seed: 42000, density: 0.55 },
+      ];
+
+      function renderStarters() {
+        const grid = document.getElementById('starter-grid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        STARTERS.forEach(s => {
+          const card = document.createElement('button');
+          card.className = 'studio-starter-card';
+          card.setAttribute('aria-label', `Load ${s.name}: ${s.sub}`);
+          const artDiv = document.createElement('div');
+          artDiv.className = 'studio-starter-art';
+          const meta = document.createElement('div');
+          meta.className = 'studio-starter-meta';
+          meta.innerHTML = `<div class="studio-starter-name">${s.name}</div><div class="studio-starter-sub">${s.sub}</div>`;
+          card.appendChild(artDiv);
+          card.appendChild(meta);
+          grid.appendChild(card);
+          ZEngine.render(artDiv, { archetype: s.archetype, palette: s.palette, seed: s.seed, density: s.density });
+          card.addEventListener('click', () => loadItem(s));
+        });
+      }
+
+      // ── INIT ──
+      renderStudio();
+      renderCollection();
+      renderStarters();
+    });
+  </script>
+  <script src="js/z-chatbot.js" defer></script>
+  <script src="js/zs-motion.js" defer></script>
+</body>
+</html>

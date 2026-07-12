@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZSIGNAL — Theory</title>
+  <meta name="description" content="The theory behind ZSIGNAL: why deterministic generative art matters, how seeds become signatures, and the compositional rules inherited from seven master artists across the Bauhaus and Islamic geometric traditions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css?v=11">
+  <link rel="stylesheet" href="css/z-gallery.css?v=11">
+</head>
+<body class="cinematic-mode">
+  <div class="zs-noise-overlay"></div>
+
+  <!-- Skip link for keyboard users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+      <nav class="nav" id="nav">
+        <a href="gallery.html">Gallery</a>
+        <a href="studio.html">Studio</a>
+        <a href="artist.html">AI Artists</a>
+        <a href="theory.html" class="active">Theory</a>
+        <a href="generator.html">Generator</a>
+      </nav>
+      <div class="header-actions">
+        <a href="studio.html" class="btn btn-primary btn-sm">CREATE</a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+  <!-- ═══════════════════════════════════════════
+       HERO — cinematic dark, live art, stats, chapter nav
+       ═══════════════════════════════════════════ -->
+  <section class="theory-hero" id="theory-hero">
+    <div class="theory-hero-content">
+      <div class="theory-hero-eyebrow">ZSIGNAL &mdash; A Manifesto of Constraints</div>
+      <h1>THE<span>THEORY</span></h1>
+      <p class="theory-hero-tagline">Seven master artists. Four immutable principles. One deterministic engine. This is how algorithm becomes art.</p>
+
+      <div class="theory-stats">
+        <div class="theory-stat">
+          <span class="theory-stat-num">4</span>
+          <span class="theory-stat-label">Principles</span>
+        </div>
+        <div class="theory-stat">
+          <span class="theory-stat-num">7</span>
+          <span class="theory-stat-label">Archetypes</span>
+        </div>
+        <div class="theory-stat">
+          <span class="theory-stat-num">12</span>
+          <span class="theory-stat-label">Primitives</span>
+        </div>
+        <div class="theory-stat">
+          <span class="theory-stat-num">6</span>
+          <span class="theory-stat-label">Palettes</span>
+        </div>
+      </div>
+
+      <nav class="theory-chapter-nav" aria-label="Page sections">
+        <button class="theory-chapter-btn" onclick="document.getElementById('principles').scrollIntoView({behavior:'smooth'})">01&nbsp;Principles</button>
+        <button class="theory-chapter-btn" onclick="document.getElementById('artists').scrollIntoView({behavior:'smooth'})">02&nbsp;Artists</button>
+        <button class="theory-chapter-btn" onclick="document.getElementById('genome').scrollIntoView({behavior:'smooth'})">03&nbsp;Genome</button>
+        <button class="theory-chapter-btn" onclick="document.getElementById('engine').scrollIntoView({behavior:'smooth'})">04&nbsp;Engine</button>
+        <button class="theory-chapter-btn" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">05&nbsp;FAQ</button>
+      </nav>
+    </div>
+
+    <div class="theory-hero-art" id="theory-hero-art">
+      <div class="theory-hero-art-dot" aria-hidden="true"></div>
+      <div class="theory-hero-art-meta">
+        <span id="theory-hero-archetype-label">ARABIAN_GEOMETRIC</span>
+        <span id="theory-hero-seed-label">Seed 91637</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       MANIFESTO SCROLL — philosophy demonstrates itself
+       ═══════════════════════════════════════════ -->
+  <section class="manifesto-scroll" id="manifesto">
+    <div class="container">
+      <div class="section-header" style="text-align:center;">
+        <h2>The Manifesto</h2>
+        <p>Four principles. Each one demonstrated as you read it.</p>
+      </div>
+
+      <div class="manifesto-statement"
+           data-archetype="DOT_FIELD" data-palette="ZSIGNAL" data-seed="42718" data-density="0.65">
+        <div class="manifesto-text-block">
+          <p class="manifesto-statement-text">"Density creates form."</p>
+          <p class="manifesto-attribution">Moholy-Nagy &middot; DOT_FIELD &middot; Seed 42718</p>
+        </div>
+        <div class="manifesto-art" data-manifesto-art></div>
+      </div>
+
+      <div class="manifesto-statement reverse"
+           data-archetype="GRID" data-palette="CLASSIC_BAUHAUS" data-seed="84123" data-density="0.7">
+        <div class="manifesto-text-block">
+          <p class="manifesto-statement-text">"Structure is liberty."</p>
+          <p class="manifesto-attribution">Albers &middot; GRID &middot; Seed 84123</p>
+        </div>
+        <div class="manifesto-art" data-manifesto-art></div>
+      </div>
+
+      <div class="manifesto-statement"
+           data-archetype="CONSTRUCTIVIST" data-palette="CONSTRUCTIVIST" data-seed="23456" data-density="0.5">
+        <div class="manifesto-text-block">
+          <p class="manifesto-statement-text">"Tension is energy."</p>
+          <p class="manifesto-attribution">Rodchenko &middot; CONSTRUCTIVIST &middot; Seed 23456</p>
+        </div>
+        <div class="manifesto-art" data-manifesto-art></div>
+      </div>
+
+      <div class="manifesto-statement reverse"
+           data-archetype="COLOR_STUDY" data-palette="WARM_EARTH" data-seed="34521" data-density="0.5">
+        <div class="manifesto-text-block">
+          <p class="manifesto-statement-text">"Colour is not decoration.<br>It is structure."</p>
+          <p class="manifesto-attribution">Itten &middot; COLOR_STUDY &middot; Seed 34521</p>
+        </div>
+        <div class="manifesto-art" data-manifesto-art></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PRINCIPLES — interactive story, 4 steps
+       ═══════════════════════════════════════════ -->
+  <section class="theory-story-section section" id="principles">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Determinism Matters</h2>
+        <p>Four principles that separate ZSIGNAL from the chaos of generative AI. Click each to explore.</p>
+      </div>
+
+      <div class="theory-story">
+        <!-- Steps -->
+        <div class="theory-story-steps" role="list">
+
+          <div class="theory-step active" role="listitem" data-step="0"
+               data-archetype="FREE_FORM" data-palette="ZSIGNAL" data-seed="42718" data-density="0.5"
+               data-label="FREE_FORM · ZSIGNAL · Seed 42718">
+            <span class="theory-step-num">Principle 01</span>
+            <h3>Seeds as Signatures</h3>
+            <div class="theory-step-body">Every ZSIGNAL artwork is defined by four parameters: archetype, palette, seed, and density. The seed is a number&mdash;but it functions as a signature. Change one digit and you get an entirely different composition. The same seed always produces the same output. This is not randomness wearing a mask. It is identity encoded in mathematics. When you collect a seed, you collect a specific, unrepeatable moment in the system&rsquo;s possibility space.</div>
+            <span class="theory-step-arrow" aria-hidden="true">&#8594;</span>
+          </div>
+
+          <div class="theory-step" role="listitem" data-step="1"
+               data-archetype="CONSTRUCTIVIST" data-palette="CONSTRUCTIVIST" data-seed="23456" data-density="0.5"
+               data-label="CONSTRUCTIVIST · Seed 23456">
+            <span class="theory-step-num">Principle 02</span>
+            <h3>Constraint as Canvas</h3>
+            <div class="theory-step-body">ZSIGNAL does not aspire to infinite expression. It aspires to the beauty that emerges when rules are tight. Twelve primitives. Six palettes. Seven archetypes. Zero border-radius. These are not limitations&mdash;they are the grammar of a visual language. The Bauhaus masters understood this: when you reduce the vocabulary, every remaining word carries maximum weight. A circle in a ZSIGNAL composition is never decorative. It is structural.</div>
+            <span class="theory-step-arrow" aria-hidden="true">&#8594;</span>
+          </div>
+
+          <div class="theory-step" role="listitem" data-step="2"
+               data-archetype="ARABIAN_GEOMETRIC" data-palette="ZSIGNAL" data-seed="58309" data-density="0.65"
+               data-label="ARABIAN_GEOMETRIC · ZSIGNAL · Seed 58309">
+            <span class="theory-step-num">Principle 03</span>
+            <h3>Scarcity by Design</h3>
+            <div class="theory-step-body">The ZIGNAL.ENGINE can generate billions of unique compositions. But ZSIGNAL is not a faucet&mdash;it is a curated system. Only 31 seeds have been selected as canonical works. Each canonical work is a limited edition: a fixed number of prints, each tied to a specific seed. When all editions are claimed, that seed is closed. The engine still runs. The art still renders. But the edition is complete. Scarcity is not artificial&mdash;it is architectural.</div>
+            <span class="theory-step-arrow" aria-hidden="true">&#8594;</span>
+          </div>
+
+          <div class="theory-step" role="listitem" data-step="3"
+               data-archetype="COLOR_STUDY" data-palette="CLASSIC_BAUHAUS" data-seed="34521" data-density="0.5"
+               data-label="COLOR_STUDY · CLASSIC_BAUHAUS · Seed 34521">
+            <span class="theory-step-num">Principle 04</span>
+            <h3>Collecting as Participation</h3>
+            <div class="theory-step-body">Owning a ZSIGNAL work is not passive consumption. Every collector receives the seed&mdash;the complete genetic code of their artwork. They can verify it in the Studio. They can remix it into new compositions. They can trace its lineage back to the master artist tradition that spawned its archetype. Collecting is not the end of the creative process. It is entry into it. The artwork is the invitation. The system is the gift.</div>
+            <span class="theory-step-arrow" aria-hidden="true">&#8594;</span>
+          </div>
+
+        </div>
+
+        <!-- Live Canvas -->
+        <div class="theory-story-canvas">
+          <div class="theory-story-art" id="story-art" aria-label="Interactive principle artwork"></div>
+          <div class="theory-story-params" id="story-params">
+            <span class="theory-param-tag" id="story-param-arch">FREE_FORM</span>
+            <span class="theory-param-tag" id="story-param-palette">ZSIGNAL</span>
+            <span class="theory-param-tag" id="story-param-seed">Seed 42718</span>
+          </div>
+          <div class="theory-story-caption" id="story-caption">Seed 42718 &mdash; always the same output</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       MASTER ARTISTS — era timeline + grid
+       ═══════════════════════════════════════════ -->
+  <section class="section" id="artists">
+    <div class="container">
+      <div class="section-header">
+        <h2>Master Artists</h2>
+        <p>Seven artists whose compositional principles are encoded into the ZIGNAL.ENGINE. Each archetype is a direct translation of their visual language into algorithmic rules.</p>
+      </div>
+
+      <!-- Era Timeline -->
+      <div class="theory-timeline" role="tablist" aria-label="Artist eras">
+        <div class="theory-timeline-item active" role="tab" data-era="0" tabindex="0">
+          <span class="theory-timeline-era">I</span>
+          <span class="theory-timeline-name">FREE_FORM</span>
+        </div>
+        <div class="theory-timeline-item" role="tab" data-era="1" tabindex="0">
+          <span class="theory-timeline-era">II</span>
+          <span class="theory-timeline-name">GRID</span>
+        </div>
+        <div class="theory-timeline-item" role="tab" data-era="2" tabindex="0">
+          <span class="theory-timeline-era">III</span>
+          <span class="theory-timeline-name">REPETITION</span>
+        </div>
+        <div class="theory-timeline-item" role="tab" data-era="3" tabindex="0">
+          <span class="theory-timeline-era">IV</span>
+          <span class="theory-timeline-name">CONSTRUCTIVIST</span>
+        </div>
+        <div class="theory-timeline-item" role="tab" data-era="4" tabindex="0">
+          <span class="theory-timeline-era">V</span>
+          <span class="theory-timeline-name">COLOR_STUDY</span>
+        </div>
+        <div class="theory-timeline-item" role="tab" data-era="5" tabindex="0">
+          <span class="theory-timeline-era">VI</span>
+          <span class="theory-timeline-name">DOT_FIELD</span>
+        </div>
+        <div class="theory-timeline-item" role="tab" data-era="6" tabindex="0">
+          <span class="theory-timeline-era">VII</span>
+          <span class="theory-timeline-name">ARABIAN</span>
+        </div>
+      </div>
+
+      <!-- Era Time Machine Scrubber -->
+      <div class="era-machine-scrubber" id="era-machine">
+        <div class="era-machine-label">Drag to travel through time &mdash; 2018 &rarr; 2025</div>
+        <div class="era-machine-slider-wrap">
+          <input type="range" class="era-machine-slider" id="era-slider"
+                 min="0" max="6" value="0" step="1"
+                 aria-label="Era selector">
+          <div class="era-machine-years">
+            <span>2018</span><span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2025</span>
+          </div>
+        </div>
+        <div class="era-machine-stage">
+          <div class="era-machine-art" id="era-machine-art" aria-label="Era artwork"></div>
+          <div class="era-machine-info" id="era-machine-info">
+            <div class="era-machine-roman" id="era-roman">I</div>
+            <div class="era-machine-era-name" id="era-era-name">FREE_FORM</div>
+            <div class="era-machine-year" id="era-year">2018</div>
+            <div class="era-machine-desc" id="era-desc">Organic exploration &mdash; the engine&rsquo;s first language. Forms emerge without constraint, following only the logic of the seed.</div>
+            <div class="era-machine-archetype-tag" id="era-archetype-tag">FREE_FORM &middot; ZSIGNAL</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Artist Grid -->
+      <div class="grid-3" style="gap:32px;">
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="0" aria-label="FREE_FORM generative artwork"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era I &middot; FREE_FORM</div>
+          <h3>L&aacute;szl&oacute; Moholy-Nagy</h3>
+          <p>Hungarian-American, 1895&ndash;1946. Bauhaus master of light, transparency, and industrial precision. His &ldquo;telephone paintings&rdquo; (1922) pioneered art-by-instruction&mdash;the ancestor of generative art.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="1" aria-label="GRID generative artwork"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era II &middot; GRID</div>
+          <h3>Piet Mondrian &amp; Kandinsky</h3>
+          <p>Mondrian reduced painting to asymmetric grids of primary colors. Kandinsky composed floating geometric forms. Together they define the GRID archetype&rsquo;s two strategies.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="2" aria-label="REPETITION generative artwork"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era III &middot; REPETITION</div>
+          <h3>Paul Klee &amp; Bridget Riley</h3>
+          <p>Klee treated visual composition as musical notation. Riley created optical vibration through systematic size progressions. Their shared rhythm defines the REPETITION archetype.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="3" aria-label="CONSTRUCTIVIST generative artwork"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era IV &middot; CONSTRUCTIVIST</div>
+          <h3>El Lissitzky &amp; Malevich</h3>
+          <p>Lissitzky weaponized geometry in &ldquo;Beat the Whites with the Red Wedge&rdquo; (1920). Malevich reduced art to pure geometric sensation. The CONSTRUCTIVIST archetype channels their dynamic tension.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="4" aria-label="COLOR_STUDY generative artwork"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era V &middot; COLOR_STUDY</div>
+          <h3>Josef Albers</h3>
+          <p>German-American, 1888&ndash;1976. His &ldquo;Homage to the Square&rdquo; series is art history&rsquo;s most rigorous investigation of color interaction. The COLOR_STUDY archetype faithfully encodes his proportional system.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="5" aria-label="DOT_FIELD generative artwork"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era VI &middot; DOT_FIELD</div>
+          <h3>Herbert Bayer &amp; Victor Vasarely</h3>
+          <p>Bayer pioneered typographic experiments with mathematical grids. Vasarely created sphere illusions through dot modulation. Their legacy drives the DOT_FIELD archetype.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="theory-card-art" data-theory-art="6" aria-label="ARABIAN_GEOMETRIC generative artwork"></div>
+          <div style="font-family:var(--z-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--z-gold);margin-bottom:4px;">Era VII &middot; ARABIAN_GEOMETRIC</div>
+          <h3>Alhambra, Isfahan &amp; Mamluk Masters</h3>
+          <p>The unnamed artisans of Islamic geometric art (8th&ndash;16th century) created the world&rsquo;s most sophisticated tessellation systems&mdash;mathematical abstraction centuries before Mondrian.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       THE GENOME — visual rules grid
+       ═══════════════════════════════════════════ -->
+  <section class="section section-alt" id="genome">
+    <div class="container">
+      <div class="section-header">
+        <h2>The Z&#8209;Signal Genome</h2>
+        <p>Immutable constraints that define every ZSIGNAL composition. Not limitations&mdash;grammar.</p>
+      </div>
+
+      <div class="theory-genome-grid">
+
+        <!-- Typography -->
+        <div class="theory-genome-cell">
+          <div class="theory-genome-visual">
+            <span class="genome-type-demo">IBM<br>Plex</span>
+          </div>
+          <span class="theory-genome-rule-label">Rule 01</span>
+          <h3>Typography</h3>
+          <p>IBM Plex Mono only. Monospace is the voice of the machine that generates the art. No serifs. No compromise.</p>
+        </div>
+
+        <!-- Borders -->
+        <div class="theory-genome-cell">
+          <div class="theory-genome-visual">
+            <div class="genome-border-demo"></div>
+            <div style="font-family:var(--z-font-mono);font-size:11px;color:var(--z-charcoal-40);margin-left:12px;">2px solid</div>
+          </div>
+          <span class="theory-genome-rule-label">Rule 02</span>
+          <h3>Borders</h3>
+          <p>2px solid, always. No gradients. The terminal shadow is the only allowed depth: 6px offset, 12% opacity.</p>
+        </div>
+
+        <!-- Corners -->
+        <div class="theory-genome-cell">
+          <div class="theory-genome-visual">
+            <div class="genome-corner-demo"></div>
+            <div style="font-family:var(--z-font-mono);font-size:11px;color:var(--z-charcoal-40);margin-left:12px;">radius: 0</div>
+          </div>
+          <span class="theory-genome-rule-label">Rule 03</span>
+          <h3>Sharp Corners</h3>
+          <p>Zero border-radius. Roundness is reserved for compositional shapes, never for UI elements. The machine is precise.</p>
+        </div>
+
+        <!-- Color Ground -->
+        <div class="theory-genome-cell">
+          <div class="theory-genome-visual">
+            <div class="genome-color-swatch" style="background:#F2E8D5;"></div>
+            <div class="genome-color-swatch" style="background:#1C1C1C;margin-left:6px;"></div>
+            <div class="genome-color-swatch" style="background:#D4A84B;margin-left:6px;"></div>
+          </div>
+          <span class="theory-genome-rule-label">Rule 04</span>
+          <h3>Color Ground</h3>
+          <p>Cream #F2E8D5 + charcoal #1C1C1C + gold #D4A84B. Aged paper meets typeset ink meets the universal signal.</p>
+        </div>
+
+        <!-- Determinism -->
+        <div class="theory-genome-cell">
+          <div class="theory-genome-visual">
+            <span class="genome-det-demo">f(seed) = &alpha;</span>
+          </div>
+          <span class="theory-genome-rule-label">Rule 05</span>
+          <h3>Determinism</h3>
+          <p>Same archetype + palette + seed = same output, always. No randomness in execution. The art lies in the rules.</p>
+        </div>
+
+        <!-- 12 Primitives -->
+        <div class="theory-genome-cell">
+          <div class="theory-genome-visual">
+            <div class="genome-primitives-demo">
+              <svg width="20" height="20" viewBox="0 0 20 20"><rect x="2" y="2" width="16" height="16" fill="none" stroke="#1C1C1C" stroke-width="2"/></svg>
+              <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="#1C1C1C" stroke-width="2"/></svg>
+              <svg width="20" height="20" viewBox="0 0 20 20"><polygon points="10,2 18,18 2,18" fill="none" stroke="#1C1C1C" stroke-width="2"/></svg>
+              <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="4" fill="#D4A84B"/></svg>
+              <svg width="20" height="20" viewBox="0 0 20 20"><line x1="10" y1="2" x2="10" y2="18" stroke="#1C1C1C" stroke-width="2"/><line x1="2" y1="10" x2="18" y2="10" stroke="#1C1C1C" stroke-width="2"/></svg>
+            </div>
+          </div>
+          <span class="theory-genome-rule-label">Rule 06</span>
+          <h3>12 Primitives</h3>
+          <p>Rect, circle, triangle, semicircle, quarter-circle, wedge, bar, trapezoid, dot, cross, arc, concentric ring. No curves beyond arcs.</p>
+        </div>
+
+        <!-- 6 Palettes -->
+        <div class="theory-genome-cell">
+          <div class="theory-genome-visual">
+            <div class="genome-palette-swatches">
+              <div class="genome-palette-swatch" style="height:32px;background:#D4A84B;"></div>
+              <div class="genome-palette-swatch" style="height:28px;background:#A84235;"></div>
+              <div class="genome-palette-swatch" style="height:24px;background:#2E5F94;"></div>
+              <div class="genome-palette-swatch" style="height:20px;background:#566832;"></div>
+              <div class="genome-palette-swatch" style="height:16px;background:#7A9BB5;"></div>
+              <div class="genome-palette-swatch" style="height:12px;background:#1C1C1C;"></div>
+            </div>
+          </div>
+          <span class="theory-genome-rule-label">Rule 07</span>
+          <h3>6 Palettes</h3>
+          <p>ZSIGNAL, Classic Bauhaus, Constructivist, Warm Earth, Cool Steel, Monochrome. Each derived from the master artist tradition it serves.</p>
+        </div>
+
+        <!-- Gold Signal -->
+        <div class="theory-genome-cell">
+          <div class="theory-genome-visual">
+            <div style="width:48px;height:48px;background:var(--z-gold);box-shadow:6px 6px 0 rgba(28,28,28,0.12);"></div>
+          </div>
+          <span class="theory-genome-rule-label">Rule 08</span>
+          <h3>Gold Signal</h3>
+          <p>Gold (#D4A84B) is the universal accent. It appears in every composition as a focal point&mdash;the message in the noise. The signal in the system.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       THE ENGINE — interactive demo
+       ═══════════════════════════════════════════ -->
+  <section class="section" id="engine">
+    <div class="container">
+      <div class="section-header">
+        <h2>The Engine</h2>
+        <p>Every artwork is generated by the ZIGNAL.ENGINE&mdash;a compositional system built on Bauhaus and Islamic geometric principles. Try it yourself.</p>
+      </div>
+      <div style="max-width:800px;margin:0 auto;">
+        <div class="demo-controls">
+          <div class="filter-group">
+            <span class="filter-label">Archetype</span>
+            <button class="filter-pill demo-archetype active" data-archetype="FREE_FORM">Free Form</button>
+            <button class="filter-pill demo-archetype" data-archetype="GRID">Grid</button>
+            <button class="filter-pill demo-archetype" data-archetype="REPETITION">Repetition</button>
+            <button class="filter-pill demo-archetype" data-archetype="CONSTRUCTIVIST">Constructivist</button>
+            <button class="filter-pill demo-archetype" data-archetype="COLOR_STUDY">Color Study</button>
+            <button class="filter-pill demo-archetype" data-archetype="DOT_FIELD">Dot Field</button>
+            <button class="filter-pill demo-archetype" data-archetype="ARABIAN_GEOMETRIC">Arabian Geometric</button>
+          </div>
+        </div>
+        <div class="demo-controls">
+          <div class="filter-group">
+            <span class="filter-label">Palette</span>
+            <button class="filter-pill demo-palette active" data-palette="ZSIGNAL">ZSIGNAL</button>
+            <button class="filter-pill demo-palette" data-palette="CLASSIC_BAUHAUS">Classic</button>
+            <button class="filter-pill demo-palette" data-palette="WARM_EARTH">Warm Earth</button>
+            <button class="filter-pill demo-palette" data-palette="COOL_STEEL">Cool Steel</button>
+            <button class="filter-pill demo-palette" data-palette="MONOCHROME">Mono</button>
+          </div>
+        </div>
+        <div class="demo-controls">
+          <div class="filter-group" style="flex:1;">
+            <span class="filter-label">Density</span>
+            <input type="range" class="demo-density-slider" min="0.1" max="0.9" step="0.1" value="0.5" aria-label="Density slider">
+            <span class="demo-density-value">0.5</span>
+          </div>
+          <div class="demo-seed-display">
+            Seed: <span class="demo-seed-value">---</span>
+          </div>
+          <button class="btn btn-secondary btn-sm demo-regenerate">REGENERATE</button>
+        </div>
+        <div class="demo-canvas"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FAQ
+       ═══════════════════════════════════════════ -->
+  <section class="section section-alt" id="faq">
+    <div class="container" style="max-width:800px;">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            What is generative art?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Generative art is artwork created by a system&mdash;an algorithm, a set of rules, or a process&mdash;rather than by direct hand. The artist designs the system, and the system generates the composition. In ZSIGNAL&rsquo;s case, each artwork is defined by three parameters: an archetype (compositional grammar), a palette (color vocabulary), and a seed (specific instance). The system is deterministic: identical inputs always produce identical outputs.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            What does &ldquo;deterministic&rdquo; mean?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Deterministic means the same inputs always produce the same output. There is no true randomness in the ZIGNAL.ENGINE. The seed number drives a pseudorandom number generator (mulberry32) that produces a predictable sequence of decisions. This means your artwork is not a fleeting moment&mdash;it is a permanent, verifiable object. Anyone with the same seed, archetype, palette, and density will see exactly the same composition, on any device, at any time.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            What is a seed, and why does it matter?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">A seed is a number that initializes the generative engine. Think of it as the DNA of the artwork: it determines every shape, every position, every color choice. Each seed produces a unique composition. When you collect a ZSIGNAL work, you receive the seed along with the archetype, palette, and density&mdash;the complete genetic code. You can enter that seed in the Studio and watch the exact same artwork render before your eyes. The seed is your proof of authenticity.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            How do editions and scarcity work?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Each of the 31 canonical works has a fixed edition size (typically 10&ndash;30 prints). As collectors claim editions, the count decreases. Once all editions of a work are claimed, that seed is closed&mdash;no more prints of that specific work will be produced. The engine can still render the artwork (it is deterministic, after all), but the collectible edition is complete. This creates genuine scarcity rooted in the system&rsquo;s architecture, not artificial limitation.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            Can I create my own compositions?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Yes. The Studio is open to everyone. Choose an archetype, pick a palette, set a density, and explore as many seeds as you like. When you find a composition you love, you can claim it&mdash;this reserves a limited edition tied to that exact combination of parameters. You can also remix any existing canonical work as a starting point. Your claimed seeds are saved in your personal collection and persist across sessions.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            What is remixing?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Remixing is the act of taking an existing artwork&rsquo;s parameters and using them as a starting point for a new composition. Every artwork detail page has a &ldquo;Remix&rdquo; button that opens the Studio pre-loaded with that work&rsquo;s archetype, palette, seed, and density. From there, you can change any parameter to create something new. Remixed works carry a lineage&mdash;a visible chain connecting them to their parent composition. This makes creative evolution visible and traceable.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            What is the Arabian Geometric archetype?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">The newest archetype, ARABIAN_GEOMETRIC, draws on centuries of Islamic geometric art. Three strategies produce distinct compositions: star tessellations inspired by the Alhambra&rsquo;s zellige tilework, interlocking girih tile fields from Isfahan&rsquo;s Darb-e Imam shrine, and radial muqarnas dome patterns. These patterns use 6-fold, 8-fold, and 12-fold rotational symmetry&mdash;mathematical systems that predate European modernism by centuries.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            What is the Z-Signal genome?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">The Z-Signal genome is the set of immutable design constraints that define every ZSIGNAL composition: IBM Plex Mono typeface, 2px solid borders, zero border-radius (sharp corners only), the terminal shadow (6px offset), cream background, charcoal text, and gold as the universal accent color. These constraints derive from Bauhaus principles of geometric purity and functional typography. They cannot be overridden. They are the constitution of the system.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            How do I verify an artwork is authentic?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">Every ZSIGNAL artwork includes its full parameter set: archetype, palette, seed, and density. Enter those parameters in the Studio or on the artwork detail page and the engine will render the identical composition. If the output matches, the work is authentic. This is the power of determinism&mdash;verification is built into the system itself. No certificates needed. No third-party authentication. The math is the proof.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="cta-banner-art" id="theory-cta-art"></div>
+    <div class="cta-banner-content">
+      <h2>Start exploring</h2>
+      <p>Browse the complete collection of 31 generative compositions across 7 eras.</p>
+      <a href="gallery.html" class="btn btn-primary btn-lg">VIEW GALLERY</a>
+    </div>
+  </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+          <p>A deterministic generative art system. Every seed is a signature. Every constraint, a canvas.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="gallery.html">Gallery</a>
+          <a href="studio.html">Studio</a>
+          <a href="artist.html">AI Artists</a>
+          <a href="theory.html">Theory</a>
+          <a href="generator.html">Generator</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@zsignal.art">Contact</a>
+          <a href="theory.html#faq">FAQ</a>
+          <a href="pitch-deck.html">Pitch Deck</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 ZSIGNAL. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/z-engine.js" defer></script>
+  <script src="js/z-catalog.js" defer></script>
+  <script src="js/z-gallery.js" defer></script>
+  <script src="js/z-chatbot.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // ── Engine demo ──────────────────────────
+      ZGallery.initDemo();
+
+      // ── Theory card artworks (artist grid) ───
+      const theorySeeds = [
+        { archetype: 'FREE_FORM',          palette: 'ZSIGNAL',         seed: 42718, density: 0.5 },
+        { archetype: 'GRID',               palette: 'CLASSIC_BAUHAUS', seed: 84123, density: 0.7 },
+        { archetype: 'REPETITION',         palette: 'WARM_EARTH',      seed: 12456, density: 0.6 },
+        { archetype: 'CONSTRUCTIVIST',     palette: 'CONSTRUCTIVIST',  seed: 23456, density: 0.5 },
+        { archetype: 'COLOR_STUDY',        palette: 'CLASSIC_BAUHAUS', seed: 34521, density: 0.5 },
+        { archetype: 'DOT_FIELD',          palette: 'COOL_STEEL',      seed: 89034, density: 0.7 },
+        { archetype: 'ARABIAN_GEOMETRIC',  palette: 'WARM_EARTH',      seed: 72541, density: 0.6 }
+      ];
+      document.querySelectorAll('[data-theory-art]').forEach(el => {
+        const idx = parseInt(el.dataset.theoryArt, 10);
+        if (theorySeeds[idx]) ZEngine.render(el, theorySeeds[idx]);
+      });
+
+      // ── Hero art ─────────────────────────────
+      const heroArtEl = document.getElementById('theory-hero-art');
+      const heroArchetypeLabel = document.getElementById('theory-hero-archetype-label');
+      const heroSeedLabel = document.getElementById('theory-hero-seed-label');
+      const heroConfigs = [
+        { archetype: 'ARABIAN_GEOMETRIC', palette: 'ZSIGNAL',         seed: 91637, density: 0.6 },
+        { archetype: 'FREE_FORM',         palette: 'ZSIGNAL',         seed: 42718, density: 0.5 },
+        { archetype: 'CONSTRUCTIVIST',    palette: 'CONSTRUCTIVIST',  seed: 23456, density: 0.5 },
+        { archetype: 'DOT_FIELD',         palette: 'COOL_STEEL',      seed: 89034, density: 0.7 },
+      ];
+      let heroIdx = 0;
+      function renderHeroArt(cfg) {
+        ZEngine.render(heroArtEl, cfg);
+        heroArchetypeLabel.textContent = cfg.archetype;
+        heroSeedLabel.textContent = 'Seed ' + cfg.seed;
+      }
+      renderHeroArt(heroConfigs[0]);
+      setInterval(() => {
+        heroIdx = (heroIdx + 1) % heroConfigs.length;
+        renderHeroArt(heroConfigs[heroIdx]);
+      }, 4000);
+
+      // ── Interactive story steps ───────────────
+      const storyArtEl = document.getElementById('story-art');
+      const storyCaption = document.getElementById('story-caption');
+      const storyParamArch = document.getElementById('story-param-arch');
+      const storyParamPalette = document.getElementById('story-param-palette');
+      const storyParamSeed = document.getElementById('story-param-seed');
+
+      function activateStep(stepEl) {
+        document.querySelectorAll('.theory-step').forEach(s => s.classList.remove('active'));
+        stepEl.classList.add('active');
+
+        const cfg = {
+          archetype: stepEl.dataset.archetype,
+          palette:   stepEl.dataset.palette,
+          seed:      parseInt(stepEl.dataset.seed, 10),
+          density:   parseFloat(stepEl.dataset.density)
+        };
+        ZEngine.render(storyArtEl, cfg);
+        storyParamArch.textContent    = cfg.archetype;
+        storyParamPalette.textContent = cfg.palette;
+        storyParamSeed.textContent    = 'Seed ' + cfg.seed;
+        storyCaption.textContent      = stepEl.dataset.label;
+      }
+
+      // Render first step on load
+      const firstStep = document.querySelector('.theory-step[data-step="0"]');
+      if (firstStep) activateStep(firstStep);
+
+      document.querySelectorAll('.theory-step').forEach(step => {
+        step.addEventListener('click', () => activateStep(step));
+        step.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateStep(step); }
+        });
+        step.setAttribute('tabindex', '0');
+        step.setAttribute('role', 'button');
+      });
+
+      // ── Era timeline (decorative highlight) ──
+      document.querySelectorAll('.theory-timeline-item').forEach(item => {
+        item.addEventListener('click', () => {
+          document.querySelectorAll('.theory-timeline-item').forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+        });
+        item.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            document.querySelectorAll('.theory-timeline-item').forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+          }
+        });
+      });
+
+      // ── Manifesto Scroll ──────────────────────
+      const manifestoStatements = document.querySelectorAll('.manifesto-statement[data-archetype]');
+      if (manifestoStatements.length) {
+        const manifestoObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            el.classList.add('in-view');
+            const artEl = el.querySelector('[data-manifesto-art]');
+            if (artEl && !artEl._rendered) {
+              artEl._rendered = true;
+              ZEngine.render(artEl, {
+                archetype: el.dataset.archetype,
+                palette: el.dataset.palette,
+                seed: parseInt(el.dataset.seed),
+                density: parseFloat(el.dataset.density)
+              });
+            }
+            manifestoObserver.unobserve(el);
+          });
+        }, { threshold: 0.2 });
+        manifestoStatements.forEach(el => manifestoObserver.observe(el));
+      }
+
+      // ── Era Time Machine ──────────────────────
+      const eraSlider = document.getElementById('era-slider');
+      const eraMachineArt = document.getElementById('era-machine-art');
+      const eraInfoEl = document.getElementById('era-machine-info');
+      const eraRoman = document.getElementById('era-roman');
+      const eraEraName = document.getElementById('era-era-name');
+      const eraYear = document.getElementById('era-year');
+      const eraDesc = document.getElementById('era-desc');
+      const eraArchetypeTag = document.getElementById('era-archetype-tag');
+
+      const eraMachineData = [
+        { roman: 'I',   name: 'FREE_FORM',         year: '2018', palette: 'ZSIGNAL',         seed: 42718, density: 0.5,
+          desc: 'Organic exploration \u2014 the engine\u2019s first language. Forms emerge without constraint, following only the logic of the seed.' },
+        { roman: 'II',  name: 'GRID',              year: '2019', palette: 'CLASSIC_BAUHAUS', seed: 84123, density: 0.7,
+          desc: 'Rigid structure emerges. The grid is not a cage \u2014 it is a foundation on which every composition becomes a deliberate act.' },
+        { roman: 'III', name: 'REPETITION',        year: '2020', palette: 'WARM_EARTH',      seed: 12456, density: 0.6,
+          desc: 'The same element, repeated. Not monotony \u2014 rhythm. Each recurrence carries the memory of the last.' },
+        { roman: 'IV',  name: 'CONSTRUCTIVIST',    year: '2021', palette: 'CONSTRUCTIVIST',  seed: 23456, density: 0.5,
+          desc: 'Bold diagonals. Tension made visible. This era speaks the language of Rodchenko and El Lissitzky.' },
+        { roman: 'V',   name: 'COLOR_STUDY',       year: '2022', palette: 'CLASSIC_BAUHAUS', seed: 34521, density: 0.5,
+          desc: 'Colour as structure \u2014 not decoration. Itten\u2019s chromatic theory becomes the generative rule.' },
+        { roman: 'VI',  name: 'DOT_FIELD',         year: '2023', palette: 'COOL_STEEL',      seed: 89034, density: 0.7,
+          desc: 'The dot is the atom of visual form. Dense fields of marks, each placed with the precision of a craftsman.' },
+        { roman: 'VII', name: 'ARABIAN_GEOMETRIC', year: '2025', palette: 'WARM_EARTH',      seed: 72541, density: 0.6,
+          desc: 'Geometric complexity from a different tradition \u2014 tessellation, star patterns, infinite lattice. New grammar, same engine.' }
+      ];
+
+      if (eraSlider && eraMachineArt) {
+        function renderEraSlide(idx) {
+          const era = eraMachineData[idx];
+          // Fade out art
+          eraMachineArt.classList.add('fading');
+          if (eraInfoEl) eraInfoEl.classList.add('era-machine-info-fading');
+          setTimeout(() => {
+            ZEngine.render(eraMachineArt, {
+              archetype: era.name, palette: era.palette,
+              seed: era.seed, density: era.density
+            });
+            eraMachineArt.classList.remove('fading');
+            if (eraRoman) eraRoman.textContent = era.roman;
+            if (eraEraName) eraEraName.textContent = era.name;
+            if (eraYear) eraYear.textContent = era.year;
+            if (eraDesc) eraDesc.textContent = era.desc;
+            if (eraArchetypeTag) eraArchetypeTag.textContent = era.name + ' \u00B7 ' + era.palette;
+            if (eraInfoEl) eraInfoEl.classList.remove('era-machine-info-fading');
+            // Sync the era timeline tabs
+            document.querySelectorAll('.theory-timeline-item').forEach((item, i) => {
+              item.classList.toggle('active', i === idx);
+            });
+          }, 220);
+        }
+        // Initial render
+        renderEraSlide(0);
+        eraSlider.addEventListener('input', () => renderEraSlide(parseInt(eraSlider.value)));
+        // Make era timeline tabs control the slider too
+        document.querySelectorAll('.theory-timeline-item').forEach((item, i) => {
+          item.addEventListener('click', () => {
+            eraSlider.value = i;
+            renderEraSlide(i);
+          });
+        });
+      }
+
+      // ── CTA art background ────────────────────
+      ZEngine.render('#theory-cta-art', {
+        archetype: 'ARABIAN_GEOMETRIC', palette: 'ZSIGNAL', seed: 91637, density: 0.5
+      });
+    });
+  </script>
+  <script src="js/zs-motion.js" defer></script>
+</body>
+</html>

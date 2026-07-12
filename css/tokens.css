@@ -1,0 +1,816 @@
+/**
+ * ZGNAL Design System — Master Token File
+ * Version: 3.0 | Updated: 2026-03-06
+ * Status: CANONICAL — All projects import this file. Never hardcode values.
+ *
+ * v3.0 ARCHITECTURE:
+ *   @layer zs.base      — Raw values, 12-step color scales (never use directly in components)
+ *   @layer zs.semantic   — Existing --zs-* tokens (unchanged from v2.0)
+ *   @layer zs.component  — Component-level aliases --zs-comp-* (new)
+ *   @layer zs.p3         — OKLCH / Display P3 progressive enhancement (new)
+ *
+ * v2.0 FIXES (preserved):
+ * - Shadow split: --zs-shadow-ui (4px) vs --zs-shadow-composition (6px)
+ * - Gold reclassified: decoration only. --zs-color-gold-accessible added (#A67C32)
+ * - Dark mode token layer added
+ * - Modular type scale (1.25× ratio)
+ * - Fluid type via clamp()
+ * - Breakpoint definitions added
+ * - CMYK mappings documented in comments
+ * - Data visualization 10-color palette added
+ * - Motion profiles split: UI vs Content/Art
+ *
+ * v3.0 ADDITIONS:
+ * - 3-tier token architecture (Base → Semantic → Component)
+ * - 12-step Radix-style color scales for olive, brick, gold, blue
+ * - OKLCH/P3 progressive enhancement layer
+ * - Component tokens (--zs-comp-btn-*, --zs-comp-card-*, etc.)
+ * - Semantic type roles (--zs-role-display-*, --zs-role-body-*, etc.)
+ * - Fluid spacing tokens (--zs-fluid-space-*)
+ * - Border width naming fix
+ * - CSS Cascade Layers
+ */
+
+/* ═══════════════════════════════════════
+   CASCADE LAYER DECLARATION (v3.0)
+   Order matters: later layers override earlier.
+   Unlayered styles always beat layered.
+   ═══════════════════════════════════════ */
+@layer zs.base, zs.semantic, zs.component, zs.p3;
+
+/* ╔═══════════════════════════════════════╗
+   ║  TIER 1: BASE TOKENS (v3.0)          ║
+   ║  Raw values — NEVER use in components ║
+   ╚═══════════════════════════════════════╝ */
+@layer zs.base {
+  :root {
+    /* ── 12-STEP COLOR SCALES (Radix-style) ────────
+       Steps 1-2: App backgrounds, subtle tints
+       Steps 3-5: Component backgrounds, hover/active
+       Steps 6-8: Borders, UI chrome
+       Steps 9-10: Solid fills, brand blocks
+       Steps 11-12: Accessible text
+    ──────────────────────────────────────── */
+
+    /* Cream scale */
+    --zs-base-cream-1:  #FDFBF7;
+    --zs-base-cream-2:  #FAF6EF;
+    --zs-base-cream-3:  #F5EEE1;
+    --zs-base-cream-4:  #F2E8D5;   /* = --zs-color-cream (brand anchor) */
+    --zs-base-cream-5:  #EBE0C9;
+    --zs-base-cream-6:  #E8DCC8;   /* = --zs-color-cream-dark */
+    --zs-base-cream-7:  #DDD0B8;
+    --zs-base-cream-8:  #CFC1A5;
+    --zs-base-cream-9:  #BFB090;
+    --zs-base-cream-10: #A89878;
+    --zs-base-cream-11: #8C7D60;
+    --zs-base-cream-12: #6B5F48;
+
+    /* Charcoal scale */
+    --zs-base-charcoal-1:  #F5F5F5;
+    --zs-base-charcoal-2:  #E8E8E8;
+    --zs-base-charcoal-3:  #D0D0D0;
+    --zs-base-charcoal-4:  #B0B0B0;
+    --zs-base-charcoal-5:  #888888;
+    --zs-base-charcoal-6:  #6B6B6B;
+    --zs-base-charcoal-7:  #555555;   /* = --zs-text-secondary */
+    --zs-base-charcoal-8:  #3D3D3D;
+    --zs-base-charcoal-9:  #2A2A2A;
+    --zs-base-charcoal-10: #1C1C1C;  /* = --zs-color-charcoal (brand anchor) */
+    --zs-base-charcoal-11: #0F0F0F;
+    --zs-base-charcoal-12: #0D0D0D;  /* Dark mode bg */
+
+    /* Olive scale (12-step) */
+    --zs-base-olive-1:  #F6F9F0;
+    --zs-base-olive-2:  #EDF3E3;
+    --zs-base-olive-3:  #DCE9C7;
+    --zs-base-olive-4:  #C9DCA9;
+    --zs-base-olive-5:  #B5CE8C;
+    --zs-base-olive-6:  #9BBF72;
+    --zs-base-olive-7:  #8FA050;   /* = --zs-ramp-olive-3 */
+    --zs-base-olive-8:  #6B7B3C;   /* = --zs-color-olive (brand anchor) */
+    --zs-base-olive-9:  #5C6A33;
+    --zs-base-olive-10: #4A5C28;   /* = --zs-text-success */
+    --zs-base-olive-11: #3A4920;
+    --zs-base-olive-12: #2A3618;
+
+    /* Brick scale (12-step) */
+    --zs-base-brick-1:  #FFF5F4;
+    --zs-base-brick-2:  #FFEBE9;
+    --zs-base-brick-3:  #F5D5D0;
+    --zs-base-brick-4:  #EDB8B2;
+    --zs-base-brick-5:  #E09590;
+    --zs-base-brick-6:  #D47070;
+    --zs-base-brick-7:  #CA5C52;
+    --zs-base-brick-8:  #C04B3C;   /* = --zs-color-brick (brand anchor) */
+    --zs-base-brick-9:  #A83B2E;
+    --zs-base-brick-10: #8C2E22;   /* = --zs-ramp-brick-5 */
+    --zs-base-brick-11: #7A2018;
+    --zs-base-brick-12: #5C1510;
+
+    /* Gold scale (12-step) */
+    --zs-base-gold-1:  #FDFAEF;
+    --zs-base-gold-2:  #FAF3D8;
+    --zs-base-gold-3:  #F5E6B0;
+    --zs-base-gold-4:  #EDD880;
+    --zs-base-gold-5:  #E4C858;
+    --zs-base-gold-6:  #D9B840;
+    --zs-base-gold-7:  #D4A84B;   /* = --zs-color-gold (decoration anchor) */
+    --zs-base-gold-8:  #C49030;
+    --zs-base-gold-9:  #B88028;
+    --zs-base-gold-10: #A67C32;   /* = --zs-color-gold-accessible (text anchor) */
+    --zs-base-gold-11: #8C6520;
+    --zs-base-gold-12: #6B4D18;
+
+    /* Blue scale (12-step) */
+    --zs-base-blue-1:  #F3F7FC;
+    --zs-base-blue-2:  #E5EFF8;
+    --zs-base-blue-3:  #C8DDF0;
+    --zs-base-blue-4:  #A8C8E6;
+    --zs-base-blue-5:  #8AAFD0;
+    --zs-base-blue-6:  #6E97BC;
+    --zs-base-blue-7:  #5A8DBB;
+    --zs-base-blue-8:  #3A6EA5;   /* = --zs-color-blue (brand anchor) */
+    --zs-base-blue-9:  #2A5080;
+    --zs-base-blue-10: #1E4A7A;   /* = --zs-ramp-blue-5 */
+    --zs-base-blue-11: #163D68;
+    --zs-base-blue-12: #0E2C4E;
+
+    /* ── BLUR BASE ───────────────────────── */
+    --zs-base-blur-xs:  4px;
+    --zs-base-blur-sm:  8px;
+    --zs-base-blur-md:  12px;
+    --zs-base-blur-lg:  16px;
+    --zs-base-blur-xl:  24px;
+    --zs-base-blur-2xl: 40px;
+
+    /* ── PERSPECTIVE BASE ────────────────── */
+    --zs-base-perspective-near:    300px;
+    --zs-base-perspective-normal:  500px;
+    --zs-base-perspective-distant: 1200px;
+  }
+}
+
+/* ╔═══════════════════════════════════════╗
+   ║  TIER 2: SEMANTIC TOKENS (v2.0)      ║
+   ║  Existing tokens — ALL UNCHANGED     ║
+   ╚═══════════════════════════════════════╝ */
+@layer zs.semantic {
+
+/* ═══════════════════════════════════════
+   PART 1: BRAND COLORS
+   ═══════════════════════════════════════ */
+:root {
+  /* Core Palette */
+  --zs-color-cream:      #F2E8D5; /* CMYK: C0 M5 Y15 K5   | Light bg */
+  --zs-color-cream-dark: #E8DCC8; /* CMYK: C0 M8 Y20 K9   | Secondary bg */
+  --zs-color-charcoal:   #1C1C1C; /* CMYK: C0 M0 Y0 K89   | Text, borders */
+  --zs-color-olive:      #6B7B3C; /* CMYK: C14 M0 Y51 K52 | Buy/profit/success */
+  --zs-color-brick:      #C04B3C; /* CMYK: C0 M61 Y69 K25 | Sell/loss/danger */
+  --zs-color-gold:       #D4A84B; /* CMYK: C0 M21 Y64 K17 | DECORATION ONLY — fails WCAG AA on cream */
+  --zs-color-gold-accessible: #A67C32; /* CMYK: C0 M25 Y70 K35 | Gold for text (passes WCAG AA 4.8:1) */
+  --zs-color-blue:       #3A6EA5; /* CMYK: C64 M33 Y0 K35 | Data/info/links */
+
+  /* Engine Colors (sub-products) */
+  --zs-engine-surf:    #20B2AA;
+  --zs-engine-moon:    #9370DB;
+  --zs-engine-sniper:  #4169E1;
+  --zs-engine-wave:    #DB7093;
+}
+
+/* ═══════════════════════════════════════
+   PART 2: SEMANTIC COLORS (LIGHT MODE)
+   ═══════════════════════════════════════ */
+:root {
+  /* Backgrounds */
+  --zs-bg-primary:   var(--zs-color-cream);
+  --zs-bg-secondary: var(--zs-color-cream-dark);
+  --zs-bg-surface:   var(--zs-color-cream-dark);  /* Card/panel surfaces — alias of secondary */
+  --zs-bg-inverse:   var(--zs-color-charcoal);
+  --zs-bg-overlay:   rgba(28, 28, 28, 0.60);
+
+  /* Text — ONLY accessible combinations */
+  --zs-text-primary:   var(--zs-color-charcoal);         /* 18.1:1 on cream ✓ */
+  --zs-text-secondary: #555555;                           /* 6.5:1 on cream ✓ */
+  --zs-text-tertiary:  #888888;                           /* 3.5:1 — large text only */
+  --zs-text-inverse:   var(--zs-color-cream);             /* 18.1:1 on charcoal ✓ */
+  --zs-text-success:   #4A5C28;                           /* Olive-dark 5.2:1 ✓ */
+  --zs-text-danger:    var(--zs-color-brick);             /* 4.1:1 on cream ✓ */
+  --zs-text-warning:   var(--zs-color-gold-accessible);   /* 4.8:1 on cream ✓ — NOT raw gold */
+  --zs-text-info:      #2A5080;                           /* Blue-dark 5.5:1 ✓ */
+  --zs-text-accent:    var(--zs-color-gold);              /* DECORATION ONLY — use on non-text */
+
+  /* Borders */
+  --zs-border-default: var(--zs-color-charcoal);
+  --zs-border-subtle:  rgba(28, 28, 28, 0.15);
+  --zs-border-focus:   var(--zs-color-gold-accessible);
+  --zs-border-success: var(--zs-color-olive);
+  --zs-border-danger:  var(--zs-color-brick);
+
+  /* Trading Semantics */
+  --zs-trading-buy:         var(--zs-color-olive);
+  --zs-trading-sell:        var(--zs-color-brick);
+  --zs-trading-signal:      var(--zs-color-gold);          /* decoration bar/dot */
+  --zs-trading-signal-text: var(--zs-color-gold-accessible); /* when gold IS text */
+  --zs-trading-hurst:       var(--zs-color-blue);
+  --zs-trading-tp-zone:     rgba(107, 123, 60, 0.15);
+  --zs-trading-sl-zone:     rgba(192, 75, 60, 0.10);
+  --zs-trading-entry-zone:  rgba(232, 220, 200, 0.50);
+}
+
+/* ═══════════════════════════════════════
+   PART 3: DARK MODE TOKEN LAYER
+   ═══════════════════════════════════════ */
+:root[data-theme="dark"] {
+  /* Backgrounds */
+  --zs-bg-primary:   #0D0D0D;
+  --zs-bg-secondary: #151515;
+  --zs-bg-surface:   #1A1A1A;
+  --zs-bg-inverse:   var(--zs-color-cream);
+  --zs-bg-overlay:   rgba(242, 232, 213, 0.15);
+
+  /* Text */
+  --zs-text-primary:   var(--zs-color-cream);
+  --zs-text-secondary: rgba(242, 232, 213, 0.65);
+  --zs-text-tertiary:  rgba(242, 232, 213, 0.40);
+  --zs-text-inverse:   var(--zs-color-charcoal);
+  --zs-text-success:   #8FA050;
+  --zs-text-danger:    #E05A4A;
+  --zs-text-warning:   #E8BC5F;
+  --zs-text-info:      #5A9AD5;
+  --zs-text-accent:    var(--zs-color-gold);
+
+  /* Borders */
+  --zs-border-default: rgba(242, 232, 213, 0.25);
+  --zs-border-subtle:  rgba(242, 232, 213, 0.10);
+  --zs-border-focus:   #E8BC5F;
+
+  /* Trading */
+  --zs-trading-tp-zone:    rgba(143, 160, 80, 0.20);
+  --zs-trading-sl-zone:    rgba(224, 90, 74, 0.15);
+  --zs-trading-entry-zone: rgba(242, 232, 213, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* Backgrounds */
+    --zs-bg-primary:   #0D0D0D;
+    --zs-bg-secondary: #151515;
+    --zs-bg-surface:   #1A1A1A;  /* Card/panel surfaces in dark mode */
+    --zs-bg-inverse:   var(--zs-color-cream);
+    --zs-bg-overlay:   rgba(242, 232, 213, 0.15);
+
+    /* Text */
+    --zs-text-primary:   var(--zs-color-cream);
+    --zs-text-secondary: rgba(242, 232, 213, 0.65);
+    --zs-text-tertiary:  rgba(242, 232, 213, 0.40);
+    --zs-text-inverse:   var(--zs-color-charcoal);
+    --zs-text-success:   #8FA050;
+    --zs-text-danger:    #E05A4A;
+    --zs-text-warning:   #E8BC5F;
+    --zs-text-info:      #5A9AD5;
+    --zs-text-accent:    var(--zs-color-gold);
+
+    /* Borders */
+    --zs-border-default: rgba(242, 232, 213, 0.25);
+    --zs-border-subtle:  rgba(242, 232, 213, 0.10);
+    --zs-border-focus:   #E8BC5F;
+
+    /* Trading */
+    --zs-trading-tp-zone:    rgba(143, 160, 80, 0.20);
+    --zs-trading-sl-zone:    rgba(224, 90, 74, 0.15);
+    --zs-trading-entry-zone: rgba(242, 232, 213, 0.08);
+  }
+}
+
+/* ═══════════════════════════════════════
+   PART 4: DATA VISUALIZATION PALETTE
+   Extended for 10+ series infographics
+   ═══════════════════════════════════════ */
+:root {
+  /* Primary Data Colors (colorblind-safe) */
+  --zs-data-1:  #3A6EA5;   /* Blue      — Series 1 */
+  --zs-data-2:  #6B7B3C;   /* Olive     — Series 2 */
+  --zs-data-3:  #C04B3C;   /* Brick     — Series 3 */
+  --zs-data-4:  #D4A84B;   /* Gold      — Series 4 */
+  --zs-data-5:  #20B2AA;   /* Surf teal — Series 5 */
+  --zs-data-6:  #9370DB;   /* Moon purple— Series 6 */
+  --zs-data-7:  #5B8EC4;   /* Blue-light — Series 7 */
+  --zs-data-8:  #8FA050;   /* Olive-light— Series 8 */
+  --zs-data-9:  #D4A84B99; /* Gold 60%  — Series 9 */
+  --zs-data-10: #DB7093;   /* Wave pink — Series 10 */
+
+  /* Monochromatic Ramps (for heatmaps, sequential scales) */
+  --zs-ramp-olive-1: #E8EDDA;
+  --zs-ramp-olive-2: #C4D0A0;
+  --zs-ramp-olive-3: #8FA050;
+  --zs-ramp-olive-4: #6B7B3C;
+  --zs-ramp-olive-5: #4A5C28;
+
+  --zs-ramp-brick-1: #F5DDD9;
+  --zs-ramp-brick-2: #E09590;
+  --zs-ramp-brick-3: #D06558;
+  --zs-ramp-brick-4: #C04B3C;
+  --zs-ramp-brick-5: #8C2E22;
+
+  --zs-ramp-blue-1: #D8E4F0;
+  --zs-ramp-blue-2: #8AAFD0;
+  --zs-ramp-blue-3: #5A8DBB;
+  --zs-ramp-blue-4: #3A6EA5;
+  --zs-ramp-blue-5: #1E4A7A;
+
+  /* Diverging Scale (negative → neutral → positive) */
+  --zs-diverge-neg-strong:  #8C2E22;
+  --zs-diverge-neg-mid:     #C04B3C;
+  --zs-diverge-neutral:     #E8DCC8;
+  --zs-diverge-pos-mid:     #6B7B3C;
+  --zs-diverge-pos-strong:  #4A5C28;
+}
+
+/* ═══════════════════════════════════════
+   PART 5: TRANSPARENCY VARIANTS
+   ═══════════════════════════════════════ */
+:root {
+  --zs-cream-50:     rgba(242, 232, 213, 0.50);
+  --zs-charcoal-10:  rgba(28, 28, 28, 0.10);
+  --zs-charcoal-20:  rgba(28, 28, 28, 0.20);
+  --zs-charcoal-60:  rgba(28, 28, 28, 0.60);
+  --zs-olive-15:     rgba(107, 123, 60, 0.15);
+  --zs-olive-20:     rgba(107, 123, 60, 0.20);
+  --zs-brick-10:     rgba(192, 75, 60, 0.10);
+  --zs-brick-15:     rgba(192, 75, 60, 0.15);
+  --zs-gold-10:      rgba(212, 168, 75, 0.10);
+  --zs-gold-20:      rgba(212, 168, 75, 0.20);
+  --zs-blue-70:      rgba(58, 110, 165, 0.70);
+}
+
+/* ═══════════════════════════════════════
+   PART 6: TYPOGRAPHY
+   Modular scale: 1.25× (Major Third)
+   Base: 16px
+   ═══════════════════════════════════════ */
+:root {
+  /* Font Families */
+  --zs-font-mono: 'IBM Plex Mono', 'Courier New', Courier, monospace;
+  --zs-font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Font Weights */
+  --zs-font-regular:  400;
+  --zs-font-medium:   500;
+  --zs-font-semibold: 600;
+  --zs-font-bold:     700;
+
+  /* Modular Scale (1.25×) — Static values */
+  --zs-text-nano:   10px;   /* Tiny labels, legal */
+  --zs-text-micro:  11px;   /* Metadata, timestamps */
+  --zs-text-label:  12px;   /* UI labels, caps headers */
+  --zs-text-xs:     14px;   /* Secondary body */
+  --zs-text-sm:     16px;   /* Base / body */
+  --zs-text-md:     18px;   /* Large body, lead text */
+  --zs-text-lg:     20px;   /* Small headings */
+  --zs-text-xl:     24px;   /* Section headings */
+  --zs-text-2xl:    30px;   /* Page sub-headings */
+  --zs-text-3xl:    38px;   /* Page headings */
+  --zs-text-4xl:    48px;   /* Hero sub */
+  --zs-text-5xl:    60px;   /* Hero headline */
+  --zs-text-6xl:    76px;   /* Display / poster */
+  --zs-text-7xl:    96px;   /* Massive display */
+
+  /* Fluid Type (responsive) — scales with viewport */
+  --zs-fluid-body:     clamp(15px, 1.2vw, 18px);
+  --zs-fluid-lead:     clamp(18px, 1.6vw, 24px);
+  --zs-fluid-heading:  clamp(28px, 3.5vw, 48px);
+  --zs-fluid-hero:     clamp(40px, 6vw, 80px);
+  --zs-fluid-display:  clamp(56px, 8vw, 120px);
+
+  /* Line Heights */
+  --zs-leading-none:    1.0;
+  --zs-leading-tight:   1.1;
+  --zs-leading-snug:    1.25;
+  --zs-leading-normal:  1.4;
+  --zs-leading-relaxed: 1.6;
+  --zs-leading-loose:   1.8;
+
+  /* Letter Spacing */
+  --zs-tracking-tight:  -0.03em;
+  --zs-tracking-normal:  0;
+  --zs-tracking-wide:    0.06em;
+  --zs-tracking-wider:   0.12em;
+  --zs-tracking-caps:    0.15em;  /* All-caps labels */
+}
+
+/* ═══════════════════════════════════════
+   PART 7: SPACING (4px grid)
+   ═══════════════════════════════════════ */
+:root {
+  --zs-space-px:  1px;
+  --zs-space-0:   0;
+  --zs-space-1:   4px;
+  --zs-space-2:   8px;
+  --zs-space-3:   12px;
+  --zs-space-4:   16px;
+  --zs-space-5:   20px;
+  --zs-space-6:   24px;
+  --zs-space-7:   28px;
+  --zs-space-8:   32px;
+  --zs-space-10:  40px;
+  --zs-space-12:  48px;
+  --zs-space-14:  56px;
+  --zs-space-16:  64px;
+  --zs-space-20:  80px;
+  --zs-space-24:  96px;
+  --zs-space-28:  112px;
+  --zs-space-32:  128px;
+}
+
+/* ═══════════════════════════════════════
+   PART 8: BORDERS & RADIUS
+   ═══════════════════════════════════════ */
+:root {
+  /* Border Width */
+  --zs-border-thin:    1px;
+  --zs-border-default: 2px;  /* THE border weight. Always #1C1C1C */
+  --zs-border-thick:   3px;
+  --zs-border-heavy:   4px;
+
+  /* Border Radius */
+  --zs-radius-none: 0;        /* Default — Bauhaus: NO rounding */
+  --zs-radius-sm:   2px;      /* Subtle, use sparingly */
+  --zs-radius-full: 9999px;   /* Pills / circles ONLY */
+}
+
+/* ═══════════════════════════════════════
+   PART 9: SHADOWS (FIXED — v2.0)
+   Split into UI and Composition contexts
+   ═══════════════════════════════════════ */
+:root {
+  --zs-shadow-none:        none;
+
+  /* UI Components (buttons, cards, inputs, modals) */
+  --zs-shadow-ui:          4px 4px 0 rgba(28, 28, 28, 0.20);
+  --zs-shadow-ui-hover:    6px 6px 0 rgba(28, 28, 28, 0.20);
+
+  /* Bauhaus Art Compositions (hero art, Bauhaus panels) */
+  --zs-shadow-composition: 6px 6px 0 rgba(28, 28, 28, 0.12);
+
+  /* Elevated Panels (modals, drawers — dark mode friendly) */
+  --zs-shadow-elevated:    8px 8px 0 rgba(28, 28, 28, 0.15);
+
+  /* DEPRECATED — do not use */
+  /* --zs-shadow-terminal  → use --zs-shadow-ui */
+}
+
+/* ═══════════════════════════════════════
+   PART 10: LAYOUT & GRID
+   ═══════════════════════════════════════ */
+:root {
+  /* Breakpoints (Mobile-First) */
+  --zs-bp-xs:   320px;   /* Small phones */
+  --zs-bp-sm:   480px;   /* Phones landscape */
+  --zs-bp-md:   768px;   /* Tablets portrait */
+  --zs-bp-lg:   1024px;  /* Tablets landscape / small desktop */
+  --zs-bp-xl:   1280px;  /* Desktop */
+  --zs-bp-2xl:  1440px;  /* Wide desktop */
+  --zs-bp-3xl:  1920px;  /* Ultra-wide */
+
+  /* Component Rules (reference only) */
+  /* <= md: bottom nav, single column, hamburger menu  */
+  /* > md: sidebar nav, 2-column grid, full header     */
+
+  /* Grid */
+  --zs-grid-columns:     12;
+  --zs-grid-gutter:      24px;
+  --zs-grid-margin:      32px;
+  --zs-grid-max-width:   1440px;
+  --zs-grid-pattern-size: 20px;
+  --zs-grid-pattern-color: rgba(28, 28, 28, 0.06);
+
+  /* Z-Index Scale */
+  --zs-z-base:     0;
+  --zs-z-raised:   10;
+  --zs-z-dropdown: 100;
+  --zs-z-sticky:   200;
+  --zs-z-modal:    300;
+  --zs-z-tooltip:  400;
+  --zs-z-toast:    500;
+  --zs-z-overlay:  900;
+}
+
+/* ═══════════════════════════════════════
+   PART 11: MOTION — TERMINAL UI PROFILE
+   For: buttons, inputs, menus, modals,
+   dropdowns, toggles, toasts, forms
+   Character: Mechanical, precise, no bounce
+   ═══════════════════════════════════════ */
+:root {
+  /* Duration */
+  --zs-dur-instant:    80ms;
+  --zs-dur-fast:       150ms;
+  --zs-dur-normal:     250ms;
+  --zs-dur-slow:       400ms;
+  --zs-dur-deliberate: 600ms;
+
+  /* Easing — Terminal UI */
+  --zs-ease-linear:  linear;
+  --zs-ease-out:     cubic-bezier(0.0, 0.0, 0.2, 1);   /* DEFAULT — entries */
+  --zs-ease-in:      cubic-bezier(0.4, 0.0, 1.0, 1);   /* Exits */
+  --zs-ease-in-out:  cubic-bezier(0.4, 0.0, 0.2, 1);   /* Moving position */
+
+  /* Shorthand transitions */
+  --zs-transition-fast:       150ms cubic-bezier(0.0, 0.0, 0.2, 1);
+  --zs-transition-normal:     250ms cubic-bezier(0.0, 0.0, 0.2, 1);
+  --zs-transition-slow:       400ms cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════
+   PART 12: MOTION — CONTENT/ART PROFILE
+   For: scroll reveals, hero animations,
+   Bauhaus compositions, generative art,
+   data reveals, page transitions
+   Character: Expressive, choreographed
+   Spring allowed (max 10% overshoot)
+   ═══════════════════════════════════════ */
+:root {
+  /* Duration — Content */
+  --zs-content-dur-enter:   500ms;
+  --zs-dur-enter:           var(--zs-content-dur-enter);  /* Short alias used by interactive patterns */
+  --zs-content-dur-stagger: 80ms;   /* Delay between staggered items */
+  --zs-content-dur-reveal:  700ms;
+  --zs-content-dur-page:    400ms;  /* Page transition */
+
+  /* Easing — Content/Art */
+  --zs-ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);  /* Subtle spring (10% overshoot) */
+  --zs-ease-smooth:    cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth/filmic */
+  --zs-ease-expo-out:  cubic-bezier(0.19, 1.0, 0.22, 1.0); /* Dramatic entry */
+  --zs-ease-back:      cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Back-ease for art */
+}
+
+/* ═══════════════════════════════════════
+   PART 13: ACCESSIBILITY
+   ═══════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1    !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior:          auto   !important;
+  }
+}
+
+/* Focus visible — always show for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--zs-border-focus);
+  outline-offset: 2px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── FLUID SPACING (v3.0) ──────────────── */
+:root {
+  --zs-fluid-space-xs:  clamp(8px,  1.0vw, 12px);
+  --zs-fluid-space-sm:  clamp(12px, 1.5vw, 20px);
+  --zs-fluid-space-md:  clamp(20px, 2.5vw, 32px);
+  --zs-fluid-space-lg:  clamp(32px, 4.0vw, 56px);
+  --zs-fluid-space-xl:  clamp(48px, 6.0vw, 80px);
+  --zs-fluid-space-2xl: clamp(64px, 8.0vw, 128px);
+}
+
+/* ── BORDER WIDTH ALIASES (v3.0 — resolves naming collision) ── */
+:root {
+  --zs-border-width-thin:    1px;
+  --zs-border-width-default: 2px;
+  --zs-border-width-thick:   3px;
+  --zs-border-width-heavy:   4px;
+}
+
+} /* END @layer zs.semantic */
+
+/* ╔═══════════════════════════════════════╗
+   ║  TIER 3: COMPONENT TOKENS (v3.0)     ║
+   ║  Scoped aliases for specific UI parts ║
+   ╚═══════════════════════════════════════╝ */
+@layer zs.component {
+  :root {
+    /* ── SEMANTIC TYPE ROLES ──────────────────
+       Bundle: size + weight + leading + tracking
+       Use these in components instead of
+       assembling atomic tokens manually.
+    ──────────────────────────────────────── */
+
+    /* DISPLAY: Hero headlines, poster type */
+    --zs-role-display-size:     var(--zs-fluid-display);
+    --zs-role-display-weight:   var(--zs-font-bold);
+    --zs-role-display-leading:  var(--zs-leading-none);
+    --zs-role-display-tracking: var(--zs-tracking-tight);
+
+    /* HEADING: Page and section titles */
+    --zs-role-heading-size:     var(--zs-fluid-heading);
+    --zs-role-heading-weight:   var(--zs-font-semibold);
+    --zs-role-heading-leading:  var(--zs-leading-tight);
+    --zs-role-heading-tracking: -0.02em;
+
+    /* SUBHEADING: Card titles, panel headers */
+    --zs-role-subheading-size:     var(--zs-text-xl);
+    --zs-role-subheading-weight:   var(--zs-font-semibold);
+    --zs-role-subheading-leading:  var(--zs-leading-snug);
+    --zs-role-subheading-tracking: var(--zs-tracking-normal);
+
+    /* BODY: Standard readable prose */
+    --zs-role-body-size:     var(--zs-fluid-body);
+    --zs-role-body-weight:   var(--zs-font-regular);
+    --zs-role-body-leading:  var(--zs-leading-relaxed);
+    --zs-role-body-tracking: var(--zs-tracking-normal);
+
+    /* LABEL: UI labels, all-caps headers, form labels */
+    --zs-role-label-size:     var(--zs-text-label);
+    --zs-role-label-weight:   var(--zs-font-semibold);
+    --zs-role-label-leading:  var(--zs-leading-none);
+    --zs-role-label-tracking: var(--zs-tracking-caps);
+
+    /* DATA: Numbers, tickers, metrics */
+    --zs-role-data-size:     var(--zs-text-sm);
+    --zs-role-data-weight:   var(--zs-font-regular);
+    --zs-role-data-leading:  var(--zs-leading-none);
+    --zs-role-data-tracking: var(--zs-tracking-normal);
+
+    /* CAPTION: Timestamps, footnotes, metadata */
+    --zs-role-caption-size:     var(--zs-text-micro);
+    --zs-role-caption-weight:   var(--zs-font-regular);
+    --zs-role-caption-leading:  var(--zs-leading-normal);
+    --zs-role-caption-tracking: var(--zs-tracking-normal);
+
+    /* ── BUTTON TOKENS ───────────────────── */
+    --zs-comp-btn-bg:            var(--zs-color-charcoal);
+    --zs-comp-btn-text:          var(--zs-color-cream);
+    --zs-comp-btn-border:        var(--zs-color-charcoal);
+    --zs-comp-btn-shadow:        var(--zs-shadow-ui);
+    --zs-comp-btn-bg-hover:      #2A2A2A;
+    --zs-comp-btn-shadow-hover:  var(--zs-shadow-ui-hover);
+
+    --zs-comp-btn-ghost-bg:      transparent;
+    --zs-comp-btn-ghost-text:    var(--zs-text-primary);
+    --zs-comp-btn-ghost-border:  var(--zs-border-default);
+
+    --zs-comp-btn-danger-bg:     var(--zs-color-brick);
+    --zs-comp-btn-danger-text:   var(--zs-color-cream);
+    --zs-comp-btn-success-bg:    var(--zs-color-olive);
+    --zs-comp-btn-success-text:  var(--zs-color-cream);
+
+    /* ── INPUT TOKENS ────────────────────── */
+    --zs-comp-input-bg:          var(--zs-bg-primary);
+    --zs-comp-input-border:      var(--zs-border-default);
+    --zs-comp-input-text:        var(--zs-text-primary);
+    --zs-comp-input-placeholder: var(--zs-text-tertiary);
+    --zs-comp-input-focus-ring:  var(--zs-border-focus);
+
+    /* ── CARD TOKENS ─────────────────────── */
+    --zs-comp-card-bg:           var(--zs-bg-primary);
+    --zs-comp-card-border:       var(--zs-border-default);
+    --zs-comp-card-shadow:       var(--zs-shadow-ui);
+    --zs-comp-card-padding:      var(--zs-space-6);
+    --zs-comp-card-gap:          var(--zs-space-4);
+
+    /* ── TABLE TOKENS ────────────────────── */
+    --zs-comp-table-cell-px:     var(--zs-space-4);
+    --zs-comp-table-cell-py:     var(--zs-space-2);
+    --zs-comp-table-border:      var(--zs-border-subtle);
+    --zs-comp-table-row-hover:   var(--zs-charcoal-10);
+
+    /* ── BADGE TOKENS ────────────────────── */
+    --zs-comp-badge-px:          var(--zs-space-2);
+    --zs-comp-badge-py:          var(--zs-space-1);
+    --zs-comp-badge-font-size:   var(--zs-text-label);
+    --zs-comp-badge-tracking:    var(--zs-tracking-wide);
+
+    /* ── MODAL TOKENS ────────────────────── */
+    --zs-comp-modal-bg:          var(--zs-bg-primary);
+    --zs-comp-modal-overlay:     var(--zs-bg-overlay);
+    --zs-comp-modal-shadow:      var(--zs-shadow-elevated);
+    --zs-comp-modal-padding:     var(--zs-space-8);
+
+    /* ── TOAST TOKENS ────────────────────── */
+    --zs-comp-toast-bg:          var(--zs-bg-inverse);
+    --zs-comp-toast-text:        var(--zs-text-inverse);
+    --zs-comp-toast-gap:         var(--zs-space-2);
+
+    /* ── CHAT TOKENS (v4.0) ─────────────── */
+    --zs-comp-chat-fab-size:     56px;
+    --zs-comp-chat-panel-w:      380px;
+    --zs-comp-chat-panel-max-h:  600px;
+    --zs-comp-chat-modal-w:      560px;
+    --zs-comp-chat-full-max:     800px;
+    --zs-comp-chat-header-h:     48px;
+    --zs-comp-chat-input-min:    56px;
+    --zs-comp-chat-bg:           var(--zs-bg-primary);
+    --zs-comp-chat-surface:      var(--zs-bg-surface);
+    --zs-comp-chat-border:       var(--zs-border-default);
+    --zs-comp-chat-shadow:       var(--zs-shadow-ui);
+    --zs-comp-chat-shadow-lg:    var(--zs-shadow-elevated);
+    --zs-comp-chat-spring-expand:   350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    --zs-comp-chat-spring-collapse: 250ms ease-in;
+
+    /* ── FORM TOKENS (v4.0) ─────────────── */
+    --zs-comp-form-step-size:       32px;
+    --zs-comp-form-step-active-bg:  var(--zs-color-charcoal);
+    --zs-comp-form-step-done-bg:    var(--zs-color-olive);
+    --zs-comp-form-step-text:       var(--zs-color-cream);
+    --zs-comp-form-error-border:    var(--zs-border-danger);
+    --zs-comp-form-error-text:      var(--zs-text-danger);
+    --zs-comp-form-success-border:  var(--zs-border-success);
+    --zs-comp-form-success-text:    var(--zs-text-success);
+    --zs-comp-form-autosave-color:  var(--zs-color-olive);
+    --zs-comp-form-fieldset-gap:    var(--zs-space-6);
+
+    /* ── FILE UPLOAD TOKENS (v4.0) ──────── */
+    --zs-comp-upload-zone-border:        var(--zs-border-subtle);
+    --zs-comp-upload-zone-bg:            var(--zs-bg-secondary);
+    --zs-comp-upload-zone-active-border: var(--zs-color-gold);
+    --zs-comp-upload-progress-bg:        var(--zs-color-olive);
+    --zs-comp-upload-error-bg:           var(--zs-color-brick);
+
+    /* ── NAVIGATION TOKENS (v4.0) ───────── */
+    --zs-comp-nav-side-w:              240px;
+    --zs-comp-nav-side-collapsed-w:    48px;
+    --zs-comp-nav-item-h:             40px;
+    --zs-comp-nav-item-active-bg:     var(--zs-bg-secondary);
+    --zs-comp-nav-item-active-border: var(--zs-color-gold);
+    --zs-comp-nav-breadcrumb-color:   var(--zs-text-secondary);
+    --zs-comp-nav-tab-active-border:  var(--zs-color-charcoal);
+    --zs-comp-nav-tab-border-h:       2px;
+
+    /* ── COMMAND PALETTE TOKENS (v4.0) ──── */
+    --zs-comp-palette-w:       560px;
+    --zs-comp-palette-max-h:   480px;
+    --zs-comp-palette-top:     20%;
+    --zs-comp-palette-bg:      var(--zs-comp-modal-bg);
+    --zs-comp-palette-border:  var(--zs-border-default);
+    --zs-comp-palette-shadow:  var(--zs-shadow-elevated);
+
+    /* ── FEEDBACK TOKENS (v4.0) ─────────── */
+    --zs-comp-alert-border-w:     4px;
+    --zs-comp-alert-success-bg:   var(--zs-bg-secondary);
+    --zs-comp-alert-error-bg:     var(--zs-bg-secondary);
+    --zs-comp-alert-warning-bg:   var(--zs-bg-secondary);
+    --zs-comp-alert-info-bg:      var(--zs-bg-secondary);
+    --zs-comp-step-dot-size:      8px;
+    --zs-comp-step-line-h:        2px;
+
+    /* ── IMMERSIVE MOTION TOKENS (v5.0) ─── */
+    --zs-comp-perspective-near:     400px;
+    --zs-comp-perspective-mid:      800px;
+    --zs-comp-perspective-far:      1200px;
+    --zs-comp-tilt-max-subtle:      5deg;
+    --zs-comp-tilt-max-moderate:    10deg;
+    --zs-comp-tilt-max-dramatic:    15deg;
+    --zs-comp-tilt-spring:          400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    --zs-comp-glare-opacity:        0.15;
+    --zs-comp-holo-blend:           color-dodge;
+    --zs-comp-holo-opacity-hover:   0.35;
+    --zs-comp-scroll-pin-distance:  2000px;
+    --zs-comp-zoom-scale-start:     0.9;
+    --zs-comp-zoom-scale-end:       1.0;
+    --zs-comp-ken-burns-scale:      1.15;
+    --zs-comp-ken-burns-dur:        15s;
+    --zs-comp-dof-blur-max:         4px;
+
+    /* ── DENSITY MODES ───────────────────── */
+    --zs-density-condensed:      var(--zs-space-2);
+    --zs-density-normal:         var(--zs-space-4);
+    --zs-density-spacious:       var(--zs-space-6);
+  }
+}
+
+/* ╔═══════════════════════════════════════╗
+   ║  TIER P3: OKLCH ENHANCEMENT (v3.0)   ║
+   ║  Progressive — only on capable browsers║
+   ║  sRGB remains canonical for print/email║
+   ╚═══════════════════════════════════════╝ */
+@layer zs.p3 {
+  @supports (color: oklch(0 0 0)) {
+    :root {
+      /* ── P3 BRAND COLORS ──────────────────
+         OKLCH equivalents of sRGB brand anchors.
+         Perceptually identical on sRGB displays,
+         wider gamut on P3 displays (iPhone, Mac).
+      ──────────────────────────────────── */
+      --zs-p3-cream:            oklch(93.2% 0.020 87.5);
+      --zs-p3-charcoal:         oklch(13.2% 0.000 0);
+      --zs-p3-olive:            oklch(48.8% 0.079 130.2);
+      --zs-p3-brick:            oklch(52.1% 0.141 25.4);
+      --zs-p3-gold:             oklch(72.4% 0.118 81.3);
+      --zs-p3-gold-accessible:  oklch(57.6% 0.103 76.8);
+      --zs-p3-blue:             oklch(49.2% 0.098 247.1);
+
+      /* ── P3 DATA PALETTE ──────────────────
+         More saturated series on wide-gamut displays.
+      ──────────────────────────────────── */
+      --zs-p3-data-1: oklch(49.2% 0.098 247.1);  /* Blue */
+      --zs-p3-data-2: oklch(48.8% 0.079 130.2);  /* Olive */
+      --zs-p3-data-3: oklch(52.1% 0.141 25.4);   /* Brick */
+      --zs-p3-data-4: oklch(72.4% 0.118 81.3);   /* Gold */
+      --zs-p3-data-5: oklch(67.8% 0.105 189.2);  /* Surf teal */
+      --zs-p3-data-6: oklch(56.3% 0.142 302.4);  /* Moon purple */
+    }
+  }
+}

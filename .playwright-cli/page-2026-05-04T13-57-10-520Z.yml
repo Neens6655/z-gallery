@@ -1,0 +1,485 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "ZSIGNAL" [ref=e5] [cursor=pointer]:
+        - /url: index.html
+        - text: ZSIGNAL
+      - navigation [ref=e7]:
+        - link "Gallery" [ref=e8] [cursor=pointer]:
+          - /url: gallery.html
+        - link "Studio" [ref=e9] [cursor=pointer]:
+          - /url: studio.html
+        - link "AI Artists" [ref=e10] [cursor=pointer]:
+          - /url: artist.html
+        - link "Theory" [ref=e11] [cursor=pointer]:
+          - /url: theory.html
+        - link "Generator" [ref=e12] [cursor=pointer]:
+          - /url: generator.html
+      - link "CREATE" [ref=e14] [cursor=pointer]:
+        - /url: studio.html
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - generic [ref=e19]:
+        - heading "GalkoU4" [level=1] [ref=e20]
+        - paragraph [ref=e21]: 31 works across 7 eras
+      - toolbar "Filter artworks" [ref=e22]:
+        - group "Filter by era" [ref=e23]:
+          - generic [ref=e24]: Era
+          - button "All" [pressed] [ref=e25] [cursor=pointer]
+          - button "I" [ref=e26] [cursor=pointer]
+          - button "II" [ref=e27] [cursor=pointer]
+          - button "III" [ref=e28] [cursor=pointer]
+          - button "IV" [ref=e29] [cursor=pointer]
+          - button "V" [ref=e30] [cursor=pointer]
+          - button "VI" [ref=e31] [cursor=pointer]
+          - button "VII" [ref=e32] [cursor=pointer]
+        - group "Filter by archetype" [ref=e34]:
+          - generic [ref=e35]: Archetype
+          - button "All" [pressed] [ref=e36] [cursor=pointer]
+          - button "Free Form" [ref=e37] [cursor=pointer]
+          - button "Grid" [ref=e38] [cursor=pointer]
+          - button "Repetition" [ref=e39] [cursor=pointer]
+          - button "Constructivist" [ref=e40] [cursor=pointer]
+          - button "Color Study" [ref=e41] [cursor=pointer]
+          - button "Dot Field" [ref=e42] [cursor=pointer]
+          - button "Arabian Geometric" [ref=e43] [cursor=pointer]
+        - group "Filter by palette" [ref=e45]:
+          - generic [ref=e46]: Palette
+          - button "All" [pressed] [ref=e47] [cursor=pointer]
+          - button "ZSIGNAL" [ref=e48] [cursor=pointer]: ZSIGNAL
+          - button "Classic" [ref=e50] [cursor=pointer]: Classic
+          - button "Constructivist" [ref=e52] [cursor=pointer]: Constructivist
+          - button "Warm Earth" [ref=e54] [cursor=pointer]: Warm Earth
+          - button "Cool Steel" [ref=e56] [cursor=pointer]: Cool Steel
+          - button "Monochrome" [ref=e58] [cursor=pointer]: Monochrome
+      - list "Artwork gallery" [ref=e60]:
+        - listitem "Telephone Composition No. 3 — Era I, Free Form" [ref=e61] [cursor=pointer]:
+          - generic [ref=e62]:
+            - img "Generative Free Form artwork in ZSIGNAL palette" [ref=e63]
+            - generic:
+              - generic: Free Form
+          - generic [ref=e85]:
+            - generic [ref=e86]: Telephone Composition No. 3
+            - generic [ref=e87]:
+              - generic [ref=e88]: ERA I
+              - generic [ref=e89]: Free Form
+            - generic [ref=e90]:
+              - generic [ref=e92]: 23 of 30 available
+              - generic [ref=e95]: from$89
+        - listitem "Flush Edge Study — Era I, Free Form" [ref=e96] [cursor=pointer]:
+          - generic [ref=e97]:
+            - img "Generative Free Form artwork in CLASSIC_BAUHAUS palette" [ref=e98]
+            - generic:
+              - generic: Free Form
+          - generic [ref=e125]:
+            - generic [ref=e126]: Flush Edge Study
+            - generic [ref=e127]:
+              - generic [ref=e128]: ERA I
+              - generic [ref=e129]: Free Form
+            - generic [ref=e130]:
+              - generic [ref=e132]: 18 of 30 available
+              - generic [ref=e135]: from$89
+        - listitem "Counter-Weight in Terracotta — Era I, Free Form" [ref=e136] [cursor=pointer]:
+          - generic [ref=e137]:
+            - img "Generative Free Form artwork in WARM_EARTH palette" [ref=e138]
+            - generic:
+              - generic: Free Form
+          - generic [ref=e159]:
+            - generic [ref=e160]: Counter-Weight in Terracotta
+            - generic [ref=e161]:
+              - generic [ref=e162]: ERA I
+              - generic [ref=e163]: Free Form
+            - generic [ref=e164]:
+              - generic [ref=e166]: 11 of 30 available
+              - generic [ref=e169]: from$89
+        - listitem "Overlap Protocol — Era I, Free Form" [ref=e170] [cursor=pointer]:
+          - generic [ref=e171]:
+            - img "Generative Free Form artwork in ZSIGNAL palette" [ref=e172]
+            - generic:
+              - generic: Free Form
+          - generic [ref=e194]:
+            - generic [ref=e195]: Overlap Protocol
+            - generic [ref=e196]:
+              - generic [ref=e197]: ERA I
+              - generic [ref=e198]: Free Form
+            - generic [ref=e199]:
+              - generic [ref=e201]: 5 of 30 remaining
+              - generic [ref=e204]: from$89
+        - listitem "Chromatic Anchor — Era I, Free Form" [ref=e205] [cursor=pointer]:
+          - generic [ref=e206]:
+            - img "Generative Free Form artwork in WARM_EARTH palette" [ref=e207]
+            - generic:
+              - generic: Free Form
+          - generic [ref=e230]:
+            - generic [ref=e231]: Chromatic Anchor
+            - generic [ref=e232]:
+              - generic [ref=e233]: ERA I
+              - generic [ref=e234]: Free Form
+            - generic [ref=e235]:
+              - generic [ref=e237]: Fully claimed
+              - generic [ref=e240]: from$89
+        - listitem "Modular Field No. 7 — Era II, Grid" [ref=e241] [cursor=pointer]:
+          - generic [ref=e242]:
+            - img "Generative Grid artwork in ZSIGNAL palette" [ref=e243]
+            - generic:
+              - generic: Grid
+          - generic [ref=e287]:
+            - generic [ref=e288]: Modular Field No. 7
+            - generic [ref=e289]:
+              - generic [ref=e290]: ERA II
+              - generic [ref=e291]: Grid
+            - generic [ref=e292]:
+              - generic [ref=e294]: 25 of 30 available
+              - generic [ref=e297]: from$89
+        - listitem "Cell Variations in Steel — Era II, Grid" [ref=e298] [cursor=pointer]:
+          - generic [ref=e299]:
+            - generic:
+              - generic: Grid
+          - generic [ref=e300]:
+            - generic [ref=e301]: Cell Variations in Steel
+            - generic [ref=e302]:
+              - generic [ref=e303]: ERA II
+              - generic [ref=e304]: Grid
+            - generic [ref=e305]:
+              - generic [ref=e307]: 16 of 30 available
+              - generic [ref=e310]: from$89
+        - listitem "Featured Cell Study — Era II, Grid" [ref=e311] [cursor=pointer]:
+          - generic [ref=e312]:
+            - generic:
+              - generic: Grid
+          - generic [ref=e313]:
+            - generic [ref=e314]: Featured Cell Study
+            - generic [ref=e315]:
+              - generic [ref=e316]: ERA II
+              - generic [ref=e317]: Grid
+            - generic [ref=e318]:
+              - generic [ref=e320]: 8 of 30 remaining
+              - generic [ref=e323]: from$89
+        - listitem "Dense Lattice — Era II, Grid" [ref=e324] [cursor=pointer]:
+          - generic [ref=e325]:
+            - generic:
+              - generic: Grid
+          - generic [ref=e326]:
+            - generic [ref=e327]: Dense Lattice
+            - generic [ref=e328]:
+              - generic [ref=e329]: ERA II
+              - generic [ref=e330]: Grid
+            - generic [ref=e331]:
+              - generic [ref=e333]: Fully claimed
+              - generic [ref=e336]: from$89
+        - listitem "Linear Crescendo — Era III, Repetition" [ref=e337] [cursor=pointer]:
+          - generic [ref=e338]:
+            - generic:
+              - generic: Repetition
+          - generic [ref=e339]:
+            - generic [ref=e340]: Linear Crescendo
+            - generic [ref=e341]:
+              - generic [ref=e342]: ERA III
+              - generic [ref=e343]: Repetition
+            - generic [ref=e344]:
+              - generic [ref=e346]: 27 of 30 available
+              - generic [ref=e349]: from$89
+        - listitem "Wave Function No. 2 — Era III, Repetition" [ref=e350] [cursor=pointer]:
+          - generic [ref=e351]:
+            - generic:
+              - generic: Repetition
+          - generic [ref=e352]:
+            - generic [ref=e353]: Wave Function No. 2
+            - generic [ref=e354]:
+              - generic [ref=e355]: ERA III
+              - generic [ref=e356]: Repetition
+            - generic [ref=e357]:
+              - generic [ref=e359]: 21 of 30 available
+              - generic [ref=e362]: from$89
+        - listitem "Radial Fugue — Era III, Repetition" [ref=e363] [cursor=pointer]:
+          - generic [ref=e364]:
+            - generic:
+              - generic: Repetition
+          - generic [ref=e365]:
+            - generic [ref=e366]: Radial Fugue
+            - generic [ref=e367]:
+              - generic [ref=e368]: ERA III
+              - generic [ref=e369]: Repetition
+            - generic [ref=e370]:
+              - generic [ref=e372]: 12 of 30 available
+              - generic [ref=e375]: from$89
+        - listitem "Stacked Sequence in Grey — Era III, Repetition" [ref=e376] [cursor=pointer]:
+          - generic [ref=e377]:
+            - generic:
+              - generic: Repetition
+          - generic [ref=e378]:
+            - generic [ref=e379]: Stacked Sequence in Grey
+            - generic [ref=e380]:
+              - generic [ref=e381]: ERA III
+              - generic [ref=e382]: Repetition
+            - generic [ref=e383]:
+              - generic [ref=e385]: 4 of 30 remaining
+              - generic [ref=e388]: from$89
+        - listitem "Accelerando — Era III, Repetition" [ref=e389] [cursor=pointer]:
+          - generic [ref=e390]:
+            - generic:
+              - generic: Repetition
+          - generic [ref=e391]:
+            - generic [ref=e392]: Accelerando
+            - generic [ref=e393]:
+              - generic [ref=e394]: ERA III
+              - generic [ref=e395]: Repetition
+            - generic [ref=e396]:
+              - generic [ref=e398]: Fully claimed
+              - generic [ref=e401]: from$89
+        - listitem "Red Wedge No. 4 — Era IV, Constructivist" [ref=e402] [cursor=pointer]:
+          - generic [ref=e403]:
+            - generic:
+              - generic: Constructivist
+          - generic [ref=e404]:
+            - generic [ref=e405]: Red Wedge No. 4
+            - generic [ref=e406]:
+              - generic [ref=e407]: ERA IV
+              - generic [ref=e408]: Constructivist
+            - generic [ref=e409]:
+              - generic [ref=e411]: 19 of 30 available
+              - generic [ref=e414]: from$89
+        - listitem "Intersection Study — Era IV, Constructivist" [ref=e415] [cursor=pointer]:
+          - generic [ref=e416]:
+            - generic:
+              - generic: Constructivist
+          - generic [ref=e417]:
+            - generic [ref=e418]: Intersection Study
+            - generic [ref=e419]:
+              - generic [ref=e420]: ERA IV
+              - generic [ref=e421]: Constructivist
+            - generic [ref=e422]:
+              - generic [ref=e424]: 22 of 30 available
+              - generic [ref=e427]: from$89
+        - listitem "Negative Space Manifesto — Era IV, Constructivist" [ref=e428] [cursor=pointer]:
+          - generic [ref=e429]:
+            - generic:
+              - generic: Constructivist
+          - generic [ref=e430]:
+            - generic [ref=e431]: Negative Space Manifesto
+            - generic [ref=e432]:
+              - generic [ref=e433]: ERA IV
+              - generic [ref=e434]: Constructivist
+            - generic [ref=e435]:
+              - generic [ref=e437]: 3 of 30 remaining
+              - generic [ref=e440]: from$89
+        - listitem "Angular Momentum — Era IV, Constructivist" [ref=e441] [cursor=pointer]:
+          - generic [ref=e442]:
+            - generic:
+              - generic: Constructivist
+          - generic [ref=e443]:
+            - generic [ref=e444]: Angular Momentum
+            - generic [ref=e445]:
+              - generic [ref=e446]: ERA IV
+              - generic [ref=e447]: Constructivist
+            - generic [ref=e448]:
+              - generic [ref=e450]: 15 of 30 available
+              - generic [ref=e453]: from$89
+        - 'listitem "Homage to the Square: Signal — Era V, Color Study" [ref=e454] [cursor=pointer]':
+          - generic [ref=e455]:
+            - generic:
+              - generic: Color Study
+          - generic [ref=e456]:
+            - generic [ref=e457]: "Homage to the Square: Signal"
+            - generic [ref=e458]:
+              - generic [ref=e459]: ERA V
+              - generic [ref=e460]: Color Study
+            - generic [ref=e461]:
+              - generic [ref=e463]: 10 of 30 available
+              - generic [ref=e466]: from$89
+        - listitem "Concentric Dialogue in Earth — Era V, Color Study" [ref=e467] [cursor=pointer]:
+          - generic [ref=e468]:
+            - generic:
+              - generic: Color Study
+          - generic [ref=e469]:
+            - generic [ref=e470]: Concentric Dialogue in Earth
+            - generic [ref=e471]:
+              - generic [ref=e472]: ERA V
+              - generic [ref=e473]: Color Study
+            - generic [ref=e474]:
+              - generic [ref=e476]: 24 of 30 available
+              - generic [ref=e479]: from$89
+        - listitem "Chromatic Depth — Era V, Color Study" [ref=e480] [cursor=pointer]:
+          - generic [ref=e481]:
+            - generic:
+              - generic: Color Study
+          - generic [ref=e482]:
+            - generic [ref=e483]: Chromatic Depth
+            - generic [ref=e484]:
+              - generic [ref=e485]: ERA V
+              - generic [ref=e486]: Color Study
+            - generic [ref=e487]:
+              - generic [ref=e489]: 2 of 30 remaining
+              - generic [ref=e492]: from$89
+        - listitem "Offset Meditation — Era V, Color Study" [ref=e493] [cursor=pointer]:
+          - generic [ref=e494]:
+            - generic:
+              - generic: Color Study
+          - generic [ref=e495]:
+            - generic [ref=e496]: Offset Meditation
+            - generic [ref=e497]:
+              - generic [ref=e498]: ERA V
+              - generic [ref=e499]: Color Study
+            - generic [ref=e500]:
+              - generic [ref=e502]: 17 of 30 available
+              - generic [ref=e505]: from$89
+        - listitem "Field Study No. 1 — Era VI, Dot Field" [ref=e506] [cursor=pointer]:
+          - generic [ref=e507]:
+            - generic:
+              - generic: Dot Field
+          - generic [ref=e508]:
+            - generic [ref=e509]: Field Study No. 1
+            - generic [ref=e510]:
+              - generic [ref=e511]: ERA VI
+              - generic [ref=e512]: Dot Field
+            - generic [ref=e513]:
+              - generic [ref=e515]: 26 of 30 available
+              - generic [ref=e518]: from$89
+        - listitem "Signal Detection — Era VI, Dot Field" [ref=e519] [cursor=pointer]:
+          - generic [ref=e520]:
+            - generic:
+              - generic: Dot Field
+          - generic [ref=e521]:
+            - generic [ref=e522]: Signal Detection
+            - generic [ref=e523]:
+              - generic [ref=e524]: ERA VI
+              - generic [ref=e525]: Dot Field
+            - generic [ref=e526]:
+              - generic [ref=e528]: 20 of 30 available
+              - generic [ref=e531]: from$89
+        - listitem "Masked Grid in Monochrome — Era VI, Dot Field" [ref=e532] [cursor=pointer]:
+          - generic [ref=e533]:
+            - generic:
+              - generic: Dot Field
+          - generic [ref=e534]:
+            - generic [ref=e535]: Masked Grid in Monochrome
+            - generic [ref=e536]:
+              - generic [ref=e537]: ERA VI
+              - generic [ref=e538]: Dot Field
+            - generic [ref=e539]:
+              - generic [ref=e541]: 7 of 30 remaining
+              - generic [ref=e544]: from$89
+        - listitem "Dense Emergence — Era VI, Dot Field" [ref=e545] [cursor=pointer]:
+          - generic [ref=e546]:
+            - generic:
+              - generic: Dot Field
+          - generic [ref=e547]:
+            - generic [ref=e548]: Dense Emergence
+            - generic [ref=e549]:
+              - generic [ref=e550]: ERA VI
+              - generic [ref=e551]: Dot Field
+            - generic [ref=e552]:
+              - generic [ref=e554]: 28 of 30 available
+              - generic [ref=e557]: from$89
+        - listitem "Alhambra Study No. 1 — Era VII, Arabian Geometric" [ref=e558] [cursor=pointer]:
+          - generic [ref=e559]:
+            - generic:
+              - generic: Arabian Geometric
+          - generic [ref=e560]:
+            - generic [ref=e561]: Alhambra Study No. 1
+            - generic [ref=e562]:
+              - generic [ref=e563]: ERA VII
+              - generic [ref=e564]: Arabian Geometric
+            - generic [ref=e565]:
+              - generic [ref=e567]: 23 of 30 available
+              - generic [ref=e570]: from$89
+        - listitem "Girih Field in Steel — Era VII, Arabian Geometric" [ref=e571] [cursor=pointer]:
+          - generic [ref=e572]:
+            - generic:
+              - generic: Arabian Geometric
+          - generic [ref=e573]:
+            - generic [ref=e574]: Girih Field in Steel
+            - generic [ref=e575]:
+              - generic [ref=e576]: ERA VII
+              - generic [ref=e577]: Arabian Geometric
+            - generic [ref=e578]:
+              - generic [ref=e580]: 14 of 30 available
+              - generic [ref=e583]: from$89
+        - listitem "Muqarnas Dome — Era VII, Arabian Geometric" [ref=e584] [cursor=pointer]:
+          - generic [ref=e585]:
+            - generic:
+              - generic: Arabian Geometric
+          - generic [ref=e586]:
+            - generic [ref=e587]: Muqarnas Dome
+            - generic [ref=e588]:
+              - generic [ref=e589]: ERA VII
+              - generic [ref=e590]: Arabian Geometric
+            - generic [ref=e591]:
+              - generic [ref=e593]: 7 of 30 remaining
+              - generic [ref=e596]: from$89
+        - listitem "Infinite Lattice — Era VII, Arabian Geometric" [ref=e597] [cursor=pointer]:
+          - generic [ref=e598]:
+            - generic:
+              - generic: Arabian Geometric
+          - generic [ref=e599]:
+            - generic [ref=e600]: Infinite Lattice
+            - generic [ref=e601]:
+              - generic [ref=e602]: ERA VII
+              - generic [ref=e603]: Arabian Geometric
+            - generic [ref=e604]:
+              - generic [ref=e606]: 29 of 30 available
+              - generic [ref=e609]: from$89
+        - listitem "Star and Polygon in Monochrome — Era VII, Arabian Geometric" [ref=e610] [cursor=pointer]:
+          - generic [ref=e611]:
+            - generic:
+              - generic: Arabian Geometric
+          - generic [ref=e612]:
+            - generic [ref=e613]: Star and Polygon in Monochrome
+            - generic [ref=e614]:
+              - generic [ref=e615]: ERA VII
+              - generic [ref=e616]: Arabian Geometric
+            - generic [ref=e617]:
+              - generic [ref=e619]: 30 of 30 available
+              - generic [ref=e621]: from$89
+  - contentinfo [ref=e622]:
+    - generic [ref=e623]:
+      - generic [ref=e624]:
+        - generic [ref=e625]:
+          - link "ZSIGNAL" [ref=e626] [cursor=pointer]:
+            - /url: index.html
+            - text: ZSIGNAL
+          - paragraph [ref=e628]: A deterministic generative art system. Every seed is a signature. Every constraint, a canvas.
+        - generic [ref=e629]:
+          - heading "Explore" [level=4] [ref=e630]
+          - link "Gallery" [ref=e631] [cursor=pointer]:
+            - /url: gallery.html
+          - link "Studio" [ref=e632] [cursor=pointer]:
+            - /url: studio.html
+          - link "AI Artists" [ref=e633] [cursor=pointer]:
+            - /url: artist.html
+          - link "Theory" [ref=e634] [cursor=pointer]:
+            - /url: theory.html
+          - link "Generator" [ref=e635] [cursor=pointer]:
+            - /url: generator.html
+        - generic [ref=e636]:
+          - heading "Connect" [level=4] [ref=e637]
+          - link "Contact" [ref=e638] [cursor=pointer]:
+            - /url: mailto:hello@zsignal.art
+          - link "FAQ" [ref=e639] [cursor=pointer]:
+            - /url: theory.html#faq
+          - link "Pitch Deck" [ref=e640] [cursor=pointer]:
+            - /url: pitch-deck.html
+      - generic [ref=e642]: © 2026 ZSIGNAL. All rights reserved.
+  - button "Ask the ZSIGNAL Art Historian" [ref=e643] [cursor=pointer]:
+    - img [ref=e644]
+  - dialog "ZSIGNAL Art Historian Chat":
+    - generic:
+      - generic: ZSIGNAL ART HISTORIAN
+      - button "Close chat": ×
+    - generic "Chat messages":
+      - generic: Ask me about any artwork, era, or artist in the ZSIGNAL collection. What would you like to know?
+    - generic:
+      - button "Bauhaus"
+      - button "Sacred Geometry"
+      - button "How it works"
+      - button "Albers & Color"
+    - generic:
+      - textbox "Ask the art historian":
+        - /placeholder: Ask anything about the art...
+      - button "ASK"
+  - generic:
+    - text: Moholy-Nagy composed by telephone.
+    - text: You compose by cursor. Press ESC to exit.
+  - button "× EXIT PAINT MODE"

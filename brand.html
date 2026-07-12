@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZSIGNAL &mdash; Brand &amp; Design System</title>
+  <meta name="description" content="The visual grammar of ZSIGNAL. Colors, type, palettes, and archetypes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css?v=11">
+  <link rel="stylesheet" href="css/z-gallery.css?v=11">
+  <style>
+    /* ── Dark canvas ── */
+    html, body { background: #000 !important; color: rgba(242,232,213,0.85); }
+    .header { background: #000 !important; border-bottom: 1px solid rgba(242,232,213,0.08) !important; }
+    .header .logo, .header .nav a { color: rgba(242,232,213,0.80) !important; }
+    .header .nav a:hover, .header .nav a.active { color: #D4A84B !important; }
+    .header .logo-square { background: #D4A84B !important; }
+    .hamburger span { background: rgba(242,232,213,0.8) !important; }
+    .footer { background: #050505 !important; border-top: 1px solid rgba(242,232,213,0.07) !important; }
+    .footer-copy { color: rgba(242,232,213,0.28) !important; }
+    .footer .logo { color: rgba(242,232,213,0.80) !important; }
+    .footer h4 { color: rgba(242,232,213,0.75) !important; }
+    .footer a { color: rgba(242,232,213,0.45) !important; }
+    .footer a:hover { color: #D4A84B !important; }
+    .footer-bottom { border-top-color: rgba(242,232,213,0.07) !important; }
+
+    /* ── Section rhythm ── */
+    .bd-section     { padding: 80px 0; }
+    .bd-section-alt { padding: 80px 0; background: #080808; border-top: 1px solid rgba(242,232,213,0.05); border-bottom: 1px solid rgba(242,232,213,0.05); }
+
+    .bd-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.20em;
+      color: #D4A84B; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .bd-label::after { content: ''; flex: 1; height: 1px; background: rgba(212,168,75,0.18); }
+
+    .bd-title {
+      font-family: 'IBM Plex Mono', monospace !important;
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: rgba(242,232,213,0.95);
+      margin-bottom: 36px;
+    }
+
+    /* ────────────────────
+       HERO
+    ──────────────────── */
+    .brand-hero {
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      min-height: 80vh;
+      border-bottom: 1px solid rgba(242,232,213,0.07);
+    }
+    .brand-hero-text {
+      padding: 96px 64px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      border-right: 1px solid rgba(242,232,213,0.07);
+    }
+    .brand-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.22em;
+      color: #D4A84B; margin-bottom: 24px;
+    }
+    .brand-h1 {
+      font-family: 'IBM Plex Mono', monospace !important;
+      font-size: clamp(48px, 6.5vw, 86px);
+      font-weight: 700; line-height: 0.92;
+      letter-spacing: -0.03em;
+      color: rgba(242,232,213,0.96);
+      margin-bottom: 28px;
+    }
+    .brand-h1 .gold { color: #D4A84B; }
+    .brand-hero-desc {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 15px; line-height: 1.75;
+      color: rgba(242,232,213,0.44); max-width: 420px;
+      margin-bottom: 44px;
+    }
+    .brand-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border: 1px solid rgba(242,232,213,0.10); max-width: 380px;
+    }
+    .brand-stat {
+      padding: 14px 12px; text-align: center;
+      border-right: 1px solid rgba(242,232,213,0.08);
+    }
+    .brand-stat:last-child { border-right: none; }
+    .brand-stat-val { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 700; color: #D4A84B; line-height: 1; margin-bottom: 4px; }
+    .brand-stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 8px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(242,232,213,0.26); }
+    .brand-hero-art { overflow: hidden; background: #080808; }
+    .brand-hero-art > div, .brand-hero-art svg { width: 100%; height: 100%; display: block; }
+
+    /* ────────────────────
+       01 — COLORS
+    ──────────────────── */
+    .color-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 1px; background: rgba(242,232,213,0.06);
+      border: 1px solid rgba(242,232,213,0.06);
+    }
+    .color-card { background: #0a0a0a; }
+    .color-swatch { height: 110px; }
+    .color-info { padding: 14px 16px; }
+    .color-name { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 700; color: rgba(242,232,213,0.88); margin-bottom: 4px; }
+    .color-hex  { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: rgba(242,232,213,0.35); margin-bottom: 6px; }
+    .color-use  { font-family: 'IBM Plex Sans', sans-serif; font-size: 10px; line-height: 1.45; color: rgba(242,232,213,0.28); }
+
+    /* ────────────────────
+       02 — TYPOGRAPHY
+    ──────────────────── */
+    .type-split {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: rgba(242,232,213,0.06);
+      border: 1px solid rgba(242,232,213,0.06);
+    }
+    .type-face-block { background: #0c0c0c; padding: 40px; }
+    .type-face-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.18em;
+      color: #D4A84B; margin-bottom: 20px;
+    }
+    .type-specimen-mono {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: clamp(36px, 4.5vw, 54px);
+      font-weight: 700; line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: rgba(242,232,213,0.95); margin-bottom: 18px;
+    }
+    .type-specimen-sans {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 17px; line-height: 1.65;
+      color: rgba(242,232,213,0.58); margin-bottom: 18px;
+    }
+    .type-roles {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; text-transform: uppercase;
+      letter-spacing: 0.09em; color: rgba(242,232,213,0.22); line-height: 1.9;
+    }
+    .type-scale {
+      background: #0c0c0c; padding: 0 40px;
+      border-top: 1px solid rgba(242,232,213,0.06);
+    }
+    .type-row {
+      display: flex; align-items: baseline; gap: 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(242,232,213,0.05);
+    }
+    .type-row:last-child { border-bottom: none; }
+    .type-spec {
+      min-width: 110px; flex-shrink: 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px; text-transform: uppercase;
+      letter-spacing: 0.08em; color: rgba(242,232,213,0.20);
+      align-self: center;
+    }
+
+    /* ────────────────────
+       03 — PALETTES
+    ──────────────────── */
+    .palette-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(242,232,213,0.06);
+      border: 1px solid rgba(242,232,213,0.06);
+    }
+    .palette-card { background: #0a0a0a; }
+    .palette-art  { aspect-ratio: 4/3; overflow: hidden; background: #050505; }
+    .palette-art svg { width: 100%; height: 100%; display: block; }
+    .palette-info {
+      padding: 14px 18px;
+      border-top: 1px solid rgba(242,232,213,0.05);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .palette-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: rgba(242,232,213,0.82);
+    }
+    .palette-dots { display: flex; gap: 4px; }
+    .palette-dot { width: 13px; height: 13px; border: 1px solid rgba(242,232,213,0.10); flex-shrink: 0; }
+
+    /* ────────────────────
+       04 — ARCHETYPES
+    ──────────────────── */
+    .arch-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 1px; background: rgba(242,232,213,0.06);
+      border: 1px solid rgba(242,232,213,0.06);
+    }
+    .arch-cell { background: #050505; overflow: hidden; }
+    .arch-art   { aspect-ratio: 1; }
+    .arch-art svg { width: 100%; height: 100%; display: block; }
+    .arch-lbl {
+      padding: 9px 11px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      color: rgba(242,232,213,0.28);
+      border-top: 1px solid rgba(242,232,213,0.05);
+    }
+
+    .api-bar {
+      margin-top: 1px; padding: 18px 24px;
+      background: #0a0a0a;
+      border: 1px solid rgba(242,232,213,0.06);
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    }
+    .api-code { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: rgba(242,232,213,0.40); }
+    .api-code .gold { color: #D4A84B; }
+
+    /* ────────────────────
+       CTA
+    ──────────────────── */
+    .brand-cta {
+      padding: 96px 0; text-align: center;
+      border-top: 1px solid rgba(242,232,213,0.06);
+    }
+    .brand-cta-title {
+      font-family: 'IBM Plex Mono', monospace !important;
+      font-size: clamp(30px, 4.5vw, 60px);
+      font-weight: 700; line-height: 1.0;
+      color: rgba(242,232,213,0.95); margin-bottom: 14px;
+    }
+    .brand-cta-sub {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 15px; color: rgba(242,232,213,0.35);
+      margin-bottom: 38px;
+    }
+    .brand-cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ────────────────────
+       RESPONSIVE
+    ──────────────────── */
+    @media (max-width: 1100px) {
+      .color-grid { grid-template-columns: repeat(4, 1fr); }
+      .arch-grid  { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .brand-hero { grid-template-columns: 1fr; min-height: auto; }
+      .brand-hero-art { min-height: 260px; }
+      .brand-hero-text { padding: 60px 32px 48px; border-right: none; }
+      .type-split { grid-template-columns: 1fr; }
+      .palette-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .color-grid { grid-template-columns: repeat(3, 1fr); }
+      .arch-grid  { grid-template-columns: repeat(3, 1fr); }
+      .bd-section, .bd-section-alt { padding: 56px 0; }
+      .type-face-block { padding: 28px 24px; }
+      .type-scale { padding: 0 24px; }
+    }
+    @media (max-width: 420px) {
+      .color-grid { grid-template-columns: repeat(2, 1fr); }
+      .arch-grid  { grid-template-columns: repeat(2, 1fr); }
+      .brand-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+      <nav class="nav" id="nav">
+        <a href="gallery.html">Gallery</a>
+        <a href="studio.html">Studio</a>
+        <a href="artist.html">AI Artists</a>
+        <a href="theory.html">Theory</a>
+        <a href="generator.html">Generator</a>
+        <a href="brand.html" class="active">Brand</a>
+      </nav>
+      <div class="header-actions">
+        <a href="gallery.html" class="btn btn-primary btn-sm">GALLERY</a>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+  <!-- HERO -->
+  <section class="brand-hero" aria-label="Brand introduction">
+    <div class="brand-hero-text">
+      <div class="brand-eyebrow">ZGNAL Design System &middot; V3.0</div>
+      <h1 class="brand-h1">THE CODE<br>BEHIND<br>THE <span class="gold">CANVAS</span></h1>
+      <p class="brand-hero-desc">Six axioms. Two typefaces. One palette. Infinite configurations. The visual grammar of a deterministic generative art system.</p>
+      <div class="brand-stats" role="list">
+        <div class="brand-stat" role="listitem"><span class="brand-stat-val">300+</span><span class="brand-stat-lbl">Tokens</span></div>
+        <div class="brand-stat" role="listitem"><span class="brand-stat-val">7</span><span class="brand-stat-lbl">Archetypes</span></div>
+        <div class="brand-stat" role="listitem"><span class="brand-stat-val">6</span><span class="brand-stat-lbl">Palettes</span></div>
+        <div class="brand-stat" role="listitem"><span class="brand-stat-val">&infin;</span><span class="brand-stat-lbl">Seeds</span></div>
+      </div>
+    </div>
+    <div class="brand-hero-art" id="brand-hero-art" aria-label="ARABIAN_GEOMETRIC composition, ZSIGNAL palette"></div>
+  </section>
+
+  <!-- 01 — COLORS -->
+  <section class="bd-section" aria-labelledby="color-heading">
+    <div class="container">
+      <div class="bd-label">01 &mdash; Color System</div>
+      <h2 id="color-heading" class="bd-title">Brand Colors</h2>
+      <div class="color-grid">
+
+        <div class="color-card">
+          <div class="color-swatch" style="background:#F2E8D5;"></div>
+          <div class="color-info">
+            <div class="color-name">Cream</div>
+            <div class="color-hex">#F2E8D5</div>
+            <div class="color-use">Primary background. Not white &mdash; warm.</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background:#1C1C1C;"></div>
+          <div class="color-info">
+            <div class="color-name">Charcoal</div>
+            <div class="color-hex">#1C1C1C</div>
+            <div class="color-use">Primary text &amp; borders.</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background:#D4A84B;"></div>
+          <div class="color-info">
+            <div class="color-name">Gold</div>
+            <div class="color-hex">#D4A84B</div>
+            <div class="color-use">Decorative. Dark bg only.</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background:#8A6A20;"></div>
+          <div class="color-info">
+            <div class="color-name">Gold Dark</div>
+            <div class="color-hex">#8A6A20</div>
+            <div class="color-use">Gold text on cream. WCAG AA.</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background:#A84235;"></div>
+          <div class="color-info">
+            <div class="color-name">Brick</div>
+            <div class="color-hex">#A84235</div>
+            <div class="color-use">Alert &amp; accent.</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background:#2E5F94;"></div>
+          <div class="color-info">
+            <div class="color-name">Blue</div>
+            <div class="color-hex">#2E5F94</div>
+            <div class="color-use">Links &amp; interactive.</div>
+          </div>
+        </div>
+
+        <div class="color-card">
+          <div class="color-swatch" style="background:#566832;"></div>
+          <div class="color-info">
+            <div class="color-name">Olive</div>
+            <div class="color-hex">#566832</div>
+            <div class="color-use">Secondary accent.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — TYPOGRAPHY -->
+  <section class="bd-section-alt" aria-labelledby="type-heading">
+    <div class="container">
+      <div class="bd-label">02 &mdash; Type System</div>
+      <h2 id="type-heading" class="bd-title">Two Typefaces. One Grammar.</h2>
+
+      <div class="type-split">
+        <div class="type-face-block">
+          <div class="type-face-tag">IBM Plex Mono &mdash; Structure</div>
+          <div class="type-specimen-mono">SIGNAL.</div>
+          <div class="type-roles">Headings &middot; Labels &middot; Badges &middot; Buttons &middot; Eyebrows</div>
+        </div>
+        <div class="type-face-block" style="border-left:1px solid rgba(242,232,213,0.05);">
+          <div class="type-face-tag" style="color:rgba(242,232,213,0.35);">IBM Plex Sans &mdash; Voice</div>
+          <div class="type-specimen-sans">The algorithm as brush. The constraint as canvas. The seed as gesture. Every work is a function with four inputs and infinite depth.</div>
+          <div class="type-roles" style="color:rgba(242,232,213,0.18);">Body copy &middot; Descriptions &middot; Captions &middot; Quotes &middot; Prose</div>
+        </div>
+      </div>
+
+      <div class="type-scale">
+        <div class="type-row">
+          <span class="type-spec">Display &middot; 72</span>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:clamp(32px,5.5vw,72px);font-weight:700;line-height:1;letter-spacing:-0.02em;color:rgba(242,232,213,0.95);">Signal.</div>
+        </div>
+        <div class="type-row">
+          <span class="type-spec">H1 &middot; 40</span>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:clamp(22px,3.2vw,40px);font-weight:700;line-height:1.1;letter-spacing:-0.01em;color:rgba(242,232,213,0.88);">Every seed is a signature.</div>
+        </div>
+        <div class="type-row">
+          <span class="type-spec">H2 &middot; 28</span>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:clamp(18px,2.4vw,28px);font-weight:600;line-height:1.2;color:rgba(242,232,213,0.80);">Every constraint, a canvas.</div>
+        </div>
+        <div class="type-row">
+          <span class="type-spec">Body &middot; 16</span>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.65;color:rgba(242,232,213,0.50);">Born to a family of engineers, she spent her twenties designing distributed systems before discovering that algorithms could make art.</div>
+        </div>
+        <div class="type-row">
+          <span class="type-spec">Caption &middot; 11</span>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:rgba(242,232,213,0.26);">Era VII &middot; ARABIAN_GEOMETRIC &middot; Seed 77777 &middot; Density 0.60</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 03 — PALETTES -->
+  <section class="bd-section" aria-labelledby="palette-heading">
+    <div class="container">
+      <div class="bd-label">03 &mdash; Palette System</div>
+      <h2 id="palette-heading" class="bd-title">Six Palettes</h2>
+      <div class="palette-grid">
+
+        <div class="palette-card">
+          <div class="palette-art" id="pal-zsignal" aria-label="ZSIGNAL palette render"></div>
+          <div class="palette-info">
+            <div class="palette-name">ZSIGNAL</div>
+            <div class="palette-dots">
+              <div class="palette-dot" style="background:#F2E8D5;"></div>
+              <div class="palette-dot" style="background:#1C1C1C;"></div>
+              <div class="palette-dot" style="background:#D4A84B;"></div>
+              <div class="palette-dot" style="background:#A84235;"></div>
+              <div class="palette-dot" style="background:#2E5F94;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="palette-card">
+          <div class="palette-art" id="pal-bauhaus" aria-label="CLASSIC BAUHAUS palette render"></div>
+          <div class="palette-info">
+            <div class="palette-name">CLASSIC BAUHAUS</div>
+            <div class="palette-dots">
+              <div class="palette-dot" style="background:#F2E8D5;"></div>
+              <div class="palette-dot" style="background:#1C1C1C;"></div>
+              <div class="palette-dot" style="background:#CC0000;"></div>
+              <div class="palette-dot" style="background:#0044CC;"></div>
+              <div class="palette-dot" style="background:#F5C400;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="palette-card">
+          <div class="palette-art" id="pal-constructivist" aria-label="CONSTRUCTIVIST palette render"></div>
+          <div class="palette-info">
+            <div class="palette-name">CONSTRUCTIVIST</div>
+            <div class="palette-dots">
+              <div class="palette-dot" style="background:#F2E8D5;"></div>
+              <div class="palette-dot" style="background:#1C1C1C;"></div>
+              <div class="palette-dot" style="background:#CC2200;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="palette-card">
+          <div class="palette-art" id="pal-warm-earth" aria-label="WARM EARTH palette render"></div>
+          <div class="palette-info">
+            <div class="palette-name">WARM EARTH</div>
+            <div class="palette-dots">
+              <div class="palette-dot" style="background:#F5EBD8;"></div>
+              <div class="palette-dot" style="background:#8B4513;"></div>
+              <div class="palette-dot" style="background:#D2691E;"></div>
+              <div class="palette-dot" style="background:#A0522D;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="palette-card">
+          <div class="palette-art" id="pal-cool-steel" aria-label="COOL STEEL palette render"></div>
+          <div class="palette-info">
+            <div class="palette-name">COOL STEEL</div>
+            <div class="palette-dots">
+              <div class="palette-dot" style="background:#E8EEF4;"></div>
+              <div class="palette-dot" style="background:#2C3E50;"></div>
+              <div class="palette-dot" style="background:#5B7FA6;"></div>
+              <div class="palette-dot" style="background:#1A2637;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="palette-card">
+          <div class="palette-art" id="pal-monochrome" aria-label="MONOCHROME palette render"></div>
+          <div class="palette-info">
+            <div class="palette-name">MONOCHROME</div>
+            <div class="palette-dots">
+              <div class="palette-dot" style="background:#F0F0F0;"></div>
+              <div class="palette-dot" style="background:#AAAAAA;"></div>
+              <div class="palette-dot" style="background:#555555;"></div>
+              <div class="palette-dot" style="background:#111111;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — ARCHETYPES -->
+  <section class="bd-section-alt" aria-labelledby="arch-heading">
+    <div class="container">
+      <div class="bd-label">04 &mdash; Art Engine</div>
+      <h2 id="arch-heading" class="bd-title">Seven Archetypes</h2>
+      <div class="arch-grid">
+        <div class="arch-cell"><div class="arch-art" id="eng-free" aria-label="FREE_FORM archetype"></div><div class="arch-lbl">FREE_FORM</div></div>
+        <div class="arch-cell"><div class="arch-art" id="eng-grid" aria-label="GRID archetype"></div><div class="arch-lbl">GRID</div></div>
+        <div class="arch-cell"><div class="arch-art" id="eng-rep"  aria-label="REPETITION archetype"></div><div class="arch-lbl">REPETITION</div></div>
+        <div class="arch-cell"><div class="arch-art" id="eng-con"  aria-label="CONSTRUCTIVIST archetype"></div><div class="arch-lbl">CONSTRUCTIVIST</div></div>
+        <div class="arch-cell"><div class="arch-art" id="eng-col"  aria-label="COLOR_STUDY archetype"></div><div class="arch-lbl">COLOR_STUDY</div></div>
+        <div class="arch-cell"><div class="arch-art" id="eng-dot"  aria-label="DOT_FIELD archetype"></div><div class="arch-lbl">DOT_FIELD</div></div>
+        <div class="arch-cell"><div class="arch-art" id="eng-ara"  aria-label="ARABIAN_GEOMETRIC archetype"></div><div class="arch-lbl">ARABIAN_GEOMETRIC</div></div>
+      </div>
+      <div class="api-bar">
+        <div class="api-code"><span class="gold">ZEngine</span>.render(target, &#123;&nbsp;archetype,&nbsp;palette,&nbsp;<span class="gold">seed</span>,&nbsp;density&nbsp;&#125;) &mdash; same params &rarr; identical SVG. Always.</div>
+        <a href="styleguide.html" class="btn btn-secondary btn-sm" style="flex-shrink:0;">STYLE GUIDE &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="brand-cta" aria-label="Call to action">
+    <div class="container">
+      <h2 class="brand-cta-title">Art from algorithms,<br>not accidents.</h2>
+      <p class="brand-cta-sub">Every seed is a signature. Every constraint, a canvas.</p>
+      <div class="brand-cta-actions">
+        <a href="gallery.html" class="btn btn-primary">VIEW GALLERY</a>
+        <a href="studio.html" class="btn btn-secondary">OPEN STUDIO</a>
+        <a href="theory.html" class="btn btn-ghost">READ THE THEORY</a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><div class="logo-square"></div>ZSIGNAL</a>
+          <p>A deterministic generative art system. Every seed is a signature. Every constraint, a canvas.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="gallery.html">Gallery</a>
+          <a href="studio.html">Studio</a>
+          <a href="artist.html">AI Artists</a>
+          <a href="theory.html">Theory</a>
+          <a href="generator.html">Generator</a>
+          <a href="brand.html">Brand</a>
+        </div>
+        <div class="footer-col">
+          <h4>Design System</h4>
+          <a href="styleguide.html">Style Guide</a>
+          <a href="brand.html">Brand &amp; Identity</a>
+          <a href="theory.html#faq">FAQ</a>
+          <a href="pitch-deck.html">Pitch Deck</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 ZSIGNAL &mdash; Brand &amp; Design System</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/z-engine.js"></script>
+  <script src="js/z-catalog.js"></script>
+  <script src="js/z-gallery.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      ZEngine.render('#brand-hero-art',     { archetype: 'ARABIAN_GEOMETRIC', palette: 'ZSIGNAL',         seed: 99917, density: 0.65 });
+      ZEngine.render('#pal-zsignal',        { archetype: 'FREE_FORM',         palette: 'ZSIGNAL',         seed: 42718, density: 0.65 });
+      ZEngine.render('#pal-bauhaus',        { archetype: 'GRID',              palette: 'CLASSIC_BAUHAUS', seed: 84123, density: 0.55 });
+      ZEngine.render('#pal-constructivist', { archetype: 'CONSTRUCTIVIST',    palette: 'CONSTRUCTIVIST',  seed: 40491, density: 0.55 });
+      ZEngine.render('#pal-warm-earth',     { archetype: 'REPETITION',        palette: 'WARM_EARTH',      seed: 30391, density: 0.70 });
+      ZEngine.render('#pal-cool-steel',     { archetype: 'DOT_FIELD',         palette: 'COOL_STEEL',      seed: 60691, density: 0.72 });
+      ZEngine.render('#pal-monochrome',     { archetype: 'ARABIAN_GEOMETRIC', palette: 'MONOCHROME',      seed: 70791, density: 0.60 });
+      ZEngine.render('#eng-free', { archetype: 'FREE_FORM',         palette: 'ZSIGNAL',         seed: 19910, density: 0.65 });
+      ZEngine.render('#eng-grid', { archetype: 'GRID',              palette: 'CLASSIC_BAUHAUS', seed: 20291, density: 0.55 });
+      ZEngine.render('#eng-rep',  { archetype: 'REPETITION',        palette: 'WARM_EARTH',      seed: 37777, density: 0.65 });
+      ZEngine.render('#eng-con',  { archetype: 'CONSTRUCTIVIST',    palette: 'CONSTRUCTIVIST',  seed: 44444, density: 0.55 });
+      ZEngine.render('#eng-col',  { archetype: 'COLOR_STUDY',       palette: 'CLASSIC_BAUHAUS', seed: 55555, density: 0.50 });
+      ZEngine.render('#eng-dot',  { archetype: 'DOT_FIELD',         palette: 'COOL_STEEL',      seed: 66666, density: 0.72 });
+      ZEngine.render('#eng-ara',  { archetype: 'ARABIAN_GEOMETRIC', palette: 'ZSIGNAL',         seed: 77777, density: 0.60 });
+    });
+  </script>
+  <script src="js/zs-motion.js" defer></script>
+</body>
+</html>
